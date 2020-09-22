@@ -3,11 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { SvgIcon } from '@material-ui/core';
-import { classNames } from 'classnames';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,16 +16,6 @@ const useStyles = makeStyles((theme) => ({
   },
   poliradioButton: {
     marginRight: theme.spacing(2),
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    justifyItems: 'center',
-    alignItems:'center',
-    alignContent: 'center',
-    justifySelf: 'center',
-    alignSelf:'center',
-    alignmentBaseline:'center'
-
   },
   toolbarFlex: {
     display: 'flex',
@@ -40,7 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
   navbarBrand: {
     backgroundImage: 'url("https://membri.poliradio.it/img/logo.svg")',
-    backgroundRepeat: 'no-repeat'
+    backgroundRepeat: 'no-repeat',
+    marginTop: '20px',
+    transform: 'scale(1.8)'
   }
 }));
 
@@ -54,7 +44,7 @@ const Header = () => {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon color='secondary' />
           </IconButton>
-          <IconButton edge="center" className={classes.poliradioButton} color="inherit" aria-label="menu">
+          <IconButton style={{backgroundColor: 'transparent'}} edge="center" className={classes.poliradioButton} color="inherit" aria-label="menu">
             <SvgIcon className={classes.navbarBrand}></SvgIcon>
           </IconButton>
           <Typography variant="h6" component='h5' className={classes.title} color='secondary'>
