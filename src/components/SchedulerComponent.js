@@ -14,20 +14,27 @@ const schedulerData = [
   { startDate: '2018-11-01T12:00', endDate: '2018-11-01T13:30', title: 'Go to a gym' },
 ];
 
-const useStyle = makeStyles({
-  timeScheduler: {
+const useStyle = makeStyles((theme) => ({
+  schedulerContainer: {
     marginTop: '32px',
-    marginBottom: '32px',
+    marginBottom: '32px'
+  },
+  timeScheduler: {
+    color: theme.palette.primary.main
+    
   }
-});
+}));
 
 const TimeScheduler = () => {
   const classes = useStyle();
 
   return (
-    <Paper className={classes.timeScheduler}>
+    <Paper className={classes.schedulerContainer}>
       <Scheduler
         data={schedulerData}
+        locale='it-IT'
+        firstDayOfWeek='1'
+        title='Prenotazioni di oggi'
       >
         <ViewState
           currentDate={currentDate}

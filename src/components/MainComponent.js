@@ -23,7 +23,7 @@ class Main extends Component {
                         <Grid item container md={4} xs={12} direction='column' justify='space-between' alignItems='center' style={{marginTop: '32px'}}>
                             <Grid item xs={2}></Grid>
                             <Grid item xs={8}>
-                                <Typography variant="h2" component="h1" gutterBottom>
+                                <Typography variant="h2" component="h1" gutterBottom color='textSecondary'>
                                     Ultimi affitti
                                 </Typography>
                             </Grid>

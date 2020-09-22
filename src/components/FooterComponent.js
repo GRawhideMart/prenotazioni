@@ -5,12 +5,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 
-function Copyright() {
+const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="https://membri.poliradio.it/">
+        POLI.RADIO
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -45,7 +45,7 @@ export default function StickyFooter() {
       
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Typography variant="body1">My sticky footer can be found here.</Typography>
+          <Typography variant="body1">Servizio prenotazioni</Typography>
           <Copyright />
         </Container>
       </footer>
