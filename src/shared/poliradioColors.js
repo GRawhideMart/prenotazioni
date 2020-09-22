@@ -1,4 +1,4 @@
-export const BLUEPOLIRADIO = '#5DBCD2';
+export const BLUEPOLIRADIO = 'rgba(93, 188, 210, .95)';
 export const LIGHTBLUEPOLIRADIO = 'hsl(191, 57%, 75%)'
 export const LIGHTERBLUEPOLIRADIO = 'hsl(191, 57%, 90%)'
 

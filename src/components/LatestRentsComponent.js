@@ -22,9 +22,11 @@ const StyledTableRow = withStyles((theme) => ({
   root: {
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.primary.light,
+      color: theme.palette.secondary.main
     },
     '&:nth-of-type(even)': {
-      backgroundColor: theme.palette.secondary.light,
+      backgroundColor: theme.palette.primary.contrastText,
+      color: theme.palette.secondary.main
     },
   },
 }))(TableRow);
