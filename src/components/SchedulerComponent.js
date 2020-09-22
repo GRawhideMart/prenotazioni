@@ -6,7 +6,6 @@ import {
   DayView,
   Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { makeStyles } from '@material-ui/core';
 
 const currentDate = '2018-11-01';
 const schedulerData = [
@@ -14,22 +13,10 @@ const schedulerData = [
   { startDate: '2018-11-01T12:00', endDate: '2018-11-01T13:30', title: 'Go to a gym' },
 ];
 
-const useStyle = makeStyles((theme) => ({
-  schedulerContainer: {
-    marginTop: '32px',
-    marginBottom: '32px'
-  },
-  timeScheduler: {
-    color: theme.palette.primary.main
-    
-  }
-}));
-
 const TimeScheduler = () => {
-  const classes = useStyle();
 
   return (
-    <Paper className={classes.schedulerContainer}>
+    <Paper>
       <Scheduler
         data={schedulerData}
         locale='it-IT'

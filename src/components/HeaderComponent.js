@@ -2,10 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import { SvgIcon } from '@material-ui/core';
+import { Button, SvgIcon } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,13 +16,12 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   toolbarFlex: {
+    marginLeft: '8px',
+    marginRight: '8px',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end'
-  },
-  title: {
-    flexGrow: 1,
+    justifyContent: 'space-between'
   },
   navbarBrand: {
     backgroundImage: 'url("https://membri.poliradio.it/img/logo.svg")',
@@ -41,15 +38,18 @@ const Header = () => {
     <div className={classes.root}>
       <AppBar position="static" color='primary'>
         <Toolbar className={classes.toolbarFlex}>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon color='secondary' />
-          </IconButton>
           <IconButton style={{backgroundColor: 'transparent'}} edge="center" className={classes.poliradioButton} color="inherit" aria-label="menu">
             <SvgIcon className={classes.navbarBrand}></SvgIcon>
           </IconButton>
-          <Typography variant="h6" component='h5' className={classes.title} color='secondary'>
-            Servizio prenotazioni
-          </Typography>
+          <Button color='secondary'>
+            Studio 1
+          </Button>
+          <Button color='secondary'>
+            Studio 2
+          </Button>
+          <Button color='secondary'>
+            Richiedi oggetto
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

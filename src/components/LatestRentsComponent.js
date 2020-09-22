@@ -31,30 +31,30 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(item, who, when) {
-  return { item, who, when };
+function createData(item, who, when, returned) {
+  return { item, who, when, returned };
 }
 
 const rows = [
-  createData('Cosa 1', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 2', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 3', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 4', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erj0on Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erj0on Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erj0on Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erj0on Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erj0on Kadiu', new Date().toDateString()),
-  createData('Cosa 5', 'Erj0on Kadiu', new Date().toDateString()),
+  createData('Cosa 1', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 2', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 3', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 4', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
 ];
 
 const useStyles = makeStyles({
@@ -72,8 +72,9 @@ const LatestRents = () => {
         <TableHead>
           <TableRow>
             <StyledTableCell>Oggetto</StyledTableCell>
-            <StyledTableCell align="justify">Chi</StyledTableCell>
-            <StyledTableCell align="justify">Quando</StyledTableCell>
+            <StyledTableCell align="center">Chi</StyledTableCell>
+            <StyledTableCell align="center">Quando</StyledTableCell>
+            <StyledTableCell align="center">Restituito</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -82,8 +83,9 @@ const LatestRents = () => {
               <StyledTableCell component="th" scope="row">
                 {row.item}
               </StyledTableCell>
-              <StyledTableCell align="justify">{row.who}</StyledTableCell>
-              <StyledTableCell align="justify">{row.when}</StyledTableCell>
+              <StyledTableCell align="center">{row.who}</StyledTableCell>
+              <StyledTableCell align="center">{row.when}</StyledTableCell>
+              <StyledTableCell align="center">{row.returned ? 'Sì' : 'No'}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
