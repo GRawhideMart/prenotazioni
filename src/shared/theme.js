@@ -1,5 +1,5 @@
 import { createMuiTheme } from "@material-ui/core";
-import { BLUEPOLIRADIO, HOVERPOLIRADIO, LIGHTBLUEPOLIRADIO, LIGHTERBLUEPOLIRADIO, LIGHTWHITEPOLIRADIO, WHITEPOLIRADIO } from "./poliradioColors";
+import { DARKBLUEPOLIRADIO, BLUEPOLIRADIO, HOVERPOLIRADIO, LIGHTBLUEPOLIRADIO, LIGHTERBLUEPOLIRADIO, LIGHTWHITEPOLIRADIO, WHITEPOLIRADIO } from "./poliradioColors";
 
 export const theme = createMuiTheme({
     palette: {
@@ -20,3 +20,14 @@ export const theme = createMuiTheme({
         }
     }
 });
+
+export const schedulerTheme = createMuiTheme({
+    palette: {
+        primary: {
+            main: DARKBLUEPOLIRADIO
+        },
+        text: {
+            secondary: BLUEPOLIRADIO
+        }
+    }
+})

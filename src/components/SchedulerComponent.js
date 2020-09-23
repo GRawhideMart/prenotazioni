@@ -6,8 +6,9 @@ import {
   DayView,
   Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
+import { ThemeProvider } from '@material-ui/core';
+import { schedulerTheme as theme } from '../shared/theme';
 
-const currentDate = '2018-11-01';
 const schedulerData = [
   { startDate: '2018-11-01T09:45', endDate: '2018-11-01T11:00', title: 'Meeting' },
   { startDate: '2018-11-01T12:00', endDate: '2018-11-01T13:30', title: 'Go to a gym' },
@@ -16,6 +17,7 @@ const schedulerData = [
 const TimeScheduler = () => {
 
   return (
+    <ThemeProvider theme={theme}>
     <Paper>
       <Scheduler
         data={schedulerData}
@@ -24,7 +26,7 @@ const TimeScheduler = () => {
         title='Prenotazioni di oggi'
       >
         <ViewState
-          currentDate={currentDate}
+          currentDate={'2020-02-03'}
         />
         <DayView
           startDayHour={9}
@@ -33,6 +35,7 @@ const TimeScheduler = () => {
         <Appointments />
       </Scheduler>
     </Paper>
+    </ThemeProvider>
   )
 }
 
