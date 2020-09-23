@@ -47,14 +47,6 @@ const rows = [
   createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
   createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
   createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
 ];
 
 const useStyles = makeStyles({

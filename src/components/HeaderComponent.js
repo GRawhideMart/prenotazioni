@@ -3,7 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import { Button, SvgIcon } from '@material-ui/core';
+import { Avatar, Button, SvgIcon } from '@material-ui/core';
+import { deepOrange } from '@material-ui/core/colors';
+import { Assignment } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     marginTop: '20px',
     transform: 'scale(1.8)'
+  },
+  avatar: {
+    color: '#fff',
+    backgroundColor: deepOrange[500]
   }
 }));
 
@@ -50,6 +56,9 @@ const Header = () => {
           <Button color='secondary'>
             Richiedi oggetto
           </Button>
+          <Avatar className={classes.avatar}>
+            <Assignment />
+          </Avatar>
         </Toolbar>
       </AppBar>
     </div>
