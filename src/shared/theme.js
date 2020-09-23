@@ -1,9 +1,10 @@
 import { createMuiTheme } from "@material-ui/core";
-import { DARKBLUEPOLIRADIO, BLUEPOLIRADIO, HOVERPOLIRADIO, LIGHTBLUEPOLIRADIO, LIGHTERBLUEPOLIRADIO, LIGHTWHITEPOLIRADIO, WHITEPOLIRADIO } from "./poliradioColors";
+import { DARKERBLUEPOLIRADIO, DARKBLUEPOLIRADIO, BLUEPOLIRADIO, HOVERPOLIRADIO, LIGHTBLUEPOLIRADIO, LIGHTERBLUEPOLIRADIO, LIGHTWHITEPOLIRADIO, WHITEPOLIRADIO } from "./poliradioColors";
 
 export const theme = createMuiTheme({
     palette: {
         primary: {
+            dark: DARKERBLUEPOLIRADIO,
             main: BLUEPOLIRADIO,
             light: LIGHTBLUEPOLIRADIO,
             contrastText: LIGHTERBLUEPOLIRADIO

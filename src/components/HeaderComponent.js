@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import { Avatar, Button, SvgIcon } from '@material-ui/core';
-import { deepOrange } from '@material-ui/core/colors';
 import { Assignment } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,13 +28,15 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: 'url("https://membri.poliradio.it/img/logo.svg")',
     backgroundRepeat: 'no-repeat',
     marginTop: '20px',
-    transform: 'scale(1.8)'
+    transform: 'scale(1.8)',
+    verticalAlign: 'middle'
   },
   avatar: {
     color: '#fff',
-    backgroundColor: deepOrange[500]
+    backgroundColor: theme.palette.primary.dark
   }
 }));
+
 
 const Header = () => {
   const classes = useStyles();
@@ -44,7 +45,7 @@ const Header = () => {
     <div className={classes.root}>
       <AppBar position="static" color='primary'>
         <Toolbar className={classes.toolbarFlex}>
-          <IconButton style={{backgroundColor: 'transparent'}} edge="center" className={classes.poliradioButton} color="inherit" aria-label="menu">
+          <IconButton style={{backgroundColor: 'transparent'}} edge="center" className={classes.poliradioButton} color="inherit" aria-label="logo" href='https://membri.poliradio.it'>
             <SvgIcon className={classes.navbarBrand}></SvgIcon>
           </IconButton>
           <Button color='secondary'>
@@ -54,7 +55,7 @@ const Header = () => {
             Studio 2
           </Button>
           <Button color='secondary'>
-            Richiedi oggetto
+            Affitti
           </Button>
           <Avatar className={classes.avatar}>
             <Assignment />

@@ -47,7 +47,13 @@ const rows = [
   createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
   createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
   createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
+  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
 ];
+
+const firstTenRows = rows.slice(0,10);
 
 const useStyles = makeStyles({
   table: {
@@ -70,7 +76,7 @@ const LatestRents = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {firstTenRows.map((row) => (
             <StyledTableRow key={row.item}>
               <StyledTableCell component="th" scope="row">
                 {row.item}

@@ -58,7 +58,9 @@ class Main extends Component {
                     <Toolbar id="back-to-top-anchor" />
                 </header>
                 <main>
-                    <Grid container direction='row' justify='space-evenly' alignItems='flex-start'>
+                    <Grid container direction='row' justify='space-evenly' alignItems='flex-start'
+                        style={{ marginBottom: '16px' }}
+                    >
                         <Grid item md={2} xs={0}></Grid>
                         <Grid item md={4} xs={12} direction='column' justify='space-between' alignItems='center' style={{marginTop: '32px'}}>
                             <Container>
