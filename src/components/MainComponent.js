@@ -8,6 +8,7 @@ import Home from './HomeComponent';
 import Studio from './StudioComponent';
 import Stanzino from './StanzinoComponent';
 import Affitti from './AffittiComponent';
+import { SchedulerPresentation } from './SchedulerComponent';
 
 import { SCHEDULERDATA } from '../shared/schedulerData';
 import { GROUPING, RESOURCES } from '../shared/rooms';
@@ -24,8 +25,14 @@ class Main extends Component {
         }
     }
 
+    filterRoom(room, toKeep) {
+        toKeep === 'Studio' ? room.instances.pop() : room.instances.shift();
+        return [room]
+    }
+
     render() {
         const { schedulerData, resources, grouping, latestRents } = this.state;
+
         return(
             <Fragment>
                 <header>
@@ -42,8 +49,22 @@ class Main extends Component {
                                                                 />
                                                         }
                         />
-                        <Route path='/studio' component={Studio} />
-                        <Route path='/stanzino' component={Stanzino} />
+                        <Route exact path='/studio' component={() => <SchedulerPresentation
+                                                                    schedulerData={schedulerData.filter(event => event.room === 1)}
+                                                                    resources={resources}
+                                                                    grouping={grouping}
+                                                                    latestRents={latestRents}
+                                                                />
+                                                        }
+                        />
+                        <Route exact path='/stanzino' component={() => <SchedulerPresentation
+                                                                    schedulerData={schedulerData.filter(event => event.room === 2)}
+                                                                    resources={resources}
+                                                                    grouping={grouping}
+                                                                    latestRents={latestRents}
+                                                                />
+                                                        }
+                        />
                         <Route path='/affitti' component={Affitti} />
                         <Redirect to='/' />
                     </Switch>
