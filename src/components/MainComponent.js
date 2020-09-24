@@ -70,7 +70,7 @@ class Main extends Component {
             return(
                 <Fragment>
                     <Grid container direction='row' justify='space-evenly' alignItems='flex-start'
-                        style={{ marginBottom: '16px' }}
+                        style={{ marginBottom: '64px' }}
                     >
                         <Grid item md={2} xs={0}></Grid>
                         <Grid item md={4} xs={12} direction='column' justify='space-between' alignItems='center'>
@@ -114,10 +114,10 @@ class Main extends Component {
                 </header>
                 <main>
                     <Switch>
-                        <Route path='/' component={Home} />
-                        <Route exact path='/studio/' component={<Studio />} />
-                        <Route exact path='/stanzino/' component={<Stanzino />} />
-                        <Route exact path='/affitti/' component={<Affitti />} />
+                        <Route exact path='/' component={Home} />
+                        <Route path='/studio' component={Studio} />
+                        <Route path='/stanzino' component={Stanzino} />
+                        <Route path='/affitti' component={Affitti} />
                         <Redirect to='/' />
                     </Switch>
                 </main>

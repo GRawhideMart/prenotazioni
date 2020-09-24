@@ -62,6 +62,41 @@ const rents = [
         when: new Date().toDateString(),
         returned: true
     },
+    {
+        item: 'Cosa 1',
+        itemId: 9,
+        who: 'Erjon Kadiu',
+        when: new Date().toDateString(),
+        returned: true
+    },
+    {
+        item: 'Cosa 1',
+        itemId: 10,
+        who: 'Erjon Kadiu',
+        when: new Date().toDateString(),
+        returned: true
+    },
+    {
+        item: 'Cosa 1',
+        itemId: 11,
+        who: 'Erjon Kadiu',
+        when: new Date().toDateString(),
+        returned: true
+    },
+    {
+        item: 'Cosa 1',
+        itemId: 12,
+        who: 'Erjon Kadiu',
+        when: new Date().toDateString(),
+        returned: true
+    },
+    {
+        item: 'Cosa 1',
+        itemId: 13,
+        who: 'Erjon Kadiu',
+        when: new Date().toDateString(),
+        returned: true
+    },
   ];
   
-export const RENTS = rents.slice(0,10);
+export const RENTS = rents.slice(0,13);
