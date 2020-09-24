@@ -16,7 +16,7 @@ import {
   MonthView,
   ViewSwitcher
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { Button, Grid, ThemeProvider } from '@material-ui/core';
+import { Button, Grid, ThemeProvider, Typography } from '@material-ui/core';
 import { schedulerTheme as theme } from '../shared/theme';
 
 export const TodayBtn = () => {
@@ -25,7 +25,7 @@ export const TodayBtn = () => {
   )
 }
 
-export class StudioScheduler extends Component {
+class StudioScheduler extends Component {
   constructor(props) {
     super(props);
 
@@ -100,20 +100,21 @@ export class StudioScheduler extends Component {
   }
 }
 
-export const SchedulerPresentation = ({ schedulerData, resources, grouping, latestRents }) => {
+export const SchedulerPresentation = ({ schedulerData, resources, grouping, latestRents, name }) => {
   return(
-    <Grid container direction='column' alignItems='center' justify='center' style={{ marginTop: '32px'}}>
-            <Grid item container direction='row'>
-                <Grid item md={2}></Grid>
-                <Grid item md={8}>
-                    <StudioScheduler schedulerData={schedulerData}
-                                     resources={resources}
-                                     grouping={grouping}
-                                     latestRents={latestRents}
-                    />
-                </Grid>
-                <Grid item md={2}></Grid>
-            </Grid>
+    <Grid container direction='column' alignItems='center' justify='center' style={{ marginTop: '32px'}}>  
+      <Typography color='secondary' gutterBottom variant='h2'>{name.toUpperCase()}</Typography>
+      <Grid item container direction='row'>
+          <Grid item md={2}></Grid>
+          <Grid item md={8}>
+              <StudioScheduler schedulerData={schedulerData}
+                               resources={resources}
+                               grouping={grouping}
+                               latestRents={latestRents}
+              />
+          </Grid>
+          <Grid item md={2}></Grid>
+      </Grid>
     </Grid>
   )
 }

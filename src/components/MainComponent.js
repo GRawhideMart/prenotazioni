@@ -52,6 +52,7 @@ class Main extends Component {
                                                                     resources={resources}
                                                                     grouping={grouping}
                                                                     latestRents={latestRents}
+                                                                    name='Studio'
                                                                 />
                                                         }
                         />
@@ -60,6 +61,7 @@ class Main extends Component {
                                                                     resources={resources}
                                                                     grouping={grouping}
                                                                     latestRents={latestRents}
+                                                                    name='Stanzino'
                                                                 />
                                                         }
                         />
