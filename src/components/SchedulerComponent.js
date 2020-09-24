@@ -16,29 +16,28 @@ import {
   MonthView,
   ViewSwitcher
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { Button, Grid, ThemeProvider, Typography } from '@material-ui/core';
+import { Grid, ThemeProvider, Typography } from '@material-ui/core';
 import { schedulerTheme as theme } from '../shared/theme';
-
-export const TodayBtn = () => {
-  return(
-    <Button>Oggi</Button>
-  )
-}
 
 class StudioScheduler extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentViewName: 'work-week'
+      currentViewName: 'work-week',
+      currentDate: new Date()
     };
     this.currentViewNameChange = (currentViewName) => {
       this.setState({ currentViewName });
     };
+    this.currentDateChange = (currentDate) => {
+      this.setState({ currentDate });
+    }
   }
 
   render() {
     const { schedulerData, resources } = this.props;
+    const { currentViewName, currentDate } = this.state;
     return (
       <ThemeProvider theme={theme}>
         <Paper>
@@ -48,8 +47,9 @@ class StudioScheduler extends Component {
             firstDayOfWeek='1'
           >
             <ViewState
-              defaultCurrentDate={new Date()}
-              currentViewName={this.state.currentViewName}
+              currentDate={currentDate}
+              onCurrentDateChange={this.currentDateChange}
+              currentViewName={currentViewName}
               onCurrentViewNameChange={this.currentViewNameChange}
             />
 
@@ -70,7 +70,12 @@ class StudioScheduler extends Component {
             <MonthView 
               displayName='Mensile'
             />
-      
+            <Toolbar />
+            <DateNavigator />
+            <TodayButton 
+              messages={{ today: 'oggi' }}
+            />
+                  
             <Appointments />
             <Resources
               data={resources}
@@ -83,10 +88,8 @@ class StudioScheduler extends Component {
             <AppointmentForm 
               readOnly
             />
-            <Toolbar />
+            
             <ViewSwitcher />
-            <DateNavigator />
-            <TodayButton buttonComponent={TodayBtn} />
   
             <CurrentTimeIndicator
               shadePreviousAppointments={true}
@@ -158,7 +161,9 @@ const TimeScheduler = (props) => {
           />
           <Toolbar />
           <DateNavigator />
-          <TodayButton buttonComponent={TodayBtn} />
+          <TodayButton
+            messages={{ today: 'oggi' }} 
+          />
 
           <GroupingPanel />
           <CurrentTimeIndicator
