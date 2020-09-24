@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -37,6 +39,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const PoliradioIcon = () => {
+  const classes = useStyles();
+  return(
+    <IconButton style={{backgroundColor: 'transparent'}} edge="center" className={classes.poliradioButton} color="inherit" aria-label="logo" href='https://membri.poliradio.it'>
+      <SvgIcon className={classes.navbarBrand}></SvgIcon>
+    </IconButton>
+  );
+}
 
 const Header = () => {
   const classes = useStyles();
@@ -45,16 +55,14 @@ const Header = () => {
     <div className={classes.root}>
       <AppBar position="static" color='primary'>
         <Toolbar className={classes.toolbarFlex}>
-          <IconButton style={{backgroundColor: 'transparent'}} edge="center" className={classes.poliradioButton} color="inherit" aria-label="logo" href='https://membri.poliradio.it'>
-            <SvgIcon className={classes.navbarBrand}></SvgIcon>
-          </IconButton>
-          <Button color='secondary'>
+          <PoliradioIcon />
+          <Button color='secondary' component={RouterLink} to='/studio'>
             Studio 1
           </Button>
-          <Button color='secondary'>
+          <Button color='secondary' component={RouterLink} to='/stanzino'>
             Studio 2
           </Button>
-          <Button color='secondary'>
+          <Button color='secondary' component={RouterLink} to='/affitti'>
             Affitti
           </Button>
           <Avatar className={classes.avatar}>

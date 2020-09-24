@@ -31,38 +31,15 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(item, who, when, returned) {
-  return { item, who, when, returned };
-}
-
-const rows = [
-  createData('Cosa 1', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 2', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 3', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 4', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-  createData('Cosa 5', 'Erjon Kadiu', new Date().toDateString(), true),
-];
-
-const firstTenRows = rows.slice(0,10);
-
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
 });
 
-const LatestRents = () => {
+const LatestRents = (props) => {
   const classes = useStyles();
+  const { rows } = props;
 
   return (
     <TableContainer component={Paper}>
@@ -76,7 +53,7 @@ const LatestRents = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {firstTenRows.map((row) => (
+          {rows.map((row) => (
             <StyledTableRow key={row.item}>
               <StyledTableCell component="th" scope="row">
                 {row.item}
