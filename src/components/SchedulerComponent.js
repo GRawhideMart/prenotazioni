@@ -13,8 +13,14 @@ import {
   AppointmentForm,
   GroupingPanel, CurrentTimeIndicator
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { ThemeProvider } from '@material-ui/core';
+import { Button, ThemeProvider } from '@material-ui/core';
 import { schedulerTheme as theme } from '../shared/theme';
+
+const TodayBtn = () => {
+  return(
+    <Button>Oggi</Button>
+  )
+}
 
 const TimeScheduler = (props) => {
   const { schedulerData, resources, grouping } = props;
@@ -55,13 +61,13 @@ const TimeScheduler = (props) => {
           />
           <Toolbar />
           <DateNavigator />
-          <TodayButton />
+          <TodayButton buttonComponent={TodayBtn} />
 
           <GroupingPanel />
           <CurrentTimeIndicator
             shadePreviousAppointments={true}
             shadePreviousCells={true}
-            updateInterval={30000}
+            updateInterval={60000}
           />
         </Scheduler>
       </Paper>

@@ -48,6 +48,10 @@ const PoliradioIcon = () => {
   );
 }
 
+const LinkComponent = (props) => {
+  return <RouterLink {...props} />
+}
+
 const Header = () => {
   const classes = useStyles();
 
@@ -56,13 +60,13 @@ const Header = () => {
       <AppBar position="static" color='primary'>
         <Toolbar className={classes.toolbarFlex}>
           <PoliradioIcon />
-          <Button color='secondary' component={RouterLink} to='/studio'>
+          <Button color='secondary' component={LinkComponent} to='/studio'>
             Studio 1
           </Button>
-          <Button color='secondary' component={RouterLink} to='/stanzino'>
+          <Button color='secondary' component={LinkComponent} to='/stanzino'>
             Studio 2
           </Button>
-          <Button color='secondary' component={RouterLink} to='/affitti'>
+          <Button color='secondary' component={LinkComponent} to='/affitti'>
             Affitti
           </Button>
           <Avatar className={classes.avatar}>

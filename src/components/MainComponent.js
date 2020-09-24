@@ -15,7 +15,7 @@ import Affitti from './AffittiComponent';
 
 import { SCHEDULERDATA } from '../shared/schedulerData';
 import { GROUPING, RESOURCES } from '../shared/rooms';
-import { FIRSTTENROWS as ROWS } from '../shared/latestRents';
+import { RENTS } from '../shared/latestRents';
 
 class Main extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class Main extends Component {
             schedulerData: SCHEDULERDATA,
             resources: [ RESOURCES ],
             grouping: [ GROUPING ],
-            latestRents: ROWS
+            latestRents: RENTS
         }
     }
 
