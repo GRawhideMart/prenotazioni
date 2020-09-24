@@ -5,7 +5,7 @@ import { Grid, Container, Typography, Toolbar, Fab, Zoom, makeStyles, useScrollT
 import { KeyboardArrowUp } from '@material-ui/icons';
 
 import LatestRents from './LatestRentsComponent';
-import TimeScheduler from './SchedulerComponent';
+import HomeScheduler from './SchedulerComponent';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -59,7 +59,7 @@ const Home = (props) => {
                         <Typography align='center' variant='h2' component='h1' gutterBottom color='textSecondary'>
                             Occupazione attuale
                         </Typography>
-                        <TimeScheduler 
+                        <HomeScheduler 
                             schedulerData={schedulerData}
                             resources={resources}
                             grouping={grouping}

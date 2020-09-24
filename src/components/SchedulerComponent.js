@@ -122,7 +122,7 @@ export const SchedulerPresentation = ({ schedulerData, resources, grouping, late
   )
 }
 
-const TimeScheduler = (props) => {
+const HomeScheduler = (props) => {
   const { schedulerData, resources, grouping } = props;
   return (
     <ThemeProvider theme={theme}>
@@ -177,4 +177,4 @@ const TimeScheduler = (props) => {
   )
 }
 
-export default TimeScheduler;
+export default HomeScheduler;
