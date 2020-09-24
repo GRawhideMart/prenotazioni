@@ -5,8 +5,6 @@ import Header from './HeaderComponent';
 import StickyFooter from './FooterComponent';
 
 import Home from './HomeComponent';
-import Studio from './StudioComponent';
-import Stanzino from './StanzinoComponent';
 import Affitti from './AffittiComponent';
 import { SchedulerPresentation } from './SchedulerComponent';
 
