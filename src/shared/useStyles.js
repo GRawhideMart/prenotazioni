@@ -68,6 +68,11 @@ export const USESTYLES = makeStyles((theme) => ({
     },
     marginBottom: theme.spacing(2)
   },
+  backToTopAnchor: {
+    height: '0px',
+    margin: '0px',
+    padding: '0px'
+  }
 }));
 
 export const StyledTableCell = withStyles((theme) => ({

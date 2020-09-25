@@ -14,14 +14,8 @@ import { KeyboardArrowUp } from "@material-ui/icons";
 
 import LatestRents from "./LatestRentsComponent";
 import HomeScheduler from "./SchedulerComponent";
+import Title from "./TitleComponent";
 
-/*const useStyles = makeStyles((theme) => ({
-  root: {
-    position: "fixed",
-    bottom: theme.spacing(8),
-    right: theme.spacing(8),
-  },
-}));*/
 const ScrollTop = (props) => {
   const { children, window, style } = props;
   const classes = style();
@@ -43,7 +37,11 @@ const ScrollTop = (props) => {
 
   return (
     <Zoom in={trigger}>
-      <div onClick={handleClick} role="presentation" className={classes.homeRoot}>
+      <div
+        onClick={handleClick}
+        role="presentation"
+        className={classes.homeRoot}
+      >
         {children}
       </div>
     </Zoom>
@@ -56,10 +54,19 @@ ScrollTop.propTypes = {
 
 const Home = (props) => {
   const { schedulerData, resources, grouping, latestRents, style } = props;
-
+  const classes = style();
   return (
     <Fragment>
-      <Toolbar id="back-to-top-anchor" />
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ marginTop: "32px" }}
+      >
+        <Title name="Homepage" style={style} />
+      </Grid>
+      <Toolbar id="back-to-top-anchor" className={classes.backToTopAnchor} />
       <Grid
         container
         direction="row"
