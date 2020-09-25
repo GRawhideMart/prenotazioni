@@ -16,7 +16,7 @@ const PoliradioIcon = ({ style }) => {
   );
 }
 
-const LinkComponent = (props) => {
+export const LinkComponent = (props) => {
   return <RouterLink {...props} />
 }
 

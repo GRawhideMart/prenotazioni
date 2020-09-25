@@ -6,9 +6,9 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 
 import { StyledTableCell, StyledTableRow } from '../shared/useStyles';
+import Title from "./TitleComponent";
 
 const InventaryTable = ({ inventary, style }) => {
   const classes = style();
@@ -45,8 +45,7 @@ const InventaryTable = ({ inventary, style }) => {
 
 const Affitti = (props) => {
   const { inventary, name, style } = props;
-  const classes = style();
-  
+
   return (
       <Grid
         container
@@ -55,9 +54,7 @@ const Affitti = (props) => {
         justify="center"
         style={{ marginTop: "32px" }}
       >
-        <Typography color="secondary" gutterBottom variant="h2" className={classes.title}>
-          {name.toUpperCase()}
-        </Typography>
+        <Title style={style} name={name} />
         <Grid item container direction="row">
           <Grid item md={2}></Grid>
           <Grid item md={8}>

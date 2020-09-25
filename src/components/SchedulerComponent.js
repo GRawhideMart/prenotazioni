@@ -21,8 +21,9 @@ import {
   MonthView,
   ViewSwitcher,
 } from "@devexpress/dx-react-scheduler-material-ui";
-import { Grid, ThemeProvider, Typography } from "@material-ui/core";
+import { Grid, ThemeProvider } from "@material-ui/core";
 import { schedulerTheme as theme } from "../shared/theme";
+import { Title } from "./TitleComponent";
 
 class StudioScheduler extends Component {
   constructor(props) {
@@ -96,14 +97,10 @@ class StudioScheduler extends Component {
 export const SchedulerPresentation = ({
   schedulerData,
   resources,
-  grouping,
-  latestRents,
   name,
   style
 }) => {
   
-  const classes = style();
-
   return (
     <Grid
       container
@@ -112,11 +109,11 @@ export const SchedulerPresentation = ({
       justify="center"
       style={{ marginTop: "32px" }}
     >
-      <Typography color="secondary" gutterBottom variant="h2" className={classes.title}>
-        {name.toUpperCase()}
-      </Typography>
+      <Title style={style} name={name} />
       <Grid item container direction="row">
-        <Grid item md={2}></Grid>
+        <Grid item md={2}>
+          
+        </Grid>
         <Grid item md={8}>
           <StudioScheduler
             schedulerData={schedulerData}

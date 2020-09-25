@@ -61,7 +61,13 @@ export const USESTYLES = makeStyles((theme) => ({
   },
   rowItemId: {
       paddingLeft: '32px'
-  }
+  },
+  breadcrumb: {
+    '& > * + *': {
+      margin: theme.spacing(2),
+    },
+    marginBottom: theme.spacing(2)
+  },
 }));
 
 export const StyledTableCell = withStyles((theme) => ({

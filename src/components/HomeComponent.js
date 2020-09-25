@@ -8,7 +8,6 @@ import {
   Toolbar,
   Fab,
   Zoom,
-  makeStyles,
   useScrollTrigger,
 } from "@material-ui/core";
 import { KeyboardArrowUp } from "@material-ui/icons";
@@ -24,8 +23,8 @@ import HomeScheduler from "./SchedulerComponent";
   },
 }));*/
 const ScrollTop = (props) => {
-  const { children, window, styles } = props;
-  const classes = styles;
+  const { children, window, style } = props;
+  const classes = style();
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
@@ -56,7 +55,7 @@ ScrollTop.propTypes = {
 };
 
 const Home = (props) => {
-  const { schedulerData, resources, grouping, latestRents } = props;
+  const { schedulerData, resources, grouping, latestRents, style } = props;
 
   return (
     <Fragment>
@@ -119,7 +118,7 @@ const Home = (props) => {
         </Grid>
         <Grid item md={2} xs={0}></Grid>
       </Grid>
-      <ScrollTop {...props}>
+      <ScrollTop {...props} style={style}>
         <Fab color="primary" size="large" aria-label="scroll back to top">
           <KeyboardArrowUp />
         </Fab>
