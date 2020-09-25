@@ -15,20 +15,25 @@ const mapStateToProps = (state) => ({
   resources: state.resources,
   grouping: state.grouping,
   latestRents: state.latestRents,
+  inventary: state.inventary,
+  styles: state.styles
 });
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const { schedulerData, resources, grouping, latestRents } = this.props;
+    const {
+      schedulerData,
+      resources,
+      grouping,
+      latestRents,
+      inventary,
+      styles
+    } = this.props;
 
     return (
       <Fragment>
         <header>
-          <Header />
+          <Header style={styles} />
         </header>
         <main>
           <Switch>
@@ -41,6 +46,7 @@ class Main extends Component {
                   resources={resources}
                   grouping={grouping}
                   latestRents={latestRents}
+                  style={styles}
                 />
               )}
             />
@@ -54,8 +60,8 @@ class Main extends Component {
                   )}
                   resources={resources}
                   grouping={grouping}
-                  latestRents={latestRents}
                   name="Studio"
+                  style={styles}
                 />
               )}
             />
@@ -69,17 +75,20 @@ class Main extends Component {
                   )}
                   resources={resources}
                   grouping={grouping}
-                  latestRents={latestRents}
                   name="Stanzino"
+                  style={styles}
                 />
               )}
             />
-            <Route path="/affitti" component={Affitti} />
+            <Route
+              path="/affitti"
+              component={() => <Affitti inventary={inventary} style={styles} name="Inventario" />}
+            />
             <Redirect to="/" />
           </Switch>
         </main>
         <footer>
-          <StickyFooter />
+          <StickyFooter style={styles}/>
         </footer>
       </Fragment>
     );

@@ -16,16 +16,16 @@ import { KeyboardArrowUp } from "@material-ui/icons";
 import LatestRents from "./LatestRentsComponent";
 import HomeScheduler from "./SchedulerComponent";
 
-const useStyles = makeStyles((theme) => ({
+/*const useStyles = makeStyles((theme) => ({
   root: {
     position: "fixed",
     bottom: theme.spacing(8),
     right: theme.spacing(8),
   },
-}));
+}));*/
 const ScrollTop = (props) => {
-  const { children, window } = props;
-  const classes = useStyles();
+  const { children, window, styles } = props;
+  const classes = styles;
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
@@ -44,7 +44,7 @@ const ScrollTop = (props) => {
 
   return (
     <Zoom in={trigger}>
-      <div onClick={handleClick} role="presentation" className={classes.root}>
+      <div onClick={handleClick} role="presentation" className={classes.homeRoot}>
         {children}
       </div>
     </Zoom>

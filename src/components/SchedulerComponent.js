@@ -99,7 +99,11 @@ export const SchedulerPresentation = ({
   grouping,
   latestRents,
   name,
+  style
 }) => {
+  
+  const classes = style();
+
   return (
     <Grid
       container
@@ -108,7 +112,7 @@ export const SchedulerPresentation = ({
       justify="center"
       style={{ marginTop: "32px" }}
     >
-      <Typography color="secondary" gutterBottom variant="h2">
+      <Typography color="secondary" gutterBottom variant="h2" className={classes.title}>
         {name.toUpperCase()}
       </Typography>
       <Grid item container direction="row">
@@ -117,8 +121,6 @@ export const SchedulerPresentation = ({
           <StudioScheduler
             schedulerData={schedulerData}
             resources={resources}
-            grouping={grouping}
-            latestRents={latestRents}
           />
         </Grid>
         <Grid item md={2}></Grid>
