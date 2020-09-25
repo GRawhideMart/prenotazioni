@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
-import Paper from '@material-ui/core/Paper';
-import { ViewState, GroupingState, IntegratedGrouping } from '@devexpress/dx-react-scheduler';
+import React, { Component } from "react";
+import Paper from "@material-ui/core/Paper";
+import {
+  ViewState,
+  GroupingState,
+  IntegratedGrouping,
+} from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
   Resources,
@@ -11,28 +15,29 @@ import {
   TodayButton,
   DateNavigator,
   AppointmentForm,
-  GroupingPanel, CurrentTimeIndicator,
+  GroupingPanel,
+  CurrentTimeIndicator,
   WeekView,
   MonthView,
-  ViewSwitcher
-} from '@devexpress/dx-react-scheduler-material-ui';
-import { Grid, ThemeProvider, Typography } from '@material-ui/core';
-import { schedulerTheme as theme } from '../shared/theme';
+  ViewSwitcher,
+} from "@devexpress/dx-react-scheduler-material-ui";
+import { Grid, ThemeProvider, Typography } from "@material-ui/core";
+import { schedulerTheme as theme } from "../shared/theme";
 
 class StudioScheduler extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentViewName: 'work-week',
-      currentDate: new Date()
+      currentViewName: "work-week",
+      currentDate: new Date(),
     };
     this.currentViewNameChange = (currentViewName) => {
       this.setState({ currentViewName });
     };
     this.currentDateChange = (currentDate) => {
       this.setState({ currentDate });
-    }
+    };
   }
 
   render() {
@@ -41,11 +46,7 @@ class StudioScheduler extends Component {
     return (
       <ThemeProvider theme={theme}>
         <Paper>
-          <Scheduler
-            data={schedulerData}
-            locale='it-IT'
-            firstDayOfWeek='1'
-          >
+          <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek="1">
             <ViewState
               currentDate={currentDate}
               onCurrentDateChange={this.currentDateChange}
@@ -54,7 +55,7 @@ class StudioScheduler extends Component {
             />
 
             <DayView
-              displayName='Giornaliero'
+              displayName="Giornaliero"
               startDayHour={9}
               endDayHour={21}
               cellDuration={60}
@@ -67,30 +68,19 @@ class StudioScheduler extends Component {
               startDayHour={9}
               endDayHour={21}
             />
-            <MonthView 
-              displayName='Mensile'
-            />
+            <MonthView displayName="Mensile" />
             <Toolbar />
             <DateNavigator />
-            <TodayButton 
-              messages={{ today: 'oggi' }}
-            />
-                  
+            <TodayButton messages={{ today: "oggi" }} />
+
             <Appointments />
-            <Resources
-              data={resources}
-              mainResourceName='room'
-            />
-  
-            <AppointmentTooltip 
-              showCloseButton
-            />
-            <AppointmentForm 
-              readOnly
-            />
-            
+            <Resources data={resources} mainResourceName="room" />
+
+            <AppointmentTooltip showCloseButton />
+            <AppointmentForm readOnly />
+
             <ViewSwitcher />
-  
+
             <CurrentTimeIndicator
               shadePreviousAppointments={true}
               shadePreviousCells={true}
@@ -99,71 +89,65 @@ class StudioScheduler extends Component {
           </Scheduler>
         </Paper>
       </ThemeProvider>
-    )
+    );
   }
 }
 
-export const SchedulerPresentation = ({ schedulerData, resources, grouping, latestRents, name }) => {
-  return(
-    <Grid container direction='column' alignItems='center' justify='center' style={{ marginTop: '32px'}}>  
-      <Typography color='secondary' gutterBottom variant='h2'>{name.toUpperCase()}</Typography>
-      <Grid item container direction='row'>
-          <Grid item md={2}></Grid>
-          <Grid item md={8}>
-              <StudioScheduler schedulerData={schedulerData}
-                               resources={resources}
-                               grouping={grouping}
-                               latestRents={latestRents}
-              />
-          </Grid>
-          <Grid item md={2}></Grid>
+export const SchedulerPresentation = ({
+  schedulerData,
+  resources,
+  grouping,
+  latestRents,
+  name,
+}) => {
+  return (
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      justify="center"
+      style={{ marginTop: "32px" }}
+    >
+      <Typography color="secondary" gutterBottom variant="h2">
+        {name.toUpperCase()}
+      </Typography>
+      <Grid item container direction="row">
+        <Grid item md={2}></Grid>
+        <Grid item md={8}>
+          <StudioScheduler
+            schedulerData={schedulerData}
+            resources={resources}
+            grouping={grouping}
+            latestRents={latestRents}
+          />
+        </Grid>
+        <Grid item md={2}></Grid>
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
 const HomeScheduler = (props) => {
   const { schedulerData, resources, grouping } = props;
   return (
     <ThemeProvider theme={theme}>
       <Paper>
-        <Scheduler
-          data={schedulerData}
-          locale='it-IT'
-          firstDayOfWeek='1'
-        >
-          <ViewState
-            defaultCurrentDate={new Date()}
-          />
+        <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek="1">
+          <ViewState defaultCurrentDate={new Date()} />
 
-          <GroupingState
-            grouping={grouping}
-          />
+          <GroupingState grouping={grouping} />
 
-          <DayView
-            startDayHour={9}
-            endDayHour={21}
-            cellDuration={60}
-          />
-    
+          <DayView startDayHour={9} endDayHour={21} cellDuration={60} />
+
           <Appointments />
-          <Resources
-            data={resources}
-            mainResourceName='room'
-          />
+          <Resources data={resources} mainResourceName="room" />
           <IntegratedGrouping />
 
-          <AppointmentTooltip 
-            showCloseButton
-          />
-          <AppointmentForm 
-            readOnly
-          />
+          <AppointmentTooltip showCloseButton />
+          <AppointmentForm readOnly />
           <Toolbar />
           <DateNavigator />
-          <TodayButton
-            messages={{ today: 'oggi' }} 
-          />
+          <TodayButton messages={{ today: "oggi" }} />
 
           <GroupingPanel />
           <CurrentTimeIndicator
@@ -174,7 +158,7 @@ const HomeScheduler = (props) => {
         </Scheduler>
       </Paper>
     </ThemeProvider>
-  )
-}
+  );
+};
 
 export default HomeScheduler;

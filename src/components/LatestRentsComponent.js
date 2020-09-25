@@ -1,12 +1,12 @@
-import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import React from "react";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -20,13 +20,13 @@ const StyledTableCell = withStyles((theme) => ({
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
-    '&:nth-of-type(odd)': {
+    "&:nth-of-type(odd)": {
       backgroundColor: theme.palette.primary.light,
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.main,
     },
-    '&:nth-of-type(even)': {
+    "&:nth-of-type(even)": {
       backgroundColor: theme.palette.primary.contrastText,
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.main,
     },
   },
 }))(TableRow);
@@ -60,13 +60,15 @@ const LatestRents = (props) => {
               </StyledTableCell>
               <StyledTableCell align="center">{row.who}</StyledTableCell>
               <StyledTableCell align="center">{row.when}</StyledTableCell>
-              <StyledTableCell align="center">{row.returned ? 'Sì' : 'No'}</StyledTableCell>
+              <StyledTableCell align="center">
+                {row.returned ? "Sì" : "No"}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};
 
 export default LatestRents;
