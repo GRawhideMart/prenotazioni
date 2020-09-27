@@ -16,7 +16,7 @@ const mapStateToProps = (state) => ({
   grouping: state.grouping,
   latestRents: state.latestRents,
   inventary: state.inventary,
-  styles: state.styles
+  styles: state.styles,
 });
 
 class Main extends Component {
@@ -27,7 +27,7 @@ class Main extends Component {
       grouping,
       latestRents,
       inventary,
-      styles
+      styles,
     } = this.props;
 
     return (
@@ -82,13 +82,19 @@ class Main extends Component {
             />
             <Route
               path="/affitti"
-              component={() => <Affitti inventary={inventary} style={styles} name="Inventario" />}
+              component={() => (
+                <Affitti
+                  inventary={inventary}
+                  style={styles}
+                  name="Inventario"
+                />
+              )}
             />
             <Redirect to="/" />
           </Switch>
         </main>
         <footer>
-          <StickyFooter style={styles}/>
+          <StickyFooter style={styles} />
         </footer>
       </Fragment>
     );
