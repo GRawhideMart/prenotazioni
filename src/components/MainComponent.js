@@ -9,26 +9,33 @@ import { connect } from "react-redux";
 import Home from "./HomeComponent";
 import Affitti from "./AffittiComponent";
 import { SchedulerPresentation } from "./SchedulerComponent";
+import { GROUPING, RESOURCES } from "../shared/rooms";
 
 const mapStateToProps = (state) => ({
   schedulerData: state.schedulerData,
-  resources: state.resources,
-  grouping: state.grouping,
   latestRents: state.latestRents,
   inventary: state.inventary,
   styles: state.styles,
 });
 
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      resources: [RESOURCES],
+      grouping: [GROUPING],
+    }
+  }
   render() {
     const {
       schedulerData,
-      resources,
-      grouping,
       latestRents,
       inventary,
       styles,
     } = this.props;
+
+    const { resources,
+      grouping, } = this.state;
 
     return (
       <Fragment>
