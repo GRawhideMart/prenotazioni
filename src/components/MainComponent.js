@@ -10,6 +10,7 @@ import Home from "./HomeComponent";
 import Affitti from "./AffittiComponent";
 import { SchedulerPresentation } from "./SchedulerComponent";
 import { GROUPING, RESOURCES } from "../shared/rooms";
+import { addBooking } from "../redux/ActionCreators";
 
 const mapStateToProps = (state) => ({
   schedulerData: state.schedulerData,
@@ -18,13 +19,18 @@ const mapStateToProps = (state) => ({
   styles: state.styles,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  addBooking: (startDate, endDate, title, room) =>
+    dispatch(addBooking(startDate, endDate, title, room)),
+});
+
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
       resources: [RESOURCES],
       grouping: [GROUPING],
-    }
+    };
   }
   render() {
     const {
@@ -32,10 +38,10 @@ class Main extends Component {
       latestRents,
       inventary,
       styles,
+      addBooking,
     } = this.props;
 
-    const { resources,
-      grouping, } = this.state;
+    const { resources, grouping } = this.state;
 
     return (
       <Fragment>
@@ -69,6 +75,7 @@ class Main extends Component {
                   grouping={grouping}
                   name="Studio"
                   style={styles}
+                  addBooking={addBooking}
                 />
               )}
             />
@@ -84,6 +91,7 @@ class Main extends Component {
                   grouping={grouping}
                   name="Stanzino"
                   style={styles}
+                  addBooking={addBooking}
                 />
               )}
             />
@@ -108,4 +116,4 @@ class Main extends Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

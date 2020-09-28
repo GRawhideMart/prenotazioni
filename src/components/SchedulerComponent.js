@@ -66,7 +66,7 @@ class StudioScheduler extends Component {
     this.setState({ editingAppointment });
   }
 
-  commitChanges({ added, changed, deleted }) {
+  commitChanges({ added, changed, deleted, addBooking }) {
     this.setState((state) => {
       let { schedulerData } = state;
       if (added) {
@@ -74,6 +74,9 @@ class StudioScheduler extends Component {
           schedulerData.length > 0 ? schedulerData[schedulerData.length - 1].id + 1 : 0;
         schedulerData = [...schedulerData, { id: startingAddedId, ...added }];*/
         alert('Will add appointment ' + JSON.stringify(added))
+        schedulerData = addBooking(
+          added.startDate, added.endDate, added.title, added.room
+        )
       }
       if (changed) {
         schedulerData = schedulerData.map((appointment) =>
@@ -167,6 +170,7 @@ export const SchedulerPresentation = ({
   resources,
   name,
   style,
+  addBooking
 }) => {
   return (
     <Grid
@@ -183,6 +187,7 @@ export const SchedulerPresentation = ({
           <StudioScheduler
             schedulerData={schedulerData}
             resources={resources}
+            addBooking={addBooking}
           />
         </Grid>
         <Grid item md={2}></Grid>
