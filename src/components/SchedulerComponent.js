@@ -35,7 +35,6 @@ class StudioScheduler extends Component {
     this.state = {
       currentViewName: "work-week",
       currentDate: new Date(),
-      schedulerData: this.props.schedulerData,
       addedAppointment: {},
       appointmentChanges: {},
       editingAppointment: undefined,
@@ -67,41 +66,24 @@ class StudioScheduler extends Component {
   }
 
   commitChanges({ added, changed, deleted, addBooking }) {
-    this.setState((state) => {
-      let { schedulerData } = state;
       if (added) {
-        /*const startingAddedId =
-          schedulerData.length > 0 ? schedulerData[schedulerData.length - 1].id + 1 : 0;
-        schedulerData = [...schedulerData, { id: startingAddedId, ...added }];*/
+
         alert('Will add appointment ' + JSON.stringify(added))
-        schedulerData = addBooking(
+        this.props.addBooking(
           added.startDate, added.endDate, added.title, added.room
         )
+        console.log(this.props.schedulerData)
       }
-      if (changed) {
-        schedulerData = schedulerData.map((appointment) =>
-        changed[appointment.id]
-        ? { ...appointment, ...changed[appointment.id] }
-        : appointment
-        );
-      }
-      if (deleted !== undefined) {
-        schedulerData = schedulerData.filter((appointment) => appointment.id !== deleted);
-      }
-      return { schedulerData };
-    });
-
   }
 
   render() {
-    const { resources } = this.props;
+    const { resources, schedulerData } = this.props;
     const {
       currentViewName,
       currentDate,
       addedAppointment,
       appointmentChanges,
       editingAppointment,
-      schedulerData,
     } = this.state;
     return (
       <ThemeProvider theme={theme}>

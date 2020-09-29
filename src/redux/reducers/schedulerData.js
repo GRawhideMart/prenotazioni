@@ -5,7 +5,7 @@ export const SchedulerData = (state = SCHEDULERDATA, action) => {
     switch(action.type) {
         case ADD_BOOKING:
             var booking = action.payload;
-            return state.concat(booking);
+            return [...state, booking];
             
         default:
             return state;
