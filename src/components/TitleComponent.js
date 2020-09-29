@@ -14,7 +14,7 @@ const Breadcrumb = ({ style, name }) => {
           <Link color="primary" href='/'>
             Panoramica
           </Link>
-          <Typography color="textSecondary">{name}</Typography>
+          <Typography color="textSecondary" key={name}>{name}</Typography>
         </Breadcrumbs>
       </div>
     );
