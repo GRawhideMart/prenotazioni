@@ -65,14 +65,15 @@ class StudioScheduler extends Component {
     this.setState({ editingAppointment });
   }
 
-  commitChanges({ added, changed, deleted, addBooking }) {
+  commitChanges(props) {
+    const { added } = props;
+    const { schedulerData } = this.props;
       if (added) {
 
         alert('Will add appointment ' + JSON.stringify(added))
         this.props.addBooking(
-          added.startDate, added.endDate, added.title, added.room
+          added.startDate, added.endDate, added.title, schedulerData[0].room
         )
-        console.log(this.props.schedulerData)
       }
   }
 
