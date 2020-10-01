@@ -28,6 +28,13 @@ import { Grid, ThemeProvider } from "@material-ui/core";
 import { schedulerTheme as theme } from "../shared/theme";
 import { Title } from "./TitleComponent";
 
+const LabelComponent = (props) => {
+  if (props.text === "Studio") {
+    return null;
+  }
+  return <AppointmentForm.Label {...props} />;
+}
+
 class StudioScheduler extends Component {
   constructor(props) {
     super(props);
@@ -117,7 +124,7 @@ class StudioScheduler extends Component {
             <WeekView
               name="work-week"
               displayName="Settimanale"
-              excludedDays={[0, 6]}
+              excludedDays={[0]}
               startDayHour={9}
               endDayHour={21}
             />
@@ -132,7 +139,7 @@ class StudioScheduler extends Component {
             <Resources data={resources} mainResourceName="room" />
 
             <AppointmentTooltip showCloseButton />
-            <AppointmentForm />
+            <AppointmentForm resourceEditorComponent={() => null} labelComponent={LabelComponent} />
 
             <ViewSwitcher />
 
