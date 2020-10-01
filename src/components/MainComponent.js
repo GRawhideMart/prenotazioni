@@ -96,12 +96,12 @@ class Main extends Component {
               )}
             />
             <Route
-              path="/affitti"
+              path="/attrezzatura"
               component={() => (
                 <Affitti
                   inventary={inventary}
                   style={styles}
-                  name="Inventario"
+                  name="Attrezzatura"
                 />
               )}
             />

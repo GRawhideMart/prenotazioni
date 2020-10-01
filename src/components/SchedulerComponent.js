@@ -33,7 +33,7 @@ const LabelComponent = (props) => {
     return null;
   }
   return <AppointmentForm.Label {...props} />;
-}
+};
 
 class StudioScheduler extends Component {
   constructor(props) {
@@ -75,13 +75,15 @@ class StudioScheduler extends Component {
   commitChanges(props) {
     const { added } = props;
     const { schedulerData } = this.props;
-      if (added) {
-
-        alert('Will add appointment ' + JSON.stringify(added))
-        this.props.addBooking(
-          added.startDate, added.endDate, added.title, schedulerData[0].room
-        )
-      }
+    if (added) {
+      alert("Will add appointment " + JSON.stringify(added));
+      this.props.addBooking(
+        added.startDate,
+        added.endDate,
+        added.title,
+        schedulerData[0].room
+      );
+    }
   }
 
   render() {
@@ -139,7 +141,10 @@ class StudioScheduler extends Component {
             <Resources data={resources} mainResourceName="room" />
 
             <AppointmentTooltip showCloseButton />
-            <AppointmentForm resourceEditorComponent={() => null} labelComponent={LabelComponent} />
+            <AppointmentForm
+              resourceEditorComponent={() => null}
+              labelComponent={LabelComponent}
+            />
 
             <ViewSwitcher />
 
@@ -160,7 +165,7 @@ export const SchedulerPresentation = ({
   resources,
   name,
   style,
-  addBooking
+  addBooking,
 }) => {
   return (
     <Grid

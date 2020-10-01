@@ -52,8 +52,6 @@ const InventaryTable = ({ inventary, style }) => {
   );
 };
 
-
-
 const Affitti = (props) => {
   const { inventary, name, style } = props;
 
@@ -62,8 +60,8 @@ const Affitti = (props) => {
   });
 
   const handleChange = (event) => {
-    setState({...state, [event.target.name]: event.target.checked });
-    console.log(state, event.target.checked)
+    setState({ ...state, [event.target.name]: event.target.checked });
+    console.log(state, event.target.checked);
   };
 
   return (
@@ -77,7 +75,7 @@ const Affitti = (props) => {
       <Title style={style} name={name} />
       <FormGroup row>
         <FormControlLabel
-          style={{ color: 'white', marginBottom: '8px' }}
+          style={{ color: "white", marginBottom: "8px" }}
           control={
             <Checkbox
               checked={state.onlyAvailable}
@@ -92,7 +90,14 @@ const Affitti = (props) => {
       <Grid item container direction="row">
         <Grid item md={2}></Grid>
         <Grid item md={8}>
-          <InventaryTable inventary={state.onlyAvailable ? inventary.filter(item => item.isAvailable) : inventary} style={style} />
+          <InventaryTable
+            inventary={
+              state.onlyAvailable
+                ? inventary.filter((item) => item.isAvailable)
+                : inventary
+            }
+            style={style}
+          />
         </Grid>
         <Grid item md={2}></Grid>
       </Grid>

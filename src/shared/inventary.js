@@ -2002,5 +2002,5 @@ export const INVENTARY = [
     isDonation: "donazione",
     replacePriority: "",
     isAvailable: false,
-  }
+  },
 ];
