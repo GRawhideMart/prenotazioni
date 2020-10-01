@@ -25,6 +25,7 @@ const InventaryTable = ({ inventary, style }) => {
             <StyledTableCell align="center">Modello</StyledTableCell>
             <StyledTableCell align="center">Oggetto</StyledTableCell>
             <StyledTableCell align="center">Disponibile</StyledTableCell>
+            <StyledTableCell align="center">Quantità</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -43,6 +44,9 @@ const InventaryTable = ({ inventary, style }) => {
               <StyledTableCell align="center">{row.name}</StyledTableCell>
               <StyledTableCell align="center">
                 {row.isAvailable ? "Sì" : "No"}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                {row.quantity !== "" ? parseInt(row.quantity, 10) : ""}
               </StyledTableCell>
             </StyledTableRow>
           ))}
