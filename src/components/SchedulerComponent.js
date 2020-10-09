@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
+
+import MoreIcon from "@material-ui/icons/MoreVert";
+import Room from '@material-ui/icons/Room';
+
 import {
   ViewState,
   GroupingState,
@@ -25,8 +30,16 @@ import {
   ConfirmationDialog,
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { Grid, ThemeProvider } from "@material-ui/core";
+import { withStyles } from '@material-ui/core/styles';
+
 import { schedulerTheme as theme } from "../shared/theme";
 import { Title } from "./TitleComponent";
+
+const style = ({ palette }) => ({
+  icon: {
+    color: palette.action.active
+  }
+});
 
 const LabelComponent = (props) => {
   if (props.text === "Studio") {
@@ -34,6 +47,19 @@ const LabelComponent = (props) => {
   }
   return <AppointmentForm.Label {...props} />;
 };
+
+const Appointment = ({ children, style, data, ...restProps }) => (
+  <Appointments.Appointment
+    {...restProps}
+    style={{
+      ...style,
+      backgroundColor: data.backgroundColor,
+      textShadow: data.color,
+    }}
+  >
+    {children}
+  </Appointments.Appointment>
+);
 
 class StudioScheduler extends Component {
   constructor(props) {
@@ -137,10 +163,10 @@ class StudioScheduler extends Component {
 
             <EditRecurrenceMenu />
             <ConfirmationDialog />
-            <Appointments />
+            <Appointments appointmentComponent={Appointment} />
+            <AppointmentTooltip />
             <Resources data={resources} mainResourceName="room" />
 
-            <AppointmentTooltip showCloseButton />
             <AppointmentForm
               resourceEditorComponent={() => null}
               labelComponent={LabelComponent}
@@ -203,7 +229,7 @@ const HomeScheduler = (props) => {
 
           <DayView startDayHour={9} endDayHour={21} cellDuration={60} />
 
-          <Appointments />
+          <Appointments appointmentComponent={Appointment} />
           <Resources data={resources} mainResourceName="room" />
           <IntegratedGrouping />
 
