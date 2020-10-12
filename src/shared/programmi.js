@@ -5,7 +5,7 @@ export const PROGRAMS = [
         "color": "#ffffff",
         "background_color": "#B64928",
         "hover_color": "#9f3212",
-        "background_image": "/photos/background/domanialluna.jpg"
+        "background_image": "./img/domanialluna.jpg"
     },
     {
         "title": "Dischi Volandi",
@@ -13,7 +13,7 @@ export const PROGRAMS = [
         "color": "#ffffff",
         "background_color": "#000000",
         "hover_color": "#3a8be7",
-        "background_image": "/photos/background/dischivolandi.png"
+        "background_image": "./img/dischivolandi.png"
     },
     {
         "title": "Cosplay Log",
@@ -21,7 +21,7 @@ export const PROGRAMS = [
         "color": "#ffe401",
         "background_color": "#1c002b",
         "hover_color": "#d4a917",
-        "background_image": "/photos/background/cosplaylog.png"
+        "background_image": "./img/cosplaylog.png"
     },
     {
         "title": "Mood Crush",
@@ -29,7 +29,7 @@ export const PROGRAMS = [
         "color": "#000000",
         "background_color": "#ffffff",
         "hover_color": "",
-        "background_image": "/photos/background/moodcrush.png"
+        "background_image": "./img/moodcrush.png"
     },
     {
         "title": "C.I.C.",
@@ -37,7 +37,7 @@ export const PROGRAMS = [
         "color": "#ffffff",
         "background_color": "#760000",
         "hover_color": "#000000",
-        "background_image": "/photos/background/cic.png"
+        "background_image": "./img/cic.png"
     },
     {
         "title": "Pills",
@@ -45,7 +45,7 @@ export const PROGRAMS = [
         "color": "#000000",
         "background_color": "#f49597",
         "hover_color": "",
-        "background_image": "/photos/background/pills.png"
+        "background_image": "./img/pills.png"
     },
     {
         "title": "Sporting Club",
@@ -53,7 +53,7 @@ export const PROGRAMS = [
         "color": "#ffffff",
         "background_color": "#4f8a2e",
         "hover_color": "#89d3e2",
-        "background_image": "/photos/background/sportingclub.jpg"
+        "background_image": "./img/sportingclub.jpg"
     },
     {
         "title": "NECST Tech Time",
@@ -61,7 +61,7 @@ export const PROGRAMS = [
         "color": "#000000",
         "background_color": "",
         "hover_color": "#c9d631",
-        "background_image": "/photos/background/necsttt.png"
+        "background_image": "./img/necsttt.png"
     },
     {
         "title": "ImprepaRADIO",
@@ -69,7 +69,7 @@ export const PROGRAMS = [
         "color": "#000000",
         "background_color": "#ffffff",
         "hover_color": "#ac0700",
-        "background_image": "/photos/background/impreparadio.png"
+        "background_image": "./img/impreparadio.png"
     },
     {
         "title": "Chain",
@@ -77,7 +77,7 @@ export const PROGRAMS = [
         "color": "",
         "background_color": "#bb281c",
         "hover_color": "#f1b296",
-        "background_image": "/photos/background/chain.png"
+        "background_image": "./img/chain.png"
     },
     {
         "title": "WannaGuess",
@@ -85,7 +85,7 @@ export const PROGRAMS = [
         "color": "#fc8da1",
         "background_color": "#000000",
         "hover_color": "#f65275",
-        "background_image": "/photos/background/wannaguess.png"
+        "background_image": "./img/wannaguess.png"
     },
     {
         "title": "N.E.R.D.",
@@ -93,7 +93,7 @@ export const PROGRAMS = [
         "color": "#ffffff",
         "background_color": "#000000",
         "hover_color": "#5c6366",
-        "background_image": "/photos/background/nerd.png"
+        "background_image": "./img/nerd.png"
     },
     {
         "title": "HIT40UK",
@@ -101,7 +101,7 @@ export const PROGRAMS = [
         "color": "#ffffff",
         "background_color": "#00e0ff",
         "hover_color": "#2f0b51",
-        "background_image": "/photos/background/hit40uk.png"
+        "background_image": "./img/hit40uk.png"
     },
     {
         "title": "Polyrics",
@@ -109,7 +109,7 @@ export const PROGRAMS = [
         "color": "#000000",
         "background_color": "#ffffff",
         "hover_color": "",
-        "background_image": "/photos/background/polyrics.png"
+        "background_image": "./img/polyrics.png"
     },
     {
         "title": "I Cinefili",
@@ -117,7 +117,7 @@ export const PROGRAMS = [
         "color": "#010101",
         "background_color": "#FFE4C4",
         "hover_color": "#8f4109",
-        "background_image": "/photos/background/icinefili.png"
+        "background_image": "./img/icinefili.png"
     },
     {
         "title": "I Cinefili",
@@ -125,7 +125,7 @@ export const PROGRAMS = [
         "color": "#010101",
         "background_color": "#FFE4C4",
         "hover_color": "#8f4109",
-        "background_image": "/photos/background/icinefili.png"
+        "background_image": "./img/icinefili.png"
     },
     {
         "title": "Charts",
@@ -133,6 +133,6 @@ export const PROGRAMS = [
         "color": "#ffffff",
         "background_color": "#59b7de",
         "hover_color": "#3d8eb0",
-        "background_image": "/photos/background/icinefili.png"
+        "background_image": "./img/icinefili.png"
     }
 ]

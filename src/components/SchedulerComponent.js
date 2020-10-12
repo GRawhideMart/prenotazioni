@@ -3,7 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 
 import MoreIcon from "@material-ui/icons/MoreVert";
-import Room from '@material-ui/icons/Room';
+import Room from "@material-ui/icons/Room";
 
 import {
   ViewState,
@@ -30,17 +30,43 @@ import {
   ConfirmationDialog,
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { Grid, ThemeProvider } from "@material-ui/core";
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles";
 
 import { schedulerTheme as theme } from "../shared/theme";
 import { Title } from "./TitleComponent";
 
-const style = ({ palette }) => ({
-  icon: {
-    color: palette.action.active
-  }
-});
+import classNames from "clsx";
 
+const style = ({ palette, data }) => {
+
+return ({
+  icon: {
+    color: palette.action.active,
+  },
+  textCenter: {
+    textAlign: "center",
+  },
+  firstRoom: {
+    background:
+      "url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/Lobby-4.jpg)",
+  },
+  secondRoom: {
+    background:
+      "url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/MeetingRoom-4.jpg)",
+  },
+  thirdRoom: {
+    background:
+      "url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/MeetingRoom-0.jpg)",
+  },
+  header: {
+    height: "260px",
+    backgroundSize: "cover",
+  },
+  commandButton: {
+    backgroundColor: "rgba(255,255,255,0.65)",
+  },
+});
+}
 const LabelComponent = (props) => {
   if (props.text === "Studio") {
     return null;
@@ -55,7 +81,8 @@ const Appointment = ({ children, style, data, ...restProps }) => (
     style={{
       ...style,
       backgroundColor: data.backgroundColor,
-      textShadow: data.color,
+      backgroundImage: data.backgroundImage,
+      border: '1px solid black',
     }}
   >
     {children}
@@ -70,12 +97,50 @@ const AppointmentContent = (props) => {
       style={{
         ...style,
         color: data.color,
+        textShadow: (data.hoverColor === '' ? 'black' : data.hoverColor) + ' 1px 1px',
+        textAlign: 'center',
         backgroundImage: data.backgroundImage
       }}
       {...props}
     />
   );
 };
+
+const getClassByLocation = (classes, location) => {
+  if (location === "Room 1") return classes.firstRoom;
+  if (location === "Room 2") return classes.secondRoom;
+  return classes.thirdRoom;
+};
+
+const Header = withStyles(style, { name: "Header" })(
+  ({ children, appointmentData, classes, ...restProps }) => (
+    <AppointmentTooltip.Header
+      {...restProps}
+      className={classNames(
+        getClassByLocation(classes, appointmentData.location),
+        classes.header
+      )}
+      appointmentData={appointmentData}
+    >
+      <IconButton
+        /* eslint-disable-next-line no-alert */
+        onClick={() => alert(JSON.stringify(appointmentData))}
+        className={classes.commandButton}
+      >
+        <MoreIcon />
+      </IconButton>
+    </AppointmentTooltip.Header>
+  )
+);
+
+const CommandButton = withStyles(style, {
+  name: "CommandButton",
+})(({ classes, ...restProps }) => (
+  <AppointmentTooltip.CommandButton
+    {...restProps}
+    className={classes.commandButton}
+  />
+));
 
 class StudioScheduler extends Component {
   constructor(props) {
@@ -179,8 +244,15 @@ class StudioScheduler extends Component {
 
             <EditRecurrenceMenu />
             <ConfirmationDialog />
-            <Appointments appointmentComponent={Appointment} appointmentContentComponent={AppointmentContent} />
-            <AppointmentTooltip />
+            <Appointments
+              appointmentComponent={Appointment}
+              appointmentContentComponent={AppointmentContent}
+            />
+            <AppointmentTooltip
+              headerComponent={Header}
+              commandButtonComponent={CommandButton}
+              showCloseButton
+            />
             <Resources data={resources} mainResourceName="room" />
 
             <AppointmentForm
