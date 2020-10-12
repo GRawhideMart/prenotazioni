@@ -51,6 +51,7 @@ const LabelComponent = (props) => {
 const Appointment = ({ children, style, data, ...restProps }) => (
   <Appointments.Appointment
     {...restProps}
+    data={data}
     style={{
       ...style,
       backgroundColor: data.backgroundColor,
@@ -60,6 +61,21 @@ const Appointment = ({ children, style, data, ...restProps }) => (
     {children}
   </Appointments.Appointment>
 );
+
+const AppointmentContent = (props) => {
+  const { data, style } = props;
+
+  return (
+    <Appointments.AppointmentContent
+      style={{
+        ...style,
+        color: data.color,
+        backgroundImage: data.backgroundImage
+      }}
+      {...props}
+    />
+  );
+};
 
 class StudioScheduler extends Component {
   constructor(props) {
@@ -163,7 +179,7 @@ class StudioScheduler extends Component {
 
             <EditRecurrenceMenu />
             <ConfirmationDialog />
-            <Appointments appointmentComponent={Appointment} />
+            <Appointments appointmentComponent={Appointment} appointmentContentComponent={AppointmentContent} />
             <AppointmentTooltip />
             <Resources data={resources} mainResourceName="room" />
 

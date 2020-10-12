@@ -72,6 +72,10 @@ export const USESTYLES = makeStyles((theme) => ({
     height: '0px',
     margin: '0px',
     padding: '0px'
+  },
+  tooltipHeader: {
+    height: '260px',
+    backgroundSize: 'cover',
   }
 }));
 
