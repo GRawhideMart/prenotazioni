@@ -3,7 +3,6 @@ import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 
 import MoreIcon from "@material-ui/icons/MoreVert";
-import Room from "@material-ui/icons/Room";
 
 import {
   ViewState,
@@ -30,43 +29,35 @@ import {
   ConfirmationDialog,
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { Grid, ThemeProvider } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 import { schedulerTheme as theme } from "../shared/theme";
 import { Title } from "./TitleComponent";
 
 import classNames from "clsx";
 
-const style = ({ palette, data }) => {
-
-return ({
+const style = ({ palette }) => ({
   icon: {
     color: palette.action.active,
   },
   textCenter: {
     textAlign: "center",
   },
-  firstRoom: {
-    background:
-      "url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/Lobby-4.jpg)",
-  },
-  secondRoom: {
-    background:
-      "url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/MeetingRoom-4.jpg)",
-  },
-  thirdRoom: {
-    background:
-      "url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/MeetingRoom-0.jpg)",
-  },
-  header: {
-    height: "260px",
-    backgroundSize: "cover",
-  },
   commandButton: {
     backgroundColor: "rgba(255,255,255,0.65)",
   },
 });
-}
+
+const useHeaderImageClasses = makeStyles({
+  header: {
+    height: "260px",
+    backgroundSize: "cover",
+  },
+  backgroundImage: ({ imageURL }) => ({
+    background: `url(${imageURL})`,
+  }),
+});
+
 const LabelComponent = (props) => {
   if (props.text === "Studio") {
     return null;
@@ -80,9 +71,9 @@ const Appointment = ({ children, style, data, ...restProps }) => (
     data={data}
     style={{
       ...style,
-      backgroundColor: data.backgroundColor,
-      backgroundImage: data.backgroundImage,
-      border: '1px solid black',
+      background: `${data.backgroundColor} url(${data.backgroundImage})`,
+      backgroundSize: "cover",
+      border: "1px solid black",
     }}
   >
     {children}
@@ -97,30 +88,28 @@ const AppointmentContent = (props) => {
       style={{
         ...style,
         color: data.color,
-        textShadow: (data.hoverColor === '' ? 'black' : data.hoverColor) + ' 1px 1px',
-        textAlign: 'center',
-        backgroundImage: data.backgroundImage
+        textShadow:
+          (data.hoverColor === "" ? "black" : data.hoverColor) + " 1px 1px",
+        textAlign: "center",
       }}
       {...props}
     />
   );
 };
 
-const getClassByLocation = (classes, location) => {
-  if (location === "Room 1") return classes.firstRoom;
-  if (location === "Room 2") return classes.secondRoom;
-  return classes.thirdRoom;
-};
-
-const Header = withStyles(style, { name: "Header" })(
-  ({ children, appointmentData, classes, ...restProps }) => (
+const Header = ({ children, appointmentData, ...restProps }) => {
+  const classes = useHeaderImageClasses({
+    imageURL: appointmentData.backgroundImage,
+  });
+  return (
     <AppointmentTooltip.Header
       {...restProps}
-      className={classNames(
-        getClassByLocation(classes, appointmentData.location),
-        classes.header
-      )}
+      className={classNames(classes.backgroundImage, classes.header)}
       appointmentData={appointmentData}
+      style={{
+        background: `${appointmentData.backgroundColor} url(${appointmentData.backgroundImage})`,
+        backgroundSize: "cover",
+      }}
     >
       <IconButton
         /* eslint-disable-next-line no-alert */
@@ -130,8 +119,8 @@ const Header = withStyles(style, { name: "Header" })(
         <MoreIcon />
       </IconButton>
     </AppointmentTooltip.Header>
-  )
-);
+  );
+};
 
 const CommandButton = withStyles(style, {
   name: "CommandButton",
@@ -317,11 +306,11 @@ const HomeScheduler = (props) => {
 
           <DayView startDayHour={9} endDayHour={21} cellDuration={60} />
 
-          <Appointments appointmentComponent={Appointment} />
+          <Appointments appointmentComponent={Appointment} appointmentContentComponent={AppointmentContent} />
           <Resources data={resources} mainResourceName="room" />
           <IntegratedGrouping />
 
-          <AppointmentTooltip showCloseButton />
+          <AppointmentTooltip showCloseButton headerComponent={Header} commandButtonComponent={CommandButton} />
           <Toolbar />
           <DateNavigator />
           <TodayButton messages={{ today: "oggi" }} />
