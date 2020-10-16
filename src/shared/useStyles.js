@@ -72,7 +72,17 @@ export const USESTYLES = makeStyles((theme) => ({
     height: '0px',
     margin: '0px',
     padding: '0px'
-  }
+  },
+  requestButton: {
+    margin: theme.spacing(1)
+  },
+  dialogAppBar: {
+    position: 'relative',
+  },
+  dialogTitle: {
+    marginLeft: theme.spacing(2),
+    flex: 1,
+  },
 }));
 
 export const StyledTableCell = withStyles((theme) => ({

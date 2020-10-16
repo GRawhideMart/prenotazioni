@@ -11,37 +11,54 @@ import NoteIcon from "@material-ui/icons/Note";
 
 import { StyledTableCell, StyledTableRow } from "../shared/useStyles";
 import Title from "./TitleComponent";
+
 import {
   FormControlLabel,
   FormGroup,
   Checkbox,
   Button,
 } from "@material-ui/core";
+import BookItemComponent from "./BookItemComponents";
 
 const InventaryTable = ({ inventary, style }) => {
   const classes = style();
 
-  const BookButton = ({ isAvailable }) =>
-    isAvailable ? (
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.requestButton}
-        endIcon={<NoteIcon />}
-        onClick={() => alert('Si dovrebbe aprire un mon...dal')}
-      >
-        Richiedi
-      </Button>
-    ) : (
-      <Button
-        variant="disabled"
-        color="primary"
-        className={classes.requestButton}
-      >
-        Non disponibile
-      </Button>
-    );
-
+  //const BookButton = ({ isAvailable }) => {
+  //  const [open, setOpen] = React.useState(false);
+//
+  //  const handleClickOpen = () => {
+  //    setOpen(true);
+  //  };
+//
+  //  const handleClose = () => {
+  //    setOpen(false);
+  //  };
+//
+  //  return isAvailable ? (
+  //    <Button
+  //      variant="contained"
+  //      color="primary"
+  //      className={classes.requestButton}
+  //      endIcon={<NoteIcon />}
+  //      onClick={handleClickOpen}
+  //    >
+  //      <FullScreenDialog
+  //        open={open}
+  //        handleClickOpen={handleClickOpen}
+  //        handleClose={handleClose}
+  //      />
+  //      Richiedi
+  //    </Button>
+  //  ) : (
+  //    <Button
+  //      variant="disabled"
+  //      color="primary"
+  //      className={classes.requestButton}
+  //    >
+  //      Non disponibile
+  //    </Button>
+  //  );
+  //};
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="last rents">
@@ -78,7 +95,7 @@ const InventaryTable = ({ inventary, style }) => {
                 {row.quantity !== "" ? parseInt(row.quantity, 10) : ""}
               </StyledTableCell>
               <StyledTableCell align="center">
-                <BookButton isAvailable={row.isAvailable} />
+                <BookItemComponent style={style} isAvailable={row.isAvailable} />
               </StyledTableCell>
             </StyledTableRow>
           ))}
