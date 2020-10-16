@@ -15,7 +15,7 @@ import {
   FormControlLabel,
   FormGroup,
   Checkbox,
-  Avatar,
+  Button,
 } from "@material-ui/core";
 
 const InventaryTable = ({ inventary, style }) => {
@@ -23,13 +23,23 @@ const InventaryTable = ({ inventary, style }) => {
 
   const BookButton = ({ isAvailable }) =>
     isAvailable ? (
-      <Avatar className={classes.avatar}>
-        <NoteIcon color="secondary" />
-      </Avatar>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.requestButton}
+        endIcon={<NoteIcon />}
+        onClick={() => alert('Si dovrebbe aprire un mon...dal')}
+      >
+        Richiedi
+      </Button>
     ) : (
-      <Avatar>
-        <NoteIcon color="disabled" />
-      </Avatar>
+      <Button
+        variant="disabled"
+        color="primary"
+        className={classes.requestButton}
+      >
+        Non disponibile
+      </Button>
     );
 
   return (
@@ -44,7 +54,7 @@ const InventaryTable = ({ inventary, style }) => {
             <StyledTableCell align="center">Oggetto</StyledTableCell>
             <StyledTableCell align="center">Disponibile</StyledTableCell>
             <StyledTableCell align="center">Quantità</StyledTableCell>
-            <StyledTableCell>Richiedi</StyledTableCell>
+            <StyledTableCell></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
