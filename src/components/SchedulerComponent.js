@@ -306,11 +306,18 @@ const HomeScheduler = (props) => {
 
           <DayView startDayHour={9} endDayHour={21} cellDuration={60} />
 
-          <Appointments appointmentComponent={Appointment} appointmentContentComponent={AppointmentContent} />
+          <Appointments
+            appointmentComponent={Appointment}
+            appointmentContentComponent={AppointmentContent}
+          />
           <Resources data={resources} mainResourceName="room" />
           <IntegratedGrouping />
 
-          <AppointmentTooltip showCloseButton headerComponent={Header} commandButtonComponent={CommandButton} />
+          <AppointmentTooltip
+            showCloseButton
+            headerComponent={Header}
+            commandButtonComponent={CommandButton}
+          />
           <Toolbar />
           <DateNavigator />
           <TodayButton messages={{ today: "oggi" }} />

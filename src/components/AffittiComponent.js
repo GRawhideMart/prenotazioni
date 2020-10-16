@@ -7,12 +7,30 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
+import NoteIcon from "@material-ui/icons/Note";
+
 import { StyledTableCell, StyledTableRow } from "../shared/useStyles";
 import Title from "./TitleComponent";
-import { FormControlLabel, FormGroup, Checkbox } from "@material-ui/core";
+import {
+  FormControlLabel,
+  FormGroup,
+  Checkbox,
+  Avatar,
+} from "@material-ui/core";
 
 const InventaryTable = ({ inventary, style }) => {
   const classes = style();
+
+  const BookButton = ({ isAvailable }) =>
+    isAvailable ? (
+      <Avatar className={classes.avatar}>
+        <NoteIcon color="secondary" />
+      </Avatar>
+    ) : (
+      <Avatar>
+        <NoteIcon color="disabled" />
+      </Avatar>
+    );
 
   return (
     <TableContainer component={Paper}>
@@ -26,6 +44,7 @@ const InventaryTable = ({ inventary, style }) => {
             <StyledTableCell align="center">Oggetto</StyledTableCell>
             <StyledTableCell align="center">Disponibile</StyledTableCell>
             <StyledTableCell align="center">Quantità</StyledTableCell>
+            <StyledTableCell>Richiedi</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -47,6 +66,9 @@ const InventaryTable = ({ inventary, style }) => {
               </StyledTableCell>
               <StyledTableCell align="center">
                 {row.quantity !== "" ? parseInt(row.quantity, 10) : ""}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <BookButton isAvailable={row.isAvailable} />
               </StyledTableCell>
             </StyledTableRow>
           ))}
