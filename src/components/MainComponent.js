@@ -5,6 +5,7 @@ import Header from "./HeaderComponent";
 import StickyFooter from "./FooterComponent";
 
 import { connect } from "react-redux";
+import { actions } from "react-redux-form";
 
 import Home from "./HomeComponent";
 import Affitti from "./AffittiComponent";
@@ -22,6 +23,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   addBooking: (startDate, endDate, title, room) =>
     dispatch(addBooking(startDate, endDate, title, room)),
+  resetFeedbackForm: () => {
+    dispatch(actions.reset("feedback"));
+  },
 });
 
 class Main extends Component {
@@ -39,6 +43,7 @@ class Main extends Component {
       inventary,
       styles,
       addBooking,
+      resetFeedbackForm
     } = this.props;
 
     const { resources, grouping } = this.state;
@@ -102,6 +107,7 @@ class Main extends Component {
                   inventary={inventary}
                   style={styles}
                   name="Attrezzatura"
+                  resetFeedbackForm={resetFeedbackForm}
                 />
               )}
             />

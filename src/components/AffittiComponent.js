@@ -7,58 +7,15 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-import NoteIcon from "@material-ui/icons/Note";
-
 import { StyledTableCell, StyledTableRow } from "../shared/useStyles";
 import Title from "./TitleComponent";
 
-import {
-  FormControlLabel,
-  FormGroup,
-  Checkbox,
-  Button,
-} from "@material-ui/core";
+import { FormControlLabel, FormGroup, Checkbox } from "@material-ui/core";
 import BookItemComponent from "./BookItemComponents";
 
-const InventaryTable = ({ inventary, style }) => {
+const InventaryTable = ({ inventary, style, resetFeedbackForm }) => {
   const classes = style();
 
-  //const BookButton = ({ isAvailable }) => {
-  //  const [open, setOpen] = React.useState(false);
-//
-  //  const handleClickOpen = () => {
-  //    setOpen(true);
-  //  };
-//
-  //  const handleClose = () => {
-  //    setOpen(false);
-  //  };
-//
-  //  return isAvailable ? (
-  //    <Button
-  //      variant="contained"
-  //      color="primary"
-  //      className={classes.requestButton}
-  //      endIcon={<NoteIcon />}
-  //      onClick={handleClickOpen}
-  //    >
-  //      <FullScreenDialog
-  //        open={open}
-  //        handleClickOpen={handleClickOpen}
-  //        handleClose={handleClose}
-  //      />
-  //      Richiedi
-  //    </Button>
-  //  ) : (
-  //    <Button
-  //      variant="disabled"
-  //      color="primary"
-  //      className={classes.requestButton}
-  //    >
-  //      Non disponibile
-  //    </Button>
-  //  );
-  //};
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="last rents">
@@ -95,7 +52,16 @@ const InventaryTable = ({ inventary, style }) => {
                 {row.quantity !== "" ? parseInt(row.quantity, 10) : ""}
               </StyledTableCell>
               <StyledTableCell align="center">
-                <BookItemComponent style={style} isAvailable={row.isAvailable} />
+                <BookItemComponent
+                  style={style}
+                  isAvailable={row.isAvailable}
+                  item={
+                    <div>
+                      {row.name}, <em>{row.description}</em>
+                    </div>
+                  }
+                  resetFeedbackForm={resetFeedbackForm}
+                />
               </StyledTableCell>
             </StyledTableRow>
           ))}
@@ -106,7 +72,7 @@ const InventaryTable = ({ inventary, style }) => {
 };
 
 const Affitti = (props) => {
-  const { inventary, name, style } = props;
+  const { inventary, name, style, resetFeedbackForm } = props;
 
   const [state, setState] = useState({
     onlyAvailable: true,
@@ -150,6 +116,7 @@ const Affitti = (props) => {
                 : inventary
             }
             style={style}
+            resetFeedbackForm={resetFeedbackForm}
           />
         </Grid>
         <Grid item md={2}></Grid>
