@@ -75,12 +75,9 @@ const BookItemComponent = (props) => {
             <Typography variant="h6" className={classes.dialogTitle}>
               {item}
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              Invia richiesta
-            </Button>
           </Toolbar>
         </AppBar>
-        <BookForm resetFeedbackForm={resetFeedbackForm} />
+        <BookForm resetFeedbackForm={resetFeedbackForm} classes={classes} />
       </Dialog>
     </div>
   );
