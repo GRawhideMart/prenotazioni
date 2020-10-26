@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Control, Form, Errors } from "react-redux-form";
 import { Button, Grid, InputLabel, TextField } from "@material-ui/core";
+import Checkbox from './FormComponents/Checkbox'
 
 //const TextInput = (props) => <TextField id={props.label} color='primary' />
 
@@ -37,7 +38,7 @@ class BookForm extends Component {
               <Control type='date' model='.endDate' />
               <Control.select model='.reason' />
               <Control.textarea model='.notes' />
-              <Control.checkbox model='.agreement' />
+              <Control.checkbox model='.agreement' component={Checkbox} />
               <Button
                 className={classes.requestButton}
                 color="primary"
