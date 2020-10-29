@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Control, Form, Errors } from "react-redux-form";
 import { Button, Grid, InputLabel, TextField } from "@material-ui/core";
-import Checkbox from './FormComponents/Checkbox'
+import Checkbox from "./FormComponents/Checkbox";
+import Select from "./FormComponents/Select";
 
 //const TextInput = (props) => <TextField id={props.label} color='primary' />
 
@@ -28,17 +29,25 @@ class BookForm extends Component {
       >
         <Grid item md={2} xs={0}></Grid>
         <Grid item md={8} xs={12}>
-          <Grid container direction="column" justify="center">
-            <Form model="instrumentsRental" onSubmit={(val) => this.handleSubmit(val)}>
-              <InputLabel color='secondary' htmlFor="name">
-                Your name?
-              </InputLabel>
-              <Control model=".notes" component={TextField} />
-              <Control type='date' model='.startDate' />
-              <Control type='date' model='.endDate' />
-              <Control.select model='.reason' />
-              <Control.textarea model='.notes' />
-              <Control.checkbox model='.agreement' component={Checkbox} />
+          <Grid
+            container
+            direction="column"
+            justify="space-between"
+            alignContent="space-around"
+          >
+            <Form
+              model="instrumentsRental"
+              onSubmit={(val) => this.handleSubmit(val)}
+            >
+              <Grid item>
+                <Control type="date" model=".startDate" />
+                <Control type="date" model=".endDate" />
+              </Grid>
+              <Grid item>
+                <Control.select model=".reason" component={Select} />
+                <Control.textarea model=".notes" />
+              </Grid>
+              <Control.checkbox model=".agreement" component={Checkbox} />
               <Button
                 className={classes.requestButton}
                 color="primary"
