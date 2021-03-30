@@ -76,6 +76,9 @@ export const USESTYLES = makeStyles((theme) => ({
   requestButton: {
     margin: theme.spacing(1)
   },
+  formElements: {
+    margin: theme.spacing(2)
+  },
   dialogAppBar: {
     position: 'relative',
   },

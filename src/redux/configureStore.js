@@ -9,7 +9,7 @@ import { Styles } from "./reducers/styles";
 
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import { InitialFeedback } from "./forms";
+import { InitialForm } from "./forms";
 
 export const ConfigureStore = () => {
   const store = createStore(
@@ -19,7 +19,7 @@ export const ConfigureStore = () => {
       inventary: Inventary,
       styles: Styles,
       ...createForms({
-        feedback: InitialFeedback
+        instrumentsRental: InitialForm
       })
     }),
     applyMiddleware(thunk, logger)
