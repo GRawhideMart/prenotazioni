@@ -13,9 +13,12 @@ const store = ConfigureStore();
 function App() {
   return (
     <Provider store={store}>
+      {/* Redux provider */}
       <BrowserRouter>
+        {/* React Router */}
         <ThemeProvider theme={theme}>
-          <Main />
+          {/* Material UI Theme Provider */}
+          <Main /> {/* Main component goes here */}
         </ThemeProvider>
       </BrowserRouter>
     </Provider>

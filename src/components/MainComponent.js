@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, useState } from "react";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 
 import Header from "./HeaderComponent";
@@ -28,7 +28,93 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-class Main extends Component {
+const Main = (props) => {
+  const [resources, setResources] = useState([RESOURCES]);
+  const [grouping, setGrouping] = useState([GROUPING]);
+  const {
+    schedulerData,
+    latestRents,
+    inventary,
+    styles,
+    addBooking,
+    resetFeedbackForm,
+  } = props;
+
+  return (
+    <Fragment>
+      <header>
+        <Header style={styles} />
+      </header>
+      <main>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={() => (
+              <Home
+                schedulerData={schedulerData}
+                resources={resources}
+                grouping={grouping}
+                latestRents={latestRents}
+                style={styles}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/studio"
+            component={() => (
+              <SchedulerPresentation
+                schedulerData={schedulerData.filter(
+                  (event) => event.room === 1 // schedulerData has a field called room: number 1 is studio upstairs, 2 is stanzino
+                )}
+                resources={resources}
+                grouping={grouping}
+                name="Studio"
+                style={styles}
+                addBooking={addBooking}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/stanzino"
+            component={() => (
+              <SchedulerPresentation
+                schedulerData={schedulerData.filter(
+                  (event) => event.room === 2
+                )}
+                resources={resources}
+                grouping={grouping}
+                name="Stanzino"
+                style={styles}
+                addBooking={addBooking}
+              />
+            )}
+          />
+          <Route
+            path="/attrezzatura"
+            component={() => (
+              <Affitti
+                inventary={inventary}
+                style={styles}
+                name="Attrezzatura"
+                resetFeedbackForm={resetFeedbackForm}
+              />
+            )}
+          />
+          <Redirect to="/" />
+        </Switch>
+      </main>
+      <footer>
+        <StickyFooter style={styles} />
+      </footer>
+    </Fragment>
+  );
+};
+
+{
+  /*class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -122,4 +208,6 @@ class Main extends Component {
   }
 }
 
+*/
+}
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
