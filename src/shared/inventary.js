@@ -495,8 +495,8 @@ export const INVENTARY = [
     isAvailable: false,
   },
   {
-    id: "208",
-    quantity: "2",
+    id: "378482",
+    quantity: "1",
     description: "Processori microfonici speaker",
     name: "DBX 286S",
     buyYear: "2019/20",
