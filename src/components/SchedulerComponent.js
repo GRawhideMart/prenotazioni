@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -131,137 +131,118 @@ const CommandButton = withStyles(style, {
   />
 ));
 
-class StudioScheduler extends Component {
-  constructor(props) {
-    super(props);
+const StudioScheduler = (props) => {
+  const [currentViewName, setCurrentViewName] = useState("work-week");
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [addedAppointment, setAddedAppointment] = useState({});
+  const [appointmentChanges, setAppointmentChanges] = useState({});
+  const [editingAppointment, setEditingAppointment] = useState(undefined);
 
-    this.state = {
-      currentViewName: "work-week",
-      currentDate: new Date(),
-      addedAppointment: {},
-      appointmentChanges: {},
-      editingAppointment: undefined,
-    };
+  const currentViewNameChange = (currentViewName) => {
+    setCurrentViewName(currentViewName);
+  };
+  const currentDateChange = (currentDate) => {
+    setCurrentDate({ currentDate });
+  };
 
-    this.currentViewNameChange = (currentViewName) => {
-      this.setState({ currentViewName });
-    };
-    this.currentDateChange = (currentDate) => {
-      this.setState({ currentDate });
-    };
+  const changeAddedAppointment = (addedAppointment) => {
+    setAddedAppointment({ addedAppointment });
+  };
 
-    this.commitChanges = this.commitChanges.bind(this);
-    this.changeAddedAppointment = this.changeAddedAppointment.bind(this);
-    this.changeAppointmentChanges = this.changeAppointmentChanges.bind(this);
-    this.changeEditingAppointment = this.changeEditingAppointment.bind(this);
-  }
+  const changeAppointmentChanges = (appointmentChanges) => {
+    setAppointmentChanges({ appointmentChanges });
+  };
 
-  changeAddedAppointment(addedAppointment) {
-    this.setState({ addedAppointment });
-  }
+  const changeEditingAppointment = (editingAppointment) => {
+    setEditingAppointment({ editingAppointment });
+  };
 
-  changeAppointmentChanges(appointmentChanges) {
-    this.setState({ appointmentChanges });
-  }
-
-  changeEditingAppointment(editingAppointment) {
-    this.setState({ editingAppointment });
-  }
-
-  commitChanges(props) {
+  const commitChanges = (props) => {
     const { added } = props;
-    const { schedulerData } = this.props;
+    const { schedulerData } = props;
     if (added) {
       alert("Will add appointment " + JSON.stringify(added));
-      this.props.addBooking(
+      props.addBooking(
         added.startDate,
         added.endDate,
         added.title,
         schedulerData[0].room
       );
     }
-  }
+  };
 
-  render() {
-    const { resources, schedulerData } = this.props;
-    const {
-      currentViewName,
-      currentDate,
-      addedAppointment,
-      appointmentChanges,
-      editingAppointment,
-    } = this.state;
-    return (
-      <ThemeProvider theme={theme}>
-        <Paper>
-          <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek="1">
-            <ViewState
-              currentDate={currentDate}
-              onCurrentDateChange={this.currentDateChange}
-              currentViewName={currentViewName}
-              onCurrentViewNameChange={this.currentViewNameChange}
-            />
+  const { resources, schedulerData } = props;
 
-            <EditingState
-              onCommitChanges={this.commitChanges}
-              addedAppointment={addedAppointment}
-              onAddedAppointmentChange={this.changeAddedAppointment}
-              appointmentChanges={appointmentChanges}
-              onAppointmentChangesChange={this.changeAppointmentChanges}
-              editingAppointment={editingAppointment}
-              onEditingAppointmentChange={this.changeEditingAppointment}
-            />
+  return (
+    <ThemeProvider theme={theme}>
+      <Paper>
+        <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek="1">
+          <ViewState
+            currentDate={currentDate}
+            onCurrentDateChange={currentDateChange}
+            currentViewName={currentViewName}
+            onCurrentViewNameChange={currentViewNameChange}
+          />
 
-            <DayView
-              displayName="Giornaliero"
-              startDayHour={9}
-              endDayHour={21}
-              cellDuration={60}
-            />
+          <EditingState
+            onCommitChanges={commitChanges}
+            addedAppointment={addedAppointment}
+            onAddedAppointmentChange={changeAddedAppointment}
+            appointmentChanges={appointmentChanges}
+            onAppointmentChangesChange={changeAppointmentChanges}
+            editingAppointment={editingAppointment}
+            onEditingAppointmentChange={changeEditingAppointment}
+          />
 
-            <WeekView
-              name="work-week"
-              displayName="Settimanale"
-              excludedDays={[0]}
-              startDayHour={9}
-              endDayHour={21}
-            />
-            <MonthView displayName="Mensile" />
-            <Toolbar />
-            <DateNavigator />
-            <TodayButton messages={{ today: "oggi" }} />
+          <DayView
+            displayName="Giornaliero"
+            startDayHour={9}
+            endDayHour={21}
+            cellDuration={60}
+          />
 
-            <EditRecurrenceMenu />
-            <ConfirmationDialog />
-            <Appointments
-              appointmentComponent={Appointment}
-              appointmentContentComponent={AppointmentContent}
-            />
-            <AppointmentTooltip
-              headerComponent={Header}
-              commandButtonComponent={CommandButton}
-              showCloseButton
-            />
-            <Resources data={resources} mainResourceName="room" />
+          <WeekView
+            name="work-week"
+            displayName="Settimanale"
+            excludedDays={[0]}
+            startDayHour={9}
+            endDayHour={21}
+          />
+          <MonthView displayName="Mensile" />
+          <Toolbar />
+          <DateNavigator />
+          <TodayButton messages={{ today: "oggi" }} />
 
-            <AppointmentForm
-              resourceEditorComponent={() => null}
-              labelComponent={LabelComponent}
-            />
+          <EditRecurrenceMenu />
+          <ConfirmationDialog />
+          <Appointments
+            appointmentComponent={Appointment}
+            appointmentContentComponent={AppointmentContent}
+          />
+          <AppointmentTooltip
+            headerComponent={Header}
+            commandButtonComponent={CommandButton}
+            showCloseButton
+          />
+          <Resources data={resources} mainResourceName="room" />
 
-            <ViewSwitcher />
+          <AppointmentForm
+            resourceEditorComponent={() => null}
+            labelComponent={LabelComponent}
+          />
 
-            <CurrentTimeIndicator
-              shadePreviousAppointments={true}
-              shadePreviousCells={true}
-              updateInterval={60000}
-            />
-          </Scheduler>
-        </Paper>
-      </ThemeProvider>
-    );
-  }
-}
+          <ViewSwitcher />
+
+          <CurrentTimeIndicator
+            shadePreviousAppointments={true}
+            shadePreviousCells={true}
+            updateInterval={60000}
+          />
+        </Scheduler>
+      </Paper>
+    </ThemeProvider>
+  );
+};
 
 export const SchedulerPresentation = ({
   schedulerData,
