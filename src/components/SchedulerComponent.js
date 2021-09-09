@@ -138,7 +138,7 @@ const StudioScheduler = (props) => {
   const [appointmentChanges, setAppointmentChanges] = useState({});
   const [editingAppointment, setEditingAppointment] = useState(undefined);
 
-  const { schedulerData, addBooking } = props;
+  const { schedulerData, resources, addBooking } = props;
 
   const currentViewNameChange = (currentViewName) => {
     setCurrentViewName(currentViewName);
@@ -172,8 +172,6 @@ const StudioScheduler = (props) => {
       );
     }
   };
-
-  const { resources } = props;
 
   return (
     <ThemeProvider theme={theme}>
