@@ -54,7 +54,7 @@ const LatestRents = (props) => {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.item}>
+            <StyledTableRow key={row.itemId}>
               <StyledTableCell component="th" scope="row">
                 {row.item}
               </StyledTableCell>

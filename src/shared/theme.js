@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core";
+import { createTheme } from "@material-ui/core";
 import {
   DARKERBLUEPOLIRADIO,
   DARKBLUEPOLIRADIO,
@@ -10,7 +10,7 @@ import {
   WHITEPOLIRADIO,
 } from "./poliradioColors";
 
-export const theme = createMuiTheme({
+export const theme = createTheme({
   palette: {
     primary: {
       dark: DARKERBLUEPOLIRADIO,
@@ -31,7 +31,7 @@ export const theme = createMuiTheme({
   },
 });
 
-export const schedulerTheme = createMuiTheme({
+export const schedulerTheme = createTheme({
   palette: {
     primary: {
       main: DARKBLUEPOLIRADIO,
