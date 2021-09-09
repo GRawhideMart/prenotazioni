@@ -138,31 +138,33 @@ const StudioScheduler = (props) => {
   const [appointmentChanges, setAppointmentChanges] = useState({});
   const [editingAppointment, setEditingAppointment] = useState(undefined);
 
+  const { schedulerData, addBooking } = props;
+
   const currentViewNameChange = (currentViewName) => {
     setCurrentViewName(currentViewName);
   };
   const currentDateChange = (currentDate) => {
-    setCurrentDate({ currentDate });
+    setCurrentDate( currentDate);
   };
 
   const changeAddedAppointment = (addedAppointment) => {
-    setAddedAppointment({ addedAppointment });
+    setAddedAppointment(addedAppointment);
   };
 
   const changeAppointmentChanges = (appointmentChanges) => {
-    setAppointmentChanges({ appointmentChanges });
+    setAppointmentChanges(appointmentChanges);
   };
 
   const changeEditingAppointment = (editingAppointment) => {
-    setEditingAppointment({ editingAppointment });
+    setEditingAppointment(editingAppointment );
   };
 
   const commitChanges = (props) => {
     const { added } = props;
-    const { schedulerData } = props;
+
     if (added) {
       alert("Will add appointment " + JSON.stringify(added));
-      props.addBooking(
+      addBooking(
         added.startDate,
         added.endDate,
         added.title,
@@ -171,7 +173,7 @@ const StudioScheduler = (props) => {
     }
   };
 
-  const { resources, schedulerData } = props;
+  const { resources } = props;
 
   return (
     <ThemeProvider theme={theme}>

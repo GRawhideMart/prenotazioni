@@ -28,9 +28,7 @@ const Main = (props) => {
     schedulerData, 
     latestRents,
     inventary,
-    styles,
-    addBooking,
-    resetFeedbackForm,
+    styles
   } = useSelector(state => state);
 
   return (
@@ -92,7 +90,6 @@ const Main = (props) => {
                 inventary={inventary}
                 style={styles}
                 name="Attrezzatura"
-                resetFeedbackForm={resetFeedbackForm}
               />
             )}
           />
