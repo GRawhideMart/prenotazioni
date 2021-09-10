@@ -1,4 +1,4 @@
-import { createTheme } from "@material-ui/core";
+import { createMuiTheme } from "@material-ui/core";
 import {
   DARKERBLUEPOLIRADIO,
   DARKBLUEPOLIRADIO,
@@ -10,7 +10,22 @@ import {
   WHITEPOLIRADIO,
 } from "./poliradioColors";
 
-export const theme = createTheme({
+export const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      "IBM Plex Sans Arabic",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+  },
   palette: {
     primary: {
       dark: DARKERBLUEPOLIRADIO,
@@ -31,7 +46,22 @@ export const theme = createTheme({
   },
 });
 
-export const schedulerTheme = createTheme({
+export const schedulerTheme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      "IBM Plex Sans Arabic",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+  },
   palette: {
     primary: {
       main: DARKBLUEPOLIRADIO,

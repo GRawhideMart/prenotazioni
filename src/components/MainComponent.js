@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 
 import Header from "./HeaderComponent";
@@ -24,12 +24,9 @@ const mapDispatchToProps = (dispatch) => ({
 const Main = (props) => {
   const [resources, setResources] = useState([RESOURCES]);
   const [grouping, setGrouping] = useState([GROUPING]);
-  const {
-    schedulerData, 
-    latestRents,
-    inventary,
-    styles
-  } = useSelector(state => state);
+  const { schedulerData, latestRents, inventary, styles } = useSelector(
+    (state) => state
+  );
 
   return (
     <Fragment>
