@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from "react";
-import { Redirect, Route, Switch, withRouter } from "react-router-dom";
+import React, { Fragment } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import Header from "./HeaderComponent";
 import StickyFooter from "./FooterComponent";
@@ -12,7 +12,7 @@ import { SchedulerPresentation } from "./SchedulerComponent";
 import { addBooking } from "../redux/ActionCreators";
 
 const Main = () => {
-  const { schedulerData, latestRents, inventary } = useSelector((state) => {
+  const { schedulerData } = useSelector((state) => {
     console.log(state);
     return state;
   });
@@ -56,9 +56,7 @@ const Main = () => {
           />
           <Route
             path="/attrezzatura"
-            component={() => (
-              <Affitti inventary={inventary} name="Attrezzatura" />
-            )}
+            component={() => <Affitti name="Attrezzatura" />}
           />
           <Redirect to="/" />
         </Switch>
