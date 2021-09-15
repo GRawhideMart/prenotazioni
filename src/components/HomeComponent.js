@@ -54,9 +54,11 @@ ScrollTop.propTypes = {
 };
 
 const Home = (props) => {
-  const { schedulerData } = props;
-
-  const { styles: style, latestRents } = useSelector((state) => state);
+  const {
+    styles: style,
+    latestRents,
+    schedulerData,
+  } = useSelector((state) => state);
   const classes = style();
   return (
     <Fragment>

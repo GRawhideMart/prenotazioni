@@ -23,11 +23,7 @@ const Main = () => {
       </header>
       <main>
         <Switch>
-          <Route
-            exact
-            path="/"
-            component={() => <Home schedulerData={schedulerData} />}
-          />
+          <Route exact path="/" component={() => <Home />} />
           <Route
             exact
             path="/studio"
