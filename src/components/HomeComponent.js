@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -16,6 +16,7 @@ import LatestRents from "./LatestRentsComponent";
 import HomeScheduler from "./SchedulerComponent";
 import Title from "./TitleComponent";
 import { useSelector } from "react-redux";
+import { GROUPING, RESOURCES } from "../shared/rooms";
 
 const ScrollTop = (props) => {
   const { children, window, style } = props;
@@ -54,7 +55,12 @@ ScrollTop.propTypes = {
 };
 
 const Home = (props) => {
-  const { schedulerData, resources, grouping, latestRents } = props;
+  const { schedulerData, latestRents } = props;
+
+  // Queste due risorse vanno esportate nello store e grabbate con useSelector
+  const [resources, setResources] = useState([RESOURCES]);
+  const [grouping, setGrouping] = useState([GROUPING]);
+
   const style = useSelector((state) => state.styles);
   const classes = style();
   return (
@@ -95,11 +101,7 @@ const Home = (props) => {
             >
               Occupazione attuale
             </Typography>
-            <HomeScheduler
-              schedulerData={schedulerData}
-              resources={resources}
-              grouping={grouping}
-            />
+            <HomeScheduler schedulerData={schedulerData} />
           </Container>
         </Grid>
         <Grid

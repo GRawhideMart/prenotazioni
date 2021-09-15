@@ -36,6 +36,7 @@ import { Title } from "./TitleComponent";
 
 import classNames from "clsx";
 import { useSelector } from "react-redux";
+import { GROUPING, RESOURCES } from "../shared/rooms";
 
 const style = ({ palette }) => ({
   icon: {
@@ -277,7 +278,12 @@ export const SchedulerPresentation = ({
 };
 
 const HomeScheduler = (props) => {
-  const { schedulerData, resources, grouping } = props;
+  const { schedulerData } = props;
+
+  // Queste due risorse vanno esportate nello store e grabbate con useSelector
+  const [resources, setResources] = useState([RESOURCES]);
+  const [grouping, setGrouping] = useState([GROUPING]);
+
   return (
     <ThemeProvider theme={theme}>
       <Paper>
