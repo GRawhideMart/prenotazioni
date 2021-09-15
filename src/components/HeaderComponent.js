@@ -5,7 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import { Avatar, Button, SvgIcon } from "@material-ui/core";
-import { Assignment } from "@material-ui/icons";
+import { Assignment, HomeSharp } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 
 const PoliradioIcon = ({ style }) => {
@@ -37,6 +37,9 @@ const Header = () => {
       <AppBar position="static" color="primary">
         <Toolbar className={classes.toolbarFlex}>
           <PoliradioIcon style={style} />
+          <Button color="secondary" component={LinkComponent} to="/">
+            <HomeSharp />
+          </Button>
           <Button color="secondary" component={LinkComponent} to="/studio">
             Studio 1
           </Button>
