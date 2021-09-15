@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
     "@devexpress/dx-react-core": "^2.7.6",
     "@devexpress/dx-react-scheduler": "^2.7.6",
     "@devexpress/dx-react-scheduler-material-ui": "^2.7.6",
