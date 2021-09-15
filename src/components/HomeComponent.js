@@ -55,13 +55,13 @@ ScrollTop.propTypes = {
 };
 
 const Home = (props) => {
-  const { schedulerData, latestRents } = props;
+  const { schedulerData } = props;
 
   // Queste due risorse vanno esportate nello store e grabbate con useSelector
   const [resources, setResources] = useState([RESOURCES]);
   const [grouping, setGrouping] = useState([GROUPING]);
 
-  const style = useSelector((state) => state.styles);
+  const { styles: style, latestRents } = useSelector((state) => state);
   const classes = style();
   return (
     <Fragment>

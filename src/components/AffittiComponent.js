@@ -73,13 +73,13 @@ const InventaryTable = ({ inventary, style, resetFeedbackForm }) => {
 };
 
 const Affitti = (props) => {
-  const { inventary, name, resetFeedbackForm } = props;
+  const { name, resetFeedbackForm } = props;
 
   const [state, setState] = useState({
     onlyAvailable: true,
   });
 
-  const style = useSelector((state) => state.styles);
+  const { styles: style, inventary } = useSelector((state) => state);
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });

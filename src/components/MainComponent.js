@@ -26,9 +26,7 @@ const Main = () => {
           <Route
             exact
             path="/"
-            component={() => (
-              <Home schedulerData={schedulerData} latestRents={latestRents} />
-            )}
+            component={() => <Home schedulerData={schedulerData} />}
           />
           <Route
             exact
