@@ -3,6 +3,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
+import { useSelector } from "react-redux";
 
 const Copyright = () => {
   return (
@@ -17,8 +18,9 @@ const Copyright = () => {
   );
 };
 
-export const StickyFooter = (props) => {
-  const classes = props.style();
+export const StickyFooter = () => {
+  const style = useSelector((state) => state.styles);
+  const classes = style();
 
   return (
     <div className={classes.footerRoot}>
@@ -32,6 +34,6 @@ export const StickyFooter = (props) => {
       </footer>
     </div>
   );
-}
+};
 
 export default StickyFooter;

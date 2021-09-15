@@ -15,6 +15,7 @@ import { KeyboardArrowUp } from "@material-ui/icons";
 import LatestRents from "./LatestRentsComponent";
 import HomeScheduler from "./SchedulerComponent";
 import Title from "./TitleComponent";
+import { useSelector } from "react-redux";
 
 const ScrollTop = (props) => {
   const { children, window, style } = props;
@@ -53,7 +54,8 @@ ScrollTop.propTypes = {
 };
 
 const Home = (props) => {
-  const { schedulerData, resources, grouping, latestRents, style } = props;
+  const { schedulerData, resources, grouping, latestRents } = props;
+  const style = useSelector((state) => state.styles);
   const classes = style();
   return (
     <Fragment>

@@ -13,25 +13,19 @@ import { SchedulerPresentation } from "./SchedulerComponent";
 import { GROUPING, RESOURCES } from "../shared/rooms";
 import { addBooking } from "../redux/ActionCreators";
 
-const mapDispatchToProps = (dispatch) => ({
-  addBooking: (startDate, endDate, title, room) =>
-    dispatch(addBooking(startDate, endDate, title, room)),
-  resetFeedbackForm: () => {
-    dispatch(actions.reset("feedback"));
-  },
-});
-
 const Main = (props) => {
   const [resources, setResources] = useState([RESOURCES]);
   const [grouping, setGrouping] = useState([GROUPING]);
   const { schedulerData, latestRents, inventary, styles } = useSelector(
-    (state) => state
+    (state) => {
+      console.log(state);
+      return state;
+    }
   );
-
   return (
     <Fragment>
       <header>
-        <Header style={styles} />
+        <Header />
       </header>
       <main>
         <Switch>
@@ -44,7 +38,6 @@ const Main = (props) => {
                 resources={resources}
                 grouping={grouping}
                 latestRents={latestRents}
-                style={styles}
               />
             )}
           />
@@ -59,7 +52,6 @@ const Main = (props) => {
                 resources={resources}
                 grouping={grouping}
                 name="Studio"
-                style={styles}
                 addBooking={addBooking}
               />
             )}
@@ -75,7 +67,6 @@ const Main = (props) => {
                 resources={resources}
                 grouping={grouping}
                 name="Stanzino"
-                style={styles}
                 addBooking={addBooking}
               />
             )}
@@ -83,21 +74,17 @@ const Main = (props) => {
           <Route
             path="/attrezzatura"
             component={() => (
-              <Affitti
-                inventary={inventary}
-                style={styles}
-                name="Attrezzatura"
-              />
+              <Affitti inventary={inventary} name="Attrezzatura" />
             )}
           />
           <Redirect to="/" />
         </Switch>
       </main>
       <footer>
-        <StickyFooter style={styles} />
+        <StickyFooter />
       </footer>
     </Fragment>
   );
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(Main));
+export default Main;

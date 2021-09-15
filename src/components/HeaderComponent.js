@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import { Avatar, Button, SvgIcon } from "@material-ui/core";
 import { Assignment } from "@material-ui/icons";
+import { useSelector } from "react-redux";
 
 const PoliradioIcon = ({ style }) => {
   const classes = style();
@@ -27,14 +28,15 @@ export const LinkComponent = (props) => {
   return <RouterLink {...props} />;
 };
 
-const Header = (props) => {
-  const classes = props.style();
+const Header = () => {
+  const style = useSelector((state) => state.styles);
+  const classes = style();
 
   return (
     <div className={classes.root}>
       <AppBar position="static" color="primary">
         <Toolbar className={classes.toolbarFlex}>
-          <PoliradioIcon style={props.style} />
+          <PoliradioIcon style={style} />
           <Button color="secondary" component={LinkComponent} to="/studio">
             Studio 1
           </Button>

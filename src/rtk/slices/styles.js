@@ -1,11 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { USESTYLES } from "../../shared/useStyles";
 
-const initialState = USESTYLES();
-
 const styleSlice = createSlice({
   name: "styles",
-  initialState,
+  initialState: () => USESTYLES(),
   reducers: {
     getStyles: (state) => state,
   },

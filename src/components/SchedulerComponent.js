@@ -35,6 +35,7 @@ import { schedulerTheme as theme } from "../shared/theme";
 import { Title } from "./TitleComponent";
 
 import classNames from "clsx";
+import { useSelector } from "react-redux";
 
 const style = ({ palette }) => ({
   icon: {
@@ -144,7 +145,7 @@ const StudioScheduler = (props) => {
     setCurrentViewName(currentViewName);
   };
   const currentDateChange = (currentDate) => {
-    setCurrentDate( currentDate);
+    setCurrentDate(currentDate);
   };
 
   const changeAddedAppointment = (addedAppointment) => {
@@ -156,7 +157,7 @@ const StudioScheduler = (props) => {
   };
 
   const changeEditingAppointment = (editingAppointment) => {
-    setEditingAppointment(editingAppointment );
+    setEditingAppointment(editingAppointment);
   };
 
   const commitChanges = (props) => {
@@ -248,9 +249,9 @@ export const SchedulerPresentation = ({
   schedulerData,
   resources,
   name,
-  style,
   addBooking,
 }) => {
+  const style = useSelector((state) => state.styles);
   return (
     <Grid
       container
