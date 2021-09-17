@@ -1,11 +1,18 @@
-import * as Actions from './ActionTypes';
+import * as Actions from "./ActionTypes";
 
-export const addBooking = (startDate, endDate, title, room) => ({
-    type: Actions.ADD_BOOKING,
-    payload: {
-        startDate,
-        endDate,
-        title,
-        room
-    }
-})
+export const addBooking = (
+  startDate,
+  endDate,
+  title,
+  room,
+  backgroundImage
+) => ({
+  type: Actions.ADD_BOOKING,
+  payload: {
+    startDate,
+    endDate,
+    title,
+    room,
+    backgroundImage,
+  },
+});

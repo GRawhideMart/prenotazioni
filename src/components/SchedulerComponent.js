@@ -171,6 +171,7 @@ const StudioScheduler = (props) => {
     const { added } = props;
     console.log({
       ...added,
+      backgroundImage: "../image.png",
       room: history.location.pathname === "/studio" ? 1 : 2,
     });
     if (added) {
@@ -180,7 +181,8 @@ const StudioScheduler = (props) => {
           added.startDate,
           added.endDate,
           added.title,
-          history.location.pathname === "/studio" ? 1 : 2
+          history.location.pathname === "/studio" ? 1 : 2,
+          "assets/img/image.png"
         )
       );
     }
