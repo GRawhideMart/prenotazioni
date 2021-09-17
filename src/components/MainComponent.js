@@ -13,7 +13,6 @@ import { addBooking } from "../redux/ActionCreators";
 
 const Main = () => {
   const { schedulerData } = useSelector((state) => {
-    console.log(state);
     return state;
   });
   return (

@@ -37,6 +37,8 @@ import { Title } from "./TitleComponent";
 import classNames from "clsx";
 import { useSelector } from "react-redux";
 import { GROUPING, RESOURCES } from "../shared/rooms";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
 const style = ({ palette }) => ({
   icon: {
@@ -142,6 +144,8 @@ const StudioScheduler = (props) => {
 
   const { schedulerData, resources, addBooking } = props;
 
+  const dispatch = useDispatch();
+
   const currentViewNameChange = (currentViewName) => {
     setCurrentViewName(currentViewName);
   };
@@ -161,16 +165,23 @@ const StudioScheduler = (props) => {
     setEditingAppointment(editingAppointment);
   };
 
+  const history = useHistory();
+
   const commitChanges = (props) => {
     const { added } = props;
-
+    console.log({
+      ...added,
+      room: history.location.pathname === "/studio" ? 1 : 2,
+    });
     if (added) {
       alert("Will add appointment " + JSON.stringify(added));
-      addBooking(
-        added.startDate,
-        added.endDate,
-        added.title,
-        schedulerData[0].room
+      dispatch(
+        addBooking(
+          added.startDate,
+          added.endDate,
+          added.title,
+          history.location.pathname === "/studio" ? 1 : 2
+        )
       );
     }
   };
@@ -178,7 +189,7 @@ const StudioScheduler = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <Paper>
-        <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek="1">
+        <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek={1}>
           <ViewState
             currentDate={currentDate}
             onCurrentDateChange={currentDateChange}
@@ -246,13 +257,11 @@ const StudioScheduler = (props) => {
   );
 };
 
-export const SchedulerPresentation = ({
-  schedulerData,
-  resources,
-  name,
-  addBooking,
-}) => {
-  const style = useSelector((state) => state.styles);
+export const SchedulerPresentation = ({ schedulerData, name, addBooking }) => {
+  const { styles: style } = useSelector((state) => state);
+
+  const [resources, setResources] = useState([RESOURCES]);
+
   return (
     <Grid
       container
