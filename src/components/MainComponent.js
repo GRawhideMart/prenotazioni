@@ -11,11 +11,9 @@ import Affitti from "./AffittiComponent";
 import Inventario from "./Inventario/InventarioComponent";
 import { SchedulerPresentation } from "./SchedulerComponent";
 
-import { addBooking } from "../redux/ActionCreators";
-
 const Main = () => {
-  const { schedulerData } = useSelector((state) => {
-    return state;
+  const schedulerData = useSelector((state) => {
+    return state.scheduler;
   });
   return (
     <Fragment>
@@ -34,7 +32,6 @@ const Main = () => {
                   (event) => event.room === 1 // schedulerData has a field called room: number 1 is studio upstairs, 2 is stanzino
                 )}
                 name="Studio"
-                addBooking={addBooking}
               />
             )}
           />
@@ -47,7 +44,6 @@ const Main = () => {
                   (event) => event.room === 2
                 )}
                 name="Stanzino"
-                addBooking={addBooking}
               />
             )}
           />

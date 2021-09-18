@@ -40,6 +40,8 @@ import { GROUPING, RESOURCES } from "../shared/rooms";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
+import { addBooking } from "../rtk/slices/schedulerData.slice";
+
 const style = ({ palette }) => ({
   icon: {
     color: palette.action.active,
@@ -167,23 +169,17 @@ const StudioScheduler = (props) => {
 
   const history = useHistory();
 
-  const commitChanges = (props) => {
-    const { added } = props;
-    console.log({
-      ...added,
-      backgroundImage: "../image.png",
-      room: history.location.pathname === "/studio" ? 1 : 2,
-    });
+  const commitChanges = ({ added }) => {
     if (added) {
       alert("Will add appointment " + JSON.stringify(added));
       dispatch(
-        addBooking(
-          added.startDate,
-          added.endDate,
-          added.title,
-          history.location.pathname === "/studio" ? 1 : 2,
-          "assets/img/image.png"
-        )
+        addBooking({
+          startDate: added.startDate,
+          endDate: added.endDate,
+          title: added.title,
+          room: history.location.pathname === "/studio" ? 1 : 2,
+          backgroundImage: "assets/img/image.png",
+        })
       );
     }
   };
@@ -259,7 +255,7 @@ const StudioScheduler = (props) => {
   );
 };
 
-export const SchedulerPresentation = ({ schedulerData, name, addBooking }) => {
+export const SchedulerPresentation = ({ schedulerData, name }) => {
   const { styles: style } = useSelector((state) => state);
 
   const [resources, setResources] = useState([RESOURCES]);
