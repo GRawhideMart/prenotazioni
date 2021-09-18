@@ -8,12 +8,13 @@ import { Avatar, Button, SvgIcon } from "@material-ui/core";
 import { Assignment, HomeSharp } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 
-const PoliradioIcon = ({ style }) => {
+const PoliradioIcon = () => {
+  const style = useSelector((state) => state.styles);
   const classes = style();
   return (
     <IconButton
       style={{ backgroundColor: "transparent" }}
-      edge="center"
+      edge="start"
       className={classes.poliradioButton}
       color="inherit"
       aria-label="logo"
@@ -36,7 +37,7 @@ const Header = () => {
     <div className={classes.root}>
       <AppBar position="static" color="primary">
         <Toolbar className={classes.toolbarFlex}>
-          <PoliradioIcon style={style} />
+          <PoliradioIcon />
           <Button color="secondary" component={LinkComponent} to="/">
             <HomeSharp />
           </Button>

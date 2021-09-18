@@ -7,14 +7,9 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import {
-  AddCircle,
-  Close,
-  DeleteForeverSharp,
-  Edit,
-  EditSharp,
-} from "@material-ui/icons";
+import { AddCircle, Close, DeleteForeverSharp, Edit } from "@material-ui/icons";
 import React, { useState, Fragment, forwardRef } from "react";
+import { useSelector } from "react-redux";
 import AddItemForm from "./AddItemForm";
 import EditItemForm from "./EditItemForm";
 
@@ -22,7 +17,8 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const ButtonDialog = ({ style, type, rowId, name, description }) => {
+const ButtonDialog = ({ type, rowId, description }) => {
+  const style = useSelector((state) => state.styles);
   const classes = style();
   const [open, setOpen] = useState(false);
 
@@ -41,15 +37,7 @@ const ButtonDialog = ({ style, type, rowId, name, description }) => {
     <Fragment>
       {type === "add" ? (
         <Button
-          endIcon={
-            type === "add" ? (
-              <AddCircle />
-            ) : type === "edit" ? (
-              <EditSharp />
-            ) : (
-              <DeleteForeverSharp />
-            )
-          }
+          endIcon={<AddCircle />}
           variant="contained"
           color="success"
           fullWidth

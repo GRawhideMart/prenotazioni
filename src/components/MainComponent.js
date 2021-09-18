@@ -4,17 +4,12 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Header from "./HeaderComponent";
 import StickyFooter from "./FooterComponent";
 
-import { useSelector } from "react-redux";
-
 import Home from "./HomeComponent";
 import Affitti from "./AffittiComponent";
 import Inventario from "./Inventario/InventarioComponent";
 import { SchedulerPresentation } from "./SchedulerComponent";
 
 const Main = () => {
-  const schedulerData = useSelector((state) => {
-    return state.scheduler;
-  });
   return (
     <Fragment>
       <header>
@@ -26,26 +21,12 @@ const Main = () => {
           <Route
             exact
             path="/studio"
-            component={() => (
-              <SchedulerPresentation
-                schedulerData={schedulerData.filter(
-                  (event) => event.room === 1 // schedulerData has a field called room: number 1 is studio upstairs, 2 is stanzino
-                )}
-                name="Studio"
-              />
-            )}
+            component={() => <SchedulerPresentation name="Studio" />}
           />
           <Route
             exact
             path="/stanzino"
-            component={() => (
-              <SchedulerPresentation
-                schedulerData={schedulerData.filter(
-                  (event) => event.room === 2
-                )}
-                name="Stanzino"
-              />
-            )}
+            component={() => <SchedulerPresentation name="Stanzino" />}
           />
           <Route
             path="/attrezzatura"

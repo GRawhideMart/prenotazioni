@@ -14,7 +14,9 @@ import { FormControlLabel, FormGroup, Checkbox } from "@material-ui/core";
 import BookItemComponent from "./BookItemComponents";
 import { useSelector } from "react-redux";
 
-const InventaryTable = ({ inventary, style, resetFeedbackForm }) => {
+const InventaryTable = ({ inventary }) => {
+  const style = useSelector((state) => state.styles);
+
   const classes = style();
 
   return (
@@ -61,7 +63,6 @@ const InventaryTable = ({ inventary, style, resetFeedbackForm }) => {
                       {row.name}, <em>{row.description}</em>
                     </div>
                   }
-                  resetFeedbackForm={resetFeedbackForm}
                 />
               </StyledTableCell>
             </StyledTableRow>
@@ -72,18 +73,13 @@ const InventaryTable = ({ inventary, style, resetFeedbackForm }) => {
   );
 };
 
-const Affitti = (props) => {
-  const { name, resetFeedbackForm } = props;
+const Affitti = ({ name }) => {
+  const [onlyAvailable, setOnlyAvailable] = useState(true);
 
-  const [state, setState] = useState({
-    onlyAvailable: true,
-  });
+  const inventary = useSelector((state) => state.inventary);
 
-  const { styles: style, inventary } = useSelector((state) => state);
-
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-    console.log(state, event.target.checked);
+  const toggleOnlyAvailable = (e) => {
+    setOnlyAvailable(e.target.checked);
   };
 
   return (
@@ -91,17 +87,17 @@ const Affitti = (props) => {
       container
       direction="column"
       alignItems="center"
-      justify="center"
+      justifyContent="center"
       style={{ marginTop: "32px" }}
     >
-      <Title style={style} name={name} />
+      <Title name={name} />
       <FormGroup row>
         <FormControlLabel
           style={{ color: "white", marginBottom: "8px" }}
           control={
             <Checkbox
-              checked={state.onlyAvailable}
-              onChange={handleChange}
+              checked={onlyAvailable}
+              onChange={toggleOnlyAvailable}
               name="onlyAvailable"
               color="primary"
             />
@@ -114,12 +110,10 @@ const Affitti = (props) => {
         <Grid item md={8}>
           <InventaryTable
             inventary={
-              state.onlyAvailable
+              onlyAvailable
                 ? inventary.filter((item) => item.isAvailable)
                 : inventary
             }
-            style={style}
-            resetFeedbackForm={resetFeedbackForm}
           />
         </Grid>
         <Grid item md={2}></Grid>

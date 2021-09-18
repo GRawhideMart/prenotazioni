@@ -6,9 +6,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
-import NoteIcon from "@material-ui/icons/Note";
 import Slide from "@material-ui/core/Slide";
 import BookForm from "./RentFormComponent";
+import { useSelector } from "react-redux";
+import KeyboardArrowRightRounded from "@material-ui/icons/KeyboardArrowRightRounded";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -20,7 +21,7 @@ const BookButton = ({ isAvailable, classes, onClick }) => {
       variant="contained"
       color="primary"
       className={classes.requestButton}
-      endIcon={<NoteIcon />}
+      endIcon={<KeyboardArrowRightRounded />}
       onClick={onClick}
     >
       Richiedi
@@ -36,8 +37,8 @@ const BookButton = ({ isAvailable, classes, onClick }) => {
   );
 };
 
-const BookItemComponent = (props) => {
-  const { style, isAvailable, item, resetFeedbackForm } = props;
+const BookItemComponent = ({ isAvailable, item }) => {
+  const style = useSelector((state) => state.styles);
   const classes = style();
   const [open, setOpen] = useState(false);
 
@@ -77,7 +78,7 @@ const BookItemComponent = (props) => {
             </Typography>
           </Toolbar>
         </AppBar>
-        <BookForm resetFeedbackForm={resetFeedbackForm} classes={classes} />
+        <BookForm classes={classes} />
       </Dialog>
     </div>
   );

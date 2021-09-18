@@ -36,7 +36,6 @@ import { Title } from "./TitleComponent";
 
 import classNames from "clsx";
 import { useSelector } from "react-redux";
-import { GROUPING, RESOURCES } from "../shared/rooms";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
@@ -137,15 +136,19 @@ const CommandButton = withStyles(style, {
   />
 ));
 
-const StudioScheduler = (props) => {
+const StudioScheduler = ({ name }) => {
   const [currentViewName, setCurrentViewName] = useState("work-week");
   const [currentDate, setCurrentDate] = useState(new Date());
   const [addedAppointment, setAddedAppointment] = useState({});
   const [appointmentChanges, setAppointmentChanges] = useState({});
   const [editingAppointment, setEditingAppointment] = useState(undefined);
 
-  const { schedulerData, resources, addBooking } = props;
-
+  const appointments = useSelector((state) => state.scheduler);
+  const schedulerData =
+    name === "Studio"
+      ? appointments.filter((app) => app.room === 1)
+      : appointments.filter((app) => app.room === 2);
+  const resources = useSelector((state) => state.resources);
   const dispatch = useDispatch();
 
   const currentViewNameChange = (currentViewName) => {
@@ -177,6 +180,7 @@ const StudioScheduler = (props) => {
           startDate: added.startDate,
           endDate: added.endDate,
           title: added.title,
+          notes: added.notes,
           room: history.location.pathname === "/studio" ? 1 : 2,
           backgroundImage: "assets/img/image.png",
         })
@@ -255,28 +259,20 @@ const StudioScheduler = (props) => {
   );
 };
 
-export const SchedulerPresentation = ({ schedulerData, name }) => {
-  const { styles: style } = useSelector((state) => state);
-
-  const [resources, setResources] = useState([RESOURCES]);
-
+export const SchedulerPresentation = ({ name }) => {
   return (
     <Grid
       container
       direction="column"
       alignItems="center"
-      justify="center"
+      justifyContent="center"
       style={{ marginTop: "32px" }}
     >
-      <Title style={style} name={name} />
+      <Title name={name} />
       <Grid item container direction="row">
         <Grid item md={2}></Grid>
         <Grid item md={8}>
-          <StudioScheduler
-            schedulerData={schedulerData}
-            resources={resources}
-            addBooking={addBooking}
-          />
+          <StudioScheduler name={name} />
         </Grid>
         <Grid item md={2}></Grid>
       </Grid>
@@ -284,17 +280,16 @@ export const SchedulerPresentation = ({ schedulerData, name }) => {
   );
 };
 
-const HomeScheduler = (props) => {
-  const { schedulerData } = props;
+const HomeScheduler = () => {
+  const schedulerData = useSelector((state) => state.scheduler);
 
-  // Queste due risorse vanno esportate nello store e grabbate con useSelector
-  const [resources, setResources] = useState([RESOURCES]);
-  const [grouping, setGrouping] = useState([GROUPING]);
+  const grouping = useSelector((state) => state.groupings);
+  const resources = useSelector((state) => state.resources);
 
   return (
     <ThemeProvider theme={theme}>
       <Paper>
-        <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek="1">
+        <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek={1}>
           <ViewState defaultCurrentDate={new Date()} />
 
           <GroupingState grouping={grouping} />

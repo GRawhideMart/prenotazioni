@@ -32,9 +32,6 @@ const AddItemForm = ({ style }) => {
     },
   ];
 
-  const [titleError, setTitleError] = useState(false);
-  const [detailsError, setDetailsError] = useState(false);
-
   // Variabili di stato interno
   const [id, setId] = useState(null);
   const [quantity, setQuantity] = useState("0");
@@ -56,7 +53,7 @@ const AddItemForm = ({ style }) => {
 
   const handleSubmit = (e) => {
     // Eventually this will dispatch an action which will hit the endpoint that the backend exposes to perform a POST operation on the inventario table
-    e.preventDefault();
+    //e.preventDefault();
     // setTitleError(false);
     // setDetailsError(false);
 

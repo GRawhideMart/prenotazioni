@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { useSelector } from "react-redux";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -37,9 +38,9 @@ const useStyles = makeStyles({
   },
 });
 
-const LatestRents = (props) => {
+const LatestRents = () => {
   const classes = useStyles();
-  const { rows } = props;
+  const rows = useSelector((state) => state.latestRents);
 
   return (
     <TableContainer component={Paper}>

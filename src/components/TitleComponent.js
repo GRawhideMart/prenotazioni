@@ -1,11 +1,13 @@
 import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
-const Breadcrumb = ({ style, name }) => {
+const Breadcrumb = ({ name }) => {
+  const style = useSelector((state) => state.styles);
   const classes = style();
 
   return (
@@ -25,8 +27,8 @@ const Breadcrumb = ({ style, name }) => {
   );
 };
 
-export const Title = (props) => {
-  const { style, name } = props;
+export const Title = ({ name }) => {
+  const style = useSelector((state) => state.styles);
   const classes = style();
 
   return (
