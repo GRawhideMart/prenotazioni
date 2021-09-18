@@ -15,12 +15,13 @@ import {
 } from "@material-ui/icons";
 import React, { useState, Fragment, forwardRef } from "react";
 import AddItemForm from "./AddItemForm";
+import EditItemForm from "./EditItemForm";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const ButtonDialog = ({ style, type }) => {
+const ButtonDialog = ({ style, type, rowId }) => {
   const classes = style();
   const [open, setOpen] = useState(false);
 
@@ -85,6 +86,7 @@ const ButtonDialog = ({ style, type }) => {
           </Toolbar>
         </AppBar>
         {type === "add" && <AddItemForm style={style} />}
+        {type === "edit" && <EditItemForm style={style} rowId={rowId} />}
       </Dialog>
     </Fragment>
   );
