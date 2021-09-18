@@ -55,7 +55,12 @@ const InventaryTable = ({ inventary, style }) => {
                   {row.quantity !== "" ? parseInt(row.quantity, 10) : ""}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  <ButtonDialog style={style} type="edit" rowId={row.id} />
+                  <ButtonDialog
+                    style={style}
+                    type="edit"
+                    rowId={row.id}
+                    description={row.description}
+                  />
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <ButtonDialog style={style} type="delete" rowId={row.id} />

@@ -90,6 +90,7 @@ export const USESTYLES = makeStyles((theme) => ({
   inventaryAddButton: {
     padding: theme.spacing(1),
     backgroundColor: green.A700,
+    marginBottom: "16px",
   },
   inventaryEditButton: {
     marginInline: theme.spacing(1),

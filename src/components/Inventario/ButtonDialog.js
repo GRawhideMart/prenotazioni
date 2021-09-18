@@ -22,7 +22,7 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const ButtonDialog = ({ style, type, rowId }) => {
+const ButtonDialog = ({ style, type, rowId, name, description }) => {
   const classes = style();
   const [open, setOpen] = useState(false);
 
@@ -92,7 +92,9 @@ const ButtonDialog = ({ style, type, rowId }) => {
                 <Close />
               </IconButton>
               <Typography variant="h6" className={classes.dialogTitle}>
-                {type === "add" ? "Aggiungi Elemento" : "Modifica Elemento"}
+                {type === "add"
+                  ? "Aggiungi Elemento"
+                  : `Modifica Elemento - ${description}`}
               </Typography>
             </Toolbar>
           </AppBar>

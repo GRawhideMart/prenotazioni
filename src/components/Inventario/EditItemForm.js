@@ -94,44 +94,45 @@ const EditItemForm = ({ style, rowId }) => {
     );
     history.push("/inventario");
   };
-  console.log({ id, quantity, name, description });
   return (
-    <Container size="sm">
+    <Grid container justifyContent="space-evenly" alignItems="space-evenly">
       <form
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
         className={classes.field}
       >
-        <TextField
-          className={classes.field}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          helperText="Modello"
-          variant="standard"
-          color="primary"
-          fullWidth
-          required
-          error={descriptionError}
-          FormHelperTextProps={{
-            style: { color: theme.palette.primary.main },
-          }}
-        />
-        <TextField
-          className={classes.field}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          helperText="Descrizione"
-          variant="standard"
-          color="primary"
-          fullWidth
-          required
-          error={nameError}
-          FormHelperTextProps={{
-            style: { color: theme.palette.primary.main },
-          }}
-        />
-        <Grid item container direction="row" justifyContent="space-evenly">
+        <Grid item direction="column">
+          <TextField
+            className={classes.field}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            helperText="Modello"
+            variant="standard"
+            color="primary"
+            fullWidth
+            required
+            error={descriptionError}
+            FormHelperTextProps={{
+              style: { color: theme.palette.primary.main },
+            }}
+          />
+          <TextField
+            className={classes.field}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            helperText="Descrizione"
+            variant="standard"
+            color="primary"
+            fullWidth
+            required
+            error={nameError}
+            FormHelperTextProps={{
+              style: { color: theme.palette.primary.main },
+            }}
+          />
+        </Grid>
+        <Grid item container direction="row" justifyContent="center">
           <Grid item md={4}>
             <TextField
               type="number"
@@ -185,8 +186,14 @@ const EditItemForm = ({ style, rowId }) => {
           </Grid>
         </Grid>
 
-        <FormControl className={classes.field}>
-          <Grid item container direction="row" justifyContent="space-around">
+        <Grid
+          item
+          container
+          direction="row"
+          justifyContent="space-around"
+          alignItems="space-around"
+        >
+          <FormControl className={classes.field}>
             <Grid item md={6}>
               <TextField
                 className={classes.field}
@@ -219,12 +226,7 @@ const EditItemForm = ({ style, rowId }) => {
                 }}
               />
             </Grid>
-            <Grid
-              item
-              md={6}
-              justifyContent="space-around"
-              alignItems="space-around"
-            >
+            <Grid item container md={6} justifyContent="space-around">
               <FormGroup>
                 <FormControlLabel
                   control={
@@ -248,8 +250,8 @@ const EditItemForm = ({ style, rowId }) => {
                 />
               </FormGroup>
             </Grid>
-          </Grid>
-        </FormControl>
+          </FormControl>
+        </Grid>
 
         <Button
           type="submit"
@@ -261,7 +263,7 @@ const EditItemForm = ({ style, rowId }) => {
           Modifica
         </Button>
       </form>
-    </Container>
+    </Grid>
   );
 };
 
