@@ -99,6 +99,11 @@ export const USESTYLES = makeStyles((theme) => ({
     marginInline: theme.spacing(1),
     backgroundColor: red.A700,
   },
+  field: {
+    marginTop: 24,
+    marginBottom: 24,
+    display: "block",
+  },
 }));
 
 export const StyledTableCell = withStyles((theme) => ({

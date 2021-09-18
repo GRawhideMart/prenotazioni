@@ -14,6 +14,7 @@ import {
   EditSharp,
 } from "@material-ui/icons";
 import React, { useState, Fragment, forwardRef } from "react";
+import AddItemForm from "./AddItemForm";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -83,6 +84,7 @@ const ButtonDialog = ({ style, type }) => {
             </Typography>
           </Toolbar>
         </AppBar>
+        {type === "add" && <AddItemForm style={style} />}
       </Dialog>
     </Fragment>
   );
