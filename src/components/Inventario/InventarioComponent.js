@@ -58,7 +58,7 @@ const InventaryTable = ({ inventary, style }) => {
                   <ButtonDialog style={style} type="edit" rowId={row.id} />
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  <ButtonDialog style={style} type="delete" />
+                  <ButtonDialog style={style} type="delete" rowId={row.id} />
                 </StyledTableCell>
               </StyledTableRow>
             ))}

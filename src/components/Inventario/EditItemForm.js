@@ -114,7 +114,7 @@ const EditItemForm = ({ style, rowId }) => {
           required
           error={descriptionError}
           FormHelperTextProps={{
-            style: { color: "black" },
+            style: { color: theme.palette.primary.main },
           }}
         />
         <TextField
@@ -127,8 +127,8 @@ const EditItemForm = ({ style, rowId }) => {
           fullWidth
           required
           error={nameError}
-          InputLabelProps={{
-            style: { color: "black" },
+          FormHelperTextProps={{
+            style: { color: theme.palette.primary.main },
           }}
         />
         <Grid item container direction="row" justifyContent="space-evenly">
@@ -143,7 +143,7 @@ const EditItemForm = ({ style, rowId }) => {
               color="primary"
               error={idError}
               FormHelperTextProps={{
-                style: { color: "black" },
+                style: { color: theme.palette.primary.main },
               }}
             />
           </Grid>
@@ -159,7 +159,7 @@ const EditItemForm = ({ style, rowId }) => {
               color="primary"
               error={quantityError}
               FormHelperTextProps={{
-                style: { color: "black" },
+                style: { color: theme.palette.primary.main },
               }}
             />
           </Grid>
@@ -173,7 +173,7 @@ const EditItemForm = ({ style, rowId }) => {
               variant="standard"
               color="primary"
               FormHelperTextProps={{
-                style: { color: "black" },
+                style: { color: theme.palette.primary.main },
               }}
             >
               {substitutionOptions.map((option) => (
@@ -197,7 +197,7 @@ const EditItemForm = ({ style, rowId }) => {
                 color="primary"
                 error={buyYearError}
                 InputLabelProps={{
-                  style: { color: "black" },
+                  style: { color: theme.palette.primary.main },
                 }}
                 FormHelperTextProps={{
                   style: { color: theme.palette.primary.light },

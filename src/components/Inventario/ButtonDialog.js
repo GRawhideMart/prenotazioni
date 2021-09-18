@@ -32,6 +32,10 @@ const ButtonDialog = ({ style, type, rowId }) => {
     setOpen(false);
   };
 
+  const handleDelete = (id) => {
+    alert(`This will delete the item with ID ${id} from the database`);
+  };
+
   return (
     <Fragment>
       <Button
@@ -56,38 +60,38 @@ const ButtonDialog = ({ style, type, rowId }) => {
             ? classes.inventaryEditButton
             : classes.inventaryDeleteButton
         }
-        onClick={handleClickOpen}
+        onClick={
+          type === "delete" ? () => handleDelete(rowId) : handleClickOpen
+        }
       >
         {type === "add" ? "Aggiungi" : type === "edit" ? "Modifica" : "Elimina"}
       </Button>
-      <Dialog
-        fullScreen
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Transition}
-      >
-        <AppBar className={classes.dialogAppBar}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close"
-            >
-              <Close />
-            </IconButton>
-            <Typography variant="h6" className={classes.dialogTitle}>
-              {type === "add"
-                ? "Aggiungi Elemento"
-                : type === "edit"
-                ? "Modifica Elemento"
-                : "Elimina Elemento"}
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        {type === "add" && <AddItemForm style={style} />}
-        {type === "edit" && <EditItemForm style={style} rowId={rowId} />}
-      </Dialog>
+      {type === "add" || type === "edit" ? (
+        <Dialog
+          fullScreen
+          open={open}
+          onClose={handleClose}
+          TransitionComponent={Transition}
+        >
+          <AppBar className={classes.dialogAppBar}>
+            <Toolbar>
+              <IconButton
+                edge="start"
+                color="inherit"
+                onClick={handleClose}
+                aria-label="close"
+              >
+                <Close />
+              </IconButton>
+              <Typography variant="h6" className={classes.dialogTitle}>
+                {type === "add" ? "Aggiungi Elemento" : "Modifica Elemento"}
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          {type === "add" && <AddItemForm style={style} />}
+          {type === "edit" && <EditItemForm style={style} rowId={rowId} />}
+        </Dialog>
+      ) : null}
     </Fragment>
   );
 };
