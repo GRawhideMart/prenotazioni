@@ -8,7 +8,9 @@ import { useSelector } from "react-redux";
 
 import Home from "./HomeComponent";
 import Affitti from "./AffittiComponent";
+import Inventario from "./InventarioComponent";
 import { SchedulerPresentation } from "./SchedulerComponent";
+
 import { addBooking } from "../redux/ActionCreators";
 
 const Main = () => {
@@ -52,6 +54,10 @@ const Main = () => {
           <Route
             path="/attrezzatura"
             component={() => <Affitti name="Attrezzatura" />}
+          />
+          <Route
+            path="/inventario"
+            component={() => <Inventario name="Gestione Inventario" />}
           />
           <Redirect to="/" />
         </Switch>

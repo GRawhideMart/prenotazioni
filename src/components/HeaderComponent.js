@@ -53,6 +53,9 @@ const Header = () => {
           >
             Attrezzatura
           </Button>
+          <Button color="secondary" component={LinkComponent} to="/inventario">
+            Inventario
+          </Button>
           <Avatar className={classes.avatar}>
             <Assignment />
           </Avatar>

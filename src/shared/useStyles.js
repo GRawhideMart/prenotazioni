@@ -1,4 +1,5 @@
 import { makeStyles, withStyles, TableCell, TableRow } from "@material-ui/core";
+import { green, red, yellow } from "@material-ui/core/colors";
 
 export const USESTYLES = makeStyles((theme) => ({
   navbarRoot: {
@@ -60,31 +61,43 @@ export const USESTYLES = makeStyles((theme) => ({
     right: theme.spacing(8),
   },
   rowItemId: {
-      paddingLeft: '32px'
+    paddingLeft: "32px",
   },
   breadcrumb: {
-    '& > * + *': {
+    "& > * + *": {
       margin: theme.spacing(2),
     },
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
   },
   backToTopAnchor: {
-    height: '0px',
-    margin: '0px',
-    padding: '0px'
+    height: "0px",
+    margin: "0px",
+    padding: "0px",
   },
   requestButton: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   formElements: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   dialogAppBar: {
-    position: 'relative',
+    position: "relative",
   },
   dialogTitle: {
     marginLeft: theme.spacing(2),
     flex: 1,
+  },
+  inventaryAddButton: {
+    padding: theme.spacing(1),
+    backgroundColor: green.A700,
+  },
+  inventaryEditButton: {
+    marginInline: theme.spacing(1),
+    backgroundColor: yellow.A700,
+  },
+  inventaryDeleteButton: {
+    marginInline: theme.spacing(1),
+    backgroundColor: red.A700,
   },
 }));
 
