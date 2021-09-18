@@ -11,6 +11,7 @@ import {
   AddCircle,
   Close,
   DeleteForeverSharp,
+  Edit,
   EditSharp,
 } from "@material-ui/icons";
 import React, { useState, Fragment, forwardRef } from "react";
@@ -38,34 +39,41 @@ const ButtonDialog = ({ style, type, rowId }) => {
 
   return (
     <Fragment>
-      <Button
-        endIcon={
-          type === "add" ? (
-            <AddCircle />
-          ) : type === "edit" ? (
-            <EditSharp />
-          ) : (
-            <DeleteForeverSharp />
-          )
-        }
-        variant="contained"
-        color={
-          type === "add" ? "success" : type === "edit" ? "warning" : "error"
-        }
-        fullWidth={type === "add" ? true : false}
-        className={
-          type === "add"
-            ? classes.inventaryAddButton
-            : type === "edit"
-            ? classes.inventaryEditButton
-            : classes.inventaryDeleteButton
-        }
-        onClick={
-          type === "delete" ? () => handleDelete(rowId) : handleClickOpen
-        }
-      >
-        {type === "add" ? "Aggiungi" : type === "edit" ? "Modifica" : "Elimina"}
-      </Button>
+      {type === "add" ? (
+        <Button
+          endIcon={
+            type === "add" ? (
+              <AddCircle />
+            ) : type === "edit" ? (
+              <EditSharp />
+            ) : (
+              <DeleteForeverSharp />
+            )
+          }
+          variant="contained"
+          color="success"
+          fullWidth
+          className={classes.inventaryAddButton}
+          onClick={handleClickOpen}
+        >
+          Aggiungi
+        </Button>
+      ) : (
+        <IconButton
+          aria-label={type === "edit" ? "edit" : "delete"}
+          className={
+            type === "edit"
+              ? classes.inventaryEditButton
+              : classes.inventaryDeleteButton
+          }
+          onClick={
+            type === "edit" ? handleClickOpen : () => handleDelete(rowId)
+          }
+        >
+          {type === "edit" ? <Edit /> : <DeleteForeverSharp />}
+        </IconButton>
+      )}
+
       {type === "add" || type === "edit" ? (
         <Dialog
           fullScreen

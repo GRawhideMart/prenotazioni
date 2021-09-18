@@ -13,7 +13,6 @@ import {
 export const theme = createTheme({
   typography: {
     fontFamily: [
-      "Comfortaa",
       "IBM Plex Sans Arabic",
       "-apple-system",
       "BlinkMacSystemFont",
@@ -50,7 +49,6 @@ export const theme = createTheme({
 export const schedulerTheme = createTheme({
   typography: {
     fontFamily: [
-      "Comfortaa",
       "IBM Plex Sans Arabic",
       "-apple-system",
       "BlinkMacSystemFont",
