@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -7,40 +7,18 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-import { StyledTableCell, StyledTableRow } from "../shared/useStyles";
-import Title from "./TitleComponent";
+import { StyledTableCell, StyledTableRow } from "../../shared/useStyles";
+import Title from "../TitleComponent";
 
-import { Button } from "@material-ui/core";
 import { useSelector } from "react-redux";
-import { AddCircle, DeleteForeverSharp, EditSharp } from "@material-ui/icons";
-
-const TableButton = ({ icon, onClick, classNames, body }) => {
-  return (
-    <Button
-      variant="contained"
-      className={classNames}
-      endIcon={icon}
-      onClick={onClick}
-    >
-      {body}
-    </Button>
-  );
-};
+import ButtonDialog from "./ButtonDialog";
 
 const InventaryTable = ({ inventary, style }) => {
   const classes = style();
 
   return (
     <Fragment>
-      <Button
-        endIcon={<AddCircle />}
-        variant="contained"
-        color="success"
-        fullWidth={true}
-        className={classes.inventaryAddButton}
-      >
-        Aggiungi
-      </Button>
+      <ButtonDialog style={style} type="add" />
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="last rents">
           <TableHead>
@@ -77,18 +55,10 @@ const InventaryTable = ({ inventary, style }) => {
                   {row.quantity !== "" ? parseInt(row.quantity, 10) : ""}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  <TableButton
-                    icon={<EditSharp />}
-                    body="Modifica"
-                    classNames={classes.inventaryEditButton}
-                  />
+                  <ButtonDialog style={style} type="edit" />
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  <TableButton
-                    icon={<DeleteForeverSharp />}
-                    body="Elimina"
-                    classNames={classes.inventaryDeleteButton}
-                  />
+                  <ButtonDialog style={style} type="delete" />
                 </StyledTableCell>
               </StyledTableRow>
             ))}
@@ -99,8 +69,8 @@ const InventaryTable = ({ inventary, style }) => {
   );
 };
 
-const Affitti = (props) => {
-  const { name, resetFeedbackForm } = props;
+const Inventario = (props) => {
+  const { name } = props;
 
   const { styles: style, inventary } = useSelector((state) => state);
 
@@ -117,11 +87,7 @@ const Affitti = (props) => {
       <Grid item container direction="row">
         <Grid item md={1}></Grid>
         <Grid item md={10}>
-          <InventaryTable
-            inventary={inventary}
-            style={style}
-            resetFeedbackForm={resetFeedbackForm}
-          />
+          <InventaryTable inventary={inventary} style={style} />
         </Grid>
         <Grid item md={1}></Grid>
       </Grid>
@@ -129,4 +95,4 @@ const Affitti = (props) => {
   );
 };
 
-export default Affitti;
+export default Inventario;

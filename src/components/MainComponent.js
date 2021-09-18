@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 import Home from "./HomeComponent";
 import Affitti from "./AffittiComponent";
-import Inventario from "./InventarioComponent";
+import Inventario from "./Inventario/InventarioComponent";
 import { SchedulerPresentation } from "./SchedulerComponent";
 
 import { addBooking } from "../redux/ActionCreators";
