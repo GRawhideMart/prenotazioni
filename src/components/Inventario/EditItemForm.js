@@ -78,9 +78,10 @@ const EditItemForm = ({ style, rowId }) => {
     //   }).then(() => history.push("/"));
     // }
     alert(
-      "I will add to the inventary this: " +
+      "I will modify the item with ID " +
+        rowId +
+        " to this: " +
         JSON.stringify({
-          id,
           quantity,
           description,
           name,
@@ -257,7 +258,7 @@ const EditItemForm = ({ style, rowId }) => {
           endIcon={<KeyboardArrowRightIcon />}
           fullWidth
         >
-          Aggiungi
+          Modifica
         </Button>
       </form>
     </Container>
