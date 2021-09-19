@@ -4,10 +4,15 @@ import { INVENTARY } from "../../shared/inventary";
 const inventarySlice = createSlice({
   name: "inventary",
   initialState: INVENTARY,
-  reducer: {
-    getInventary: (state) => state,
+  reducers: {
+    addItem(state, action) {
+      state.unshift(action.payload);
+    },
+    deleteItem(state, action) {
+      delete state.filter((item) => item.id != action.payload);
+    },
   },
 });
 
-export const { getInventary } = inventarySlice.actions;
+export const { addItem, deleteItem } = inventarySlice.actions;
 export default inventarySlice.reducer;

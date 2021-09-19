@@ -13,7 +13,8 @@ import Title from "../TitleComponent";
 import { useSelector } from "react-redux";
 import ButtonDialog from "./ButtonDialog";
 
-const InventaryTable = ({ inventary, style }) => {
+const InventaryTable = () => {
+  const { styles: style, inventary } = useSelector((state) => state);
   const classes = style();
 
   return (
@@ -74,25 +75,21 @@ const InventaryTable = ({ inventary, style }) => {
   );
 };
 
-const Inventario = (props) => {
-  const { name } = props;
-
-  const { styles: style, inventary } = useSelector((state) => state);
-
+const Inventario = ({ name }) => {
   return (
     <Grid
       container
       direction="column"
       alignItems="center"
-      justify="center"
+      justifyContent="center"
       style={{ marginTop: "32px" }}
     >
-      <Title style={style} name={name} />
+      <Title name={name} />
 
       <Grid item container direction="row">
         <Grid item md={1}></Grid>
         <Grid item md={10}>
-          <InventaryTable inventary={inventary} style={style} />
+          <InventaryTable />
         </Grid>
         <Grid item md={1}></Grid>
       </Grid>

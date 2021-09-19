@@ -8,8 +8,11 @@ import FormControl from "@material-ui/core/FormControl";
 import { useHistory } from "react-router-dom";
 import { theme } from "../../shared/theme";
 import { FormGroup, Grid, MenuItem, Switch } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../rtk/slices/inventary.slice";
 
 const AddItemForm = ({ style }) => {
+  const dispatch = useDispatch();
   const classes = style();
   const history = useHistory();
 
@@ -53,7 +56,7 @@ const AddItemForm = ({ style }) => {
 
   const handleSubmit = (e) => {
     // Eventually this will dispatch an action which will hit the endpoint that the backend exposes to perform a POST operation on the inventario table
-    //e.preventDefault();
+    e.preventDefault();
     // setTitleError(false);
     // setDetailsError(false);
 
@@ -70,19 +73,35 @@ const AddItemForm = ({ style }) => {
     //     body: JSON.stringify({ title, details, category }),
     //   }).then(() => history.push("/"));
     // }
-    alert(
-      "I will add to the inventary this: " +
-        JSON.stringify({
-          id,
-          quantity,
-          description,
-          name,
-          buyYear,
-          totalPrice,
-          isAvailable,
-          isDonation,
-          replacePriority,
-        })
+    // alert(
+    //   "I will add to the inventary this: " +
+    //     JSON.stringify()
+    // );
+    // dispatch(
+    //   addItem({
+    //     id,
+    //     quantity,
+    //     description,
+    //     name,
+    //     buyYear,
+    //     totalPrice,
+    //     isAvailable,
+    //     isDonation,
+    //     replacePriority,
+    //   })
+    // );
+    dispatch(
+      addItem({
+        id,
+        quantity,
+        description,
+        name,
+        buyYear,
+        totalPrice,
+        isAvailable,
+        isDonation,
+        replacePriority,
+      })
     );
     history.push("/inventario");
   };
