@@ -33,7 +33,7 @@ const ButtonDialog = ({ type, rowId, description }) => {
 
   const handleDelete = (id) => {
     alert(`This will delete the item with ID ${id} from the database`);
-    dispatch(deleteItem(Number(id)));
+    dispatch(deleteItem(id));
   };
 
   return (

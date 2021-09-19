@@ -9,7 +9,7 @@ const inventarySlice = createSlice({
       state.unshift(action.payload);
     },
     deleteItem(state, action) {
-      delete state.filter((item) => item.id !== action.payload);
+      return state.filter((item) => item.id !== action.payload);
     },
   },
 });
