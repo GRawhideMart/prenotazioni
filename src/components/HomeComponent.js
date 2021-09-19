@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-
+import { useCustomStyles } from "../shared/useStyles";
 import {
   Grid,
   Container,
@@ -15,11 +15,9 @@ import { KeyboardArrowUp } from "@material-ui/icons";
 import LatestRents from "./LatestRentsComponent";
 import HomeScheduler from "./SchedulerComponent";
 import Title from "./TitleComponent";
-import { useSelector } from "react-redux";
 
 const ScrollTop = ({ children, window }) => {
-  const style = useSelector((state) => state.styles);
-  const classes = style();
+  const classes = useCustomStyles();
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
@@ -54,8 +52,7 @@ ScrollTop.propTypes = {
 };
 
 const Home = (props) => {
-  const { styles: style } = useSelector((state) => state);
-  const classes = style();
+  const classes = useCustomStyles();
   return (
     <Fragment>
       <Grid

@@ -8,8 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 import BookForm from "./RentFormComponent";
-import { useSelector } from "react-redux";
 import KeyboardArrowRightRounded from "@material-ui/icons/KeyboardArrowRightRounded";
+import { useCustomStyles } from "../shared/useStyles";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -38,8 +38,7 @@ const BookButton = ({ isAvailable, classes, onClick }) => {
 };
 
 const BookItemComponent = ({ isAvailable, item }) => {
-  const style = useSelector((state) => state.styles);
-  const classes = style();
+  const classes = useCustomStyles();
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {

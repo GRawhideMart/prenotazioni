@@ -6,11 +6,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import { Avatar, Button, SvgIcon } from "@material-ui/core";
 import { Assignment, HomeSharp } from "@material-ui/icons";
-import { useSelector } from "react-redux";
+import { useCustomStyles } from "../shared/useStyles";
 
 const PoliradioIcon = () => {
-  const style = useSelector((state) => state.styles);
-  const classes = style();
+  const classes = useCustomStyles();
   return (
     <IconButton
       style={{ backgroundColor: "transparent" }}
@@ -30,8 +29,7 @@ export const LinkComponent = (props) => {
 };
 
 const Header = () => {
-  const style = useSelector((state) => state.styles);
-  const classes = style();
+  const classes = useCustomStyles();
 
   return (
     <div className={classes.root}>

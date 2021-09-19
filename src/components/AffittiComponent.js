@@ -7,17 +7,19 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-import { StyledTableCell, StyledTableRow } from "../shared/useStyles";
+import {
+  StyledTableCell,
+  StyledTableRow,
+  useCustomStyles,
+} from "../shared/useStyles";
 import Title from "./TitleComponent";
 
 import { FormControlLabel, FormGroup, Checkbox } from "@material-ui/core";
-import BookItemComponent from "./BookItemComponents";
+import BookItemComponent from "./BookItemComponent";
 import { useSelector } from "react-redux";
 
 const InventaryTable = ({ inventary }) => {
-  const style = useSelector((state) => state.styles);
-
-  const classes = style();
+  const classes = useCustomStyles();
 
   return (
     <TableContainer component={Paper}>
@@ -56,7 +58,6 @@ const InventaryTable = ({ inventary }) => {
               </StyledTableCell>
               <StyledTableCell align="center">
                 <BookItemComponent
-                  style={style}
                   isAvailable={row.isAvailable}
                   item={
                     <div>

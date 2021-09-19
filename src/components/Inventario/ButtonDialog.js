@@ -10,8 +10,8 @@ import {
 import { AddCircle, Close, DeleteForeverSharp, Edit } from "@material-ui/icons";
 import React, { useState, Fragment, forwardRef } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { deleteItem } from "../../rtk/slices/inventary.slice";
+import { useCustomStyles } from "../../shared/useStyles";
 import AddItemForm from "./AddItemForm";
 import EditItemForm from "./EditItemForm";
 
@@ -21,8 +21,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 const ButtonDialog = ({ type, rowId, description }) => {
   const dispatch = useDispatch();
-  const style = useSelector((state) => state.styles);
-  const classes = style();
+  const classes = useCustomStyles();
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -34,7 +33,7 @@ const ButtonDialog = ({ type, rowId, description }) => {
 
   const handleDelete = (id) => {
     alert(`This will delete the item with ID ${id} from the database`);
-    dispatch(deleteItem(id));
+    dispatch(deleteItem(Number(id)));
   };
 
   return (
@@ -90,8 +89,8 @@ const ButtonDialog = ({ type, rowId, description }) => {
               </Typography>
             </Toolbar>
           </AppBar>
-          {type === "add" && <AddItemForm style={style} />}
-          {type === "edit" && <EditItemForm style={style} rowId={rowId} />}
+          {type === "add" && <AddItemForm />}
+          {type === "edit" && <EditItemForm rowId={rowId} />}
         </Dialog>
       ) : null}
     </Fragment>

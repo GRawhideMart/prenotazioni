@@ -10,10 +10,11 @@ import { theme } from "../../shared/theme";
 import { FormGroup, Grid, MenuItem, Switch } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../rtk/slices/inventary.slice";
+import { useCustomStyles } from "../../shared/useStyles";
 
-const AddItemForm = ({ style }) => {
+const AddItemForm = () => {
   const dispatch = useDispatch();
-  const classes = style();
+  const classes = useCustomStyles();
   const history = useHistory();
 
   const substitutionOptions = [

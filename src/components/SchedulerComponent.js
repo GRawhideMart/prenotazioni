@@ -173,12 +173,14 @@ const StudioScheduler = ({ name }) => {
   const history = useHistory();
 
   const commitChanges = ({ added }) => {
+    const startDateString = added.startDate.toString();
+    const endDateString = added.endDate.toString();
     if (added) {
       alert("Will add appointment " + JSON.stringify(added));
       dispatch(
         addBooking({
-          startDate: added.startDate,
-          endDate: added.endDate,
+          startDate: startDateString,
+          endDate: endDateString,
           title: added.title,
           notes: added.notes,
           room: history.location.pathname === "/studio" ? 1 : 2,

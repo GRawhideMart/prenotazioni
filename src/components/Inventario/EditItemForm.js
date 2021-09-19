@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -9,9 +8,10 @@ import { useHistory } from "react-router-dom";
 import { theme } from "../../shared/theme";
 import { FormGroup, Grid, MenuItem, Switch } from "@material-ui/core";
 import { useSelector } from "react-redux";
+import { useCustomStyles } from "../../shared/useStyles";
 
-const EditItemForm = ({ style, rowId }) => {
-  const classes = style();
+const EditItemForm = ({ rowId }) => {
+  const classes = useCustomStyles();
   const history = useHistory();
   const state = useSelector(
     (state) => state.inventary.filter((item) => item.id === rowId)[0]
@@ -35,9 +35,6 @@ const EditItemForm = ({ style, rowId }) => {
       label: "Alta",
     },
   ];
-
-  const [titleError, setTitleError] = useState(false);
-  const [detailsError, setDetailsError] = useState(false);
 
   // Variabili di stato interno
   const [id, setId] = useState(state.id);

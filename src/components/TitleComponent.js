@@ -1,14 +1,13 @@
 import React, { Fragment } from "react";
-import { useSelector } from "react-redux";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import { useCustomStyles } from "../shared/useStyles";
 
 const Breadcrumb = ({ name }) => {
-  const style = useSelector((state) => state.styles);
-  const classes = style();
+  const classes = useCustomStyles();
 
   return (
     <div className={classes.breadcrumb}>
@@ -28,8 +27,7 @@ const Breadcrumb = ({ name }) => {
 };
 
 export const Title = ({ name }) => {
-  const style = useSelector((state) => state.styles);
-  const classes = style();
+  const classes = useCustomStyles();
 
   return (
     <Fragment>
@@ -42,7 +40,7 @@ export const Title = ({ name }) => {
       >
         {name.toUpperCase()}
       </Typography>
-      <Breadcrumb style={style} name={name} />
+      <Breadcrumb name={name} />
     </Fragment>
   );
 };

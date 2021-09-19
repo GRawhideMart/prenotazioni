@@ -1,7 +1,7 @@
 import { makeStyles, withStyles, TableCell, TableRow } from "@material-ui/core";
 import { green, red, yellow } from "@material-ui/core/colors";
 
-export const USESTYLES = makeStyles((theme) => ({
+export const useCustomStyles = makeStyles((theme) => ({
   navbarRoot: {
     flexGrow: 1,
   },

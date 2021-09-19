@@ -7,19 +7,23 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-import { StyledTableCell, StyledTableRow } from "../../shared/useStyles";
+import {
+  StyledTableCell,
+  StyledTableRow,
+  useCustomStyles,
+} from "../../shared/useStyles";
 import Title from "../TitleComponent";
 
 import { useSelector } from "react-redux";
 import ButtonDialog from "./ButtonDialog";
 
 const InventaryTable = () => {
-  const { styles: style, inventary } = useSelector((state) => state);
-  const classes = style();
+  const { inventary } = useSelector((state) => state);
+  const classes = useCustomStyles();
 
   return (
     <Fragment>
-      <ButtonDialog style={style} type="add" />
+      <ButtonDialog type="add" />
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="last rents">
           <TableHead>
@@ -57,14 +61,13 @@ const InventaryTable = () => {
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <ButtonDialog
-                    style={style}
                     type="edit"
                     rowId={row.id}
                     description={row.description}
                   />
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  <ButtonDialog style={style} type="delete" rowId={row.id} />
+                  <ButtonDialog type="delete" rowId={row.id} />
                 </StyledTableCell>
               </StyledTableRow>
             ))}
