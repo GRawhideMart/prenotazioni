@@ -97,7 +97,7 @@ const AddItemForm = () => {
     setTotalPriceErrorMessage("");
 
     // Modello, descrizione e id sono required
-    if (id === "") {
+    if (id === "" || id === null) {
       setIdError(true);
       setIdErrorMessage("Questo campo non può essere vuoto");
     }
@@ -121,14 +121,14 @@ const AddItemForm = () => {
     }
 
     const errorFound =
-      idError &&
-      quantityError &&
-      descriptionError &&
-      nameError &&
-      buyYearError &&
+      idError +
+      quantityError +
+      descriptionError +
+      nameError +
+      buyYearError +
       totalPriceError;
 
-    if (!errorFound) {
+    if (errorFound === false) {
       dispatch(
         addItem({
           id,
@@ -144,6 +144,8 @@ const AddItemForm = () => {
           updatedAt: Date.now(),
         })
       );
+    } else {
+      alert("Sistema gli errori prima di proseguire");
     }
 
     history.push("/inventario");
@@ -317,7 +319,6 @@ const AddItemForm = () => {
           color="primary"
           variant="contained"
           endIcon={<KeyboardArrowRightIcon />}
-          fullWidth
         >
           Aggiungi
         </Button>
