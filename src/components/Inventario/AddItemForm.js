@@ -102,6 +102,8 @@ const AddItemForm = () => {
         isAvailable,
         isDonation,
         replacePriority,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       })
     );
     history.push("/inventario");
