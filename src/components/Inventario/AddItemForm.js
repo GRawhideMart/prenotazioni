@@ -52,14 +52,20 @@ const AddItemForm = () => {
   const [quantityError, setQuantityError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
   const [nameError, setNameError] = useState(false);
-  const [buyYearError, setbuyYearError] = useState(false);
+  const [buyYearError, setBuyYearError] = useState(false);
   const [totalPriceError, setTotalPriceError] = useState(false);
+
+  // Messaggi d'errore
+  const [idErrorMessage, setIdErrorMessage] = useState("");
+  const [quantityErrorMessage, setQuantityErrorMessage] = useState("");
+  const [descriptionErrorMessage, setDescriptionErrorMessage] = useState("");
+  const [nameErrorMessage, setNameErrorMessage] = useState("");
+  const [buyYearErrorMessage, setBuyYearErrorMessage] = useState("");
+  const [totalPriceErrorMessage, setTotalPriceErrorMessage] = useState("");
 
   const handleSubmit = (e) => {
     // Eventually this will dispatch an action which will hit the endpoint that the backend exposes to perform a POST operation on the inventario table
     e.preventDefault();
-    // setTitleError(false);
-    // setDetailsError(false);
 
     // if (title == "") {
     //   setTitleError(true);
@@ -74,38 +80,72 @@ const AddItemForm = () => {
     //     body: JSON.stringify({ title, details, category }),
     //   }).then(() => history.push("/"));
     // }
-    // alert(
-    //   "I will add to the inventary this: " +
-    //     JSON.stringify()
-    // );
-    // dispatch(
-    //   addItem({
-    //     id,
-    //     quantity,
-    //     description,
-    //     name,
-    //     buyYear,
-    //     totalPrice,
-    //     isAvailable,
-    //     isDonation,
-    //     replacePriority,
-    //   })
-    // );
-    dispatch(
-      addItem({
-        id,
-        quantity,
-        description,
-        name,
-        buyYear,
-        totalPrice,
-        isAvailable,
-        isDonation,
-        replacePriority,
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
-      })
-    );
+
+    // Inizializza gli errori a false e i messaggi a stringa vuota
+    setIdError(false);
+    setQuantityError(false);
+    setDescriptionError(false);
+    setNameError(false);
+    setBuyYearError(false);
+    setTotalPriceError(false);
+
+    setIdErrorMessage("");
+    setQuantityErrorMessage("");
+    setDescriptionErrorMessage("");
+    setNameErrorMessage("");
+    setBuyYearErrorMessage("");
+    setTotalPriceErrorMessage("");
+
+    // Modello, descrizione e id sono required
+    if (id === "") {
+      setIdError(true);
+      setIdErrorMessage("Questo campo non può essere vuoto");
+    }
+    if (name === "") {
+      setNameError(true);
+      setNameErrorMessage("Questo campo non può essere vuoto");
+    }
+    if (description === "") {
+      setDescriptionError(true);
+      setDescriptionErrorMessage("Questo campo non può essere vuoto");
+    }
+
+    // ID e quantità non possono essere non positivi
+    if (id <= 0) {
+      setIdError(true);
+      setIdErrorMessage("L'ID deve essere un numero positivo");
+    }
+    if (quantity <= 0) {
+      setQuantityError(true);
+      setQuantityErrorMessage("Questo deve essere un numero positivo");
+    }
+
+    const errorFound =
+      idError &&
+      quantityError &&
+      descriptionError &&
+      nameError &&
+      buyYearError &&
+      totalPriceError;
+
+    if (!errorFound) {
+      dispatch(
+        addItem({
+          id,
+          quantity,
+          description,
+          name,
+          buyYear,
+          totalPrice,
+          isAvailable,
+          isDonation,
+          replacePriority,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
+        })
+      );
+    }
+
     history.push("/inventario");
   };
 
@@ -121,6 +161,7 @@ const AddItemForm = () => {
           className={classes.field}
           onChange={(e) => setDescription(e.target.value)}
           label="Modello"
+          helperText={descriptionError ? descriptionErrorMessage : ""}
           variant="standard"
           color="primary"
           fullWidth
@@ -129,11 +170,15 @@ const AddItemForm = () => {
           InputLabelProps={{
             style: { color: "black" },
           }}
+          FormHelperTextProps={{
+            style: { color: theme.palette.error },
+          }}
         />
         <TextField
           className={classes.field}
           onChange={(e) => setName(e.target.value)}
           label="Descrizione"
+          helperText={nameError ? nameErrorMessage : ""}
           variant="standard"
           color="primary"
           fullWidth
@@ -141,6 +186,9 @@ const AddItemForm = () => {
           error={nameError}
           InputLabelProps={{
             style: { color: "black" },
+          }}
+          FormHelperTextProps={{
+            style: { color: theme.palette.error },
           }}
         />
         <Grid item container direction="row" justifyContent="space-evenly">
@@ -150,11 +198,15 @@ const AddItemForm = () => {
               className={classes.field}
               onChange={(e) => setId(e.target.value)}
               label="ID"
+              helperText={idError ? idErrorMessage : ""}
               variant="standard"
               color="primary"
               error={idError}
               InputLabelProps={{
                 style: { color: "black" },
+              }}
+              FormHelperTextProps={{
+                style: { color: theme.palette.error },
               }}
             />
           </Grid>
