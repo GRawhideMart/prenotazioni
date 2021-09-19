@@ -20,7 +20,6 @@ import ButtonDialog from "./ButtonDialog";
 const InventaryTable = () => {
   const { inventary } = useSelector((state) => state);
   const classes = useCustomStyles();
-
   return (
     <Fragment>
       <ButtonDialog type="add" />

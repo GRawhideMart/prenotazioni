@@ -1,5 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import { INVENTARY } from "../../shared/inventary";
+
+export const fetchInventary = createAsyncThunk(
+  "inventary/fetchInventary",
+  async () =>
+    axios.get("http://localhost:8000/inventario").then((res) => res.data)
+);
 
 const inventarySlice = createSlice({
   name: "inventary",
