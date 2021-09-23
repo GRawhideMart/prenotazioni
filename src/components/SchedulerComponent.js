@@ -172,21 +172,27 @@ const StudioScheduler = ({ name }) => {
 
   const history = useHistory();
 
-  const commitChanges = ({ added }) => {
-    const startDateString = added.startDate.toString();
-    const endDateString = added.endDate.toString();
+  const commitChanges = (data) => {
+    // const startDateString = added.startDate.toString();
+    // const endDateString = added.endDate.toString();
+    console.log(data);
+    const { added, changed, deleted } = data;
     if (added) {
       alert("Will add appointment " + JSON.stringify(added));
       dispatch(
         addBooking({
-          startDate: startDateString,
-          endDate: endDateString,
+          startDate: added.startDate.toString(),
+          endDate: added.endDateString,
           title: added.title,
           notes: added.notes,
           room: history.location.pathname === "/studio" ? 1 : 2,
           backgroundImage: "assets/img/image.png",
         })
       );
+    } else if (changed) {
+      alert("change!");
+      console.log(changed);
+      alert(JSON.stringify(changed));
     }
   };
 
@@ -202,13 +208,14 @@ const StudioScheduler = ({ name }) => {
           />
 
           <EditingState
-            onCommitChanges={commitChanges}
+            /*onCommitChanges={commitChanges}
             addedAppointment={addedAppointment}
             onAddedAppointmentChange={changeAddedAppointment}
-            appointmentChanges={appointmentChanges}
+            /*appointmentChanges={appointmentChanges}
             onAppointmentChangesChange={changeAppointmentChanges}
             editingAppointment={editingAppointment}
-            onEditingAppointmentChange={changeEditingAppointment}
+            onEditingAppointmentChange={changeEditingAppointment}*/
+            onCommitChanges={commitChanges}
           />
 
           <DayView
