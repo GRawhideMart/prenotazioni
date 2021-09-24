@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useCallback, useEffect } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -16,10 +16,22 @@ import Title from "../TitleComponent";
 
 import { useSelector } from "react-redux";
 import ButtonDialog from "./ButtonDialog";
+import { useDispatch } from "react-redux";
+import { fetchInventary } from "../../rtk/slices/inventary.slice";
 
 const InventaryTable = () => {
-  const { inventary } = useSelector((state) => state);
   const classes = useCustomStyles();
+  const dispatch = useDispatch();
+
+  const inventary = useSelector((state) => state.inventary);
+  const initFetch = useCallback(() => {
+    dispatch(fetchInventary());
+  }, [dispatch]);
+
+  useEffect(() => {
+    initFetch();
+  }, [initFetch]);
+
   return (
     <Fragment>
       <ButtonDialog type="add" />
@@ -39,37 +51,39 @@ const InventaryTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {inventary.map((row) => (
-              <StyledTableRow key={row.id}>
-                <StyledTableCell
-                  component="th"
-                  scope="row"
-                  classNames={classes.rowItemId}
-                >
-                  {row.id}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {row.description}
-                </StyledTableCell>
-                <StyledTableCell align="center">{row.name}</StyledTableCell>
-                <StyledTableCell align="center">
-                  {row.isAvailable ? "Sì" : "No"}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {row.quantity !== "" ? parseInt(row.quantity, 10) : ""}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  <ButtonDialog
-                    type="edit"
-                    rowId={row.id}
-                    description={row.description}
-                  />
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  <ButtonDialog type="delete" rowId={row.id} />
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
+            {inventary
+              ? inventary.map((row) => (
+                  <StyledTableRow key={row.id}>
+                    <StyledTableCell
+                      component="th"
+                      scope="row"
+                      classNames={classes.rowItemId}
+                    >
+                      {row.id}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {row.description}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">{row.name}</StyledTableCell>
+                    <StyledTableCell align="center">
+                      {row.isAvailable ? "Sì" : "No"}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {row.quantity !== "" ? parseInt(row.quantity, 10) : ""}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <ButtonDialog
+                        type="edit"
+                        rowId={row.id}
+                        description={row.description}
+                      />
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <ButtonDialog type="delete" rowId={row.id} />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))
+              : null}
           </TableBody>
         </Table>
       </TableContainer>

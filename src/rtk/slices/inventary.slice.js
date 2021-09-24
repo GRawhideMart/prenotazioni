@@ -1,22 +1,28 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { INVENTARY } from "../../shared/inventary";
+import InventaryService from "../../services/inventary.service";
 
 export const fetchInventary = createAsyncThunk(
   "inventary/fetchInventary",
-  async () =>
-    axios.get("http://localhost:8000/inventario").then((res) => res.data)
+  async () => {
+    const res = await InventaryService.getAll();
+    return res.data;
+  }
 );
 
 const inventarySlice = createSlice({
   name: "inventary",
-  initialState: INVENTARY,
+  initialState: [],
   reducers: {
     addItem(state, action) {
       state.unshift(action.payload);
     },
     deleteItem(state, action) {
       return state.filter((item) => item.id !== action.payload);
+    },
+  },
+  extraReducers: {
+    [fetchInventary.fulfilled]: (state, action) => {
+      return [...action.payload];
     },
   },
 });

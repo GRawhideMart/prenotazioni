@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -39,7 +39,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
-import { addBooking } from "../rtk/slices/schedulerData.slice";
+import {
+  addBooking,
+  fetchSchedulerData,
+} from "../rtk/slices/schedulerData.slice";
 
 const style = ({ palette }) => ({
   icon: {
@@ -150,6 +153,14 @@ const StudioScheduler = ({ name }) => {
       : appointments.filter((app) => app.room === 2);
   const resources = useSelector((state) => state.resources);
   const dispatch = useDispatch();
+
+  const initFetch = useCallback(() => {
+    dispatch(fetchSchedulerData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    initFetch();
+  }, [initFetch]);
 
   const currentViewNameChange = (currentViewName) => {
     setCurrentViewName(currentViewName);
