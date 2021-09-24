@@ -1,58 +1,23 @@
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
-import { useCustomStyles } from "../shared/useStyles";
-import {
-  Grid,
-  Container,
-  Typography,
-  Toolbar,
-  Fab,
-  Zoom,
-  useScrollTrigger,
-} from "@material-ui/core";
-import { KeyboardArrowUp } from "@material-ui/icons";
+import { Fragment } from "react";
+import ScrollTop from "./scrollTop.component";
 
-import LatestRents from "./LatestRentsComponent";
-import HomeScheduler from "./SchedulerComponent";
-import Title from "./TitleComponent";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Toolbar from "@material-ui/core/Toolbar";
 
-const ScrollTop = ({ children, window }) => {
+import HomeScheduler from "../../SchedulerComponent";
+import LatestRents from "../../LatestRentsComponent";
+
+import { useCustomStyles } from "../../../shared/useStyles";
+import Title from "../../utils/title";
+
+import Fab from "@material-ui/core/Fab";
+import KeyboardArrowUp from "@material-ui/icons/KeyboardArrowUpSharp";
+
+const Home = () => {
   const classes = useCustomStyles();
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 100,
-  });
-
-  const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector(
-      "#back-to-top-anchor"
-    );
-
-    if (anchor) {
-      anchor.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  };
-
-  return (
-    <Zoom in={trigger}>
-      <div
-        onClick={handleClick}
-        role="presentation"
-        className={classes.homeRoot}
-      >
-        {children}
-      </div>
-    </Zoom>
-  );
-};
-
-ScrollTop.propTypes = {
-  children: PropTypes.element.isRequired,
-};
-
-const Home = (props) => {
-  const classes = useCustomStyles();
+  const toolbarId = "back-to-top-anchor";
   return (
     <Fragment>
       <Grid
@@ -64,7 +29,7 @@ const Home = (props) => {
       >
         <Title name="Homepage" />
       </Grid>
-      <Toolbar id="back-to-top-anchor" className={classes.backToTopAnchor} />
+      <Toolbar id={toolbarId} className={classes.backToTopAnchor} />
       <Grid
         container
         direction="row"
@@ -120,7 +85,7 @@ const Home = (props) => {
         </Grid>
         <Grid item md={2} xs={false}></Grid>
       </Grid>
-      <ScrollTop {...props}>
+      <ScrollTop toolbarId={toolbarId}>
         <Fab color="primary" size="large" aria-label="scroll back to top">
           <KeyboardArrowUp />
         </Fab>

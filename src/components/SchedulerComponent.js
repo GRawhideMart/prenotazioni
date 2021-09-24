@@ -32,13 +32,13 @@ import { Grid, ThemeProvider } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 import { schedulerTheme as theme } from "../shared/theme";
-import { Title } from "./TitleComponent";
 
 import classNames from "clsx";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
+import Title from "./utils/title";
 import {
   addBooking,
   fetchSchedulerData,

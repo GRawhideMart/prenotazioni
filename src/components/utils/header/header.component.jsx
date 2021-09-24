@@ -1,32 +1,15 @@
-import React from "react";
-import { Link as RouterLink } from "react-router-dom";
-
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import { Avatar, Button, SvgIcon } from "@material-ui/core";
-import { Assignment, HomeSharp } from "@material-ui/icons";
-import { useCustomStyles } from "../shared/useStyles";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
 
-const PoliradioIcon = () => {
-  const classes = useCustomStyles();
-  return (
-    <IconButton
-      style={{ backgroundColor: "transparent" }}
-      edge="start"
-      className={classes.poliradioButton}
-      color="inherit"
-      aria-label="logo"
-      href="https://membri.poliradio.it"
-    >
-      <SvgIcon className={classes.navbarBrand}></SvgIcon>
-    </IconButton>
-  );
-};
+import Assignment from "@material-ui/icons/AssignmentSharp";
+import Home from "@material-ui/icons/HomeSharp";
 
-export const LinkComponent = (props) => {
-  return <RouterLink {...props} />;
-};
+import { useCustomStyles } from "../../../shared/useStyles";
+
+import PoliradioIcon from "../poliradioIcon";
+import LinkComponent from "../link";
 
 const Header = () => {
   const classes = useCustomStyles();
@@ -37,7 +20,7 @@ const Header = () => {
         <Toolbar className={classes.toolbarFlex}>
           <PoliradioIcon />
           <Button color="secondary" component={LinkComponent} to="/">
-            <HomeSharp />
+            <Home />
           </Button>
           <Button color="secondary" component={LinkComponent} to="/studio">
             Studio 1

@@ -1,12 +1,13 @@
 import React, { Fragment } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
-import Header from "./HeaderComponent";
-import StickyFooter from "./FooterComponent";
+import Header from "./utils/header";
+import Footer from "./utils/footer";
 
-import Home from "./HomeComponent";
-import Affitti from "./AffittiComponent";
-import Inventario from "./Inventario/InventarioComponent";
+import Home from "./pages/home";
+import Affitti from "./pages/rentals";
+import Inventario from "./pages/inventory";
+
 import { SchedulerPresentation } from "./SchedulerComponent";
 
 const Main = () => {
@@ -40,7 +41,7 @@ const Main = () => {
         </Switch>
       </main>
       <footer>
-        <StickyFooter />
+        <Footer />
       </footer>
     </Fragment>
   );
