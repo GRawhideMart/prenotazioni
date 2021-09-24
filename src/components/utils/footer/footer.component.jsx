@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Copyright from "./copyright.component";
 
-const StickyFooter = () => {
+const StickyFooter = ({ copyright }) => {
   const classes = useCustomStyles();
 
   return (
@@ -15,7 +15,7 @@ const StickyFooter = () => {
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1">Servizio prenotazioni</Typography>
-          <Copyright />
+          <Copyright copyright={copyright} />
         </Container>
       </footer>
     </div>

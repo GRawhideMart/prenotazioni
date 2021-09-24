@@ -41,7 +41,7 @@ const Main = () => {
         </Switch>
       </main>
       <footer>
-        <Footer />
+        <Footer copyright="POLI.RADIO" />
       </footer>
     </Fragment>
   );
