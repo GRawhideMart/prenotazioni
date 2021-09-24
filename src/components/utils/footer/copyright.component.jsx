@@ -5,7 +5,10 @@ const Copyright = ({ copyright }) => {
   return (
     <Typography variant="body2" color="textSecondary">
       {"Copyright © "}
-      <Link color="inherit" href="https://membri.poliradio.it/">
+      <Link
+        to="https://membri.poliradio.it/"
+        style={{ textDecoration: "none", color: "white" }}
+      >
         {copyright}
       </Link>{" "}
       {new Date().getFullYear()}
