@@ -1,11 +1,11 @@
 import { useHeaderImageClasses } from "../../../../shared/useStyles";
 import { AppointmentTooltip } from "@devexpress/dx-react-scheduler-material-ui";
 import classNames from "classnames";
-import IconButton from "@material-ui/core/IconButton";
+// import IconButton from "@material-ui/core/IconButton";
 
-import MoreIcon from "@material-ui/icons/MoreVert";
+// import MoreIcon from "@material-ui/icons/MoreVert";
 
-const Header = ({ appointmentData, ...restProps }) => {
+const Header = ({ children, appointmentData, ...restProps }) => {
   const classes = useHeaderImageClasses({
     imageURL: appointmentData.backgroundImage,
   });
@@ -18,14 +18,15 @@ const Header = ({ appointmentData, ...restProps }) => {
         background: `${appointmentData.backgroundColor} url(${appointmentData.backgroundImage})`,
         backgroundSize: "cover",
       }}
+      //commandButtonIds={["open", "close", "delete"]}
     >
-      <IconButton
-        /* eslint-disable-next-line no-alert */
+      {/* <IconButton
         onClick={() => alert(JSON.stringify(appointmentData))}
         className={classes.commandButton}
       >
         <MoreIcon />
-      </IconButton>
+      </IconButton> */}
+      {children}
     </AppointmentTooltip.Header>
   );
 };

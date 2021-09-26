@@ -1,11 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Paper from "@material-ui/core/Paper";
-import {
-  ViewState,
-  GroupingState,
-  IntegratedGrouping,
-  EditingState,
-} from "@devexpress/dx-react-scheduler";
+import { ViewState, EditingState } from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
   Resources,
@@ -16,7 +11,6 @@ import {
   TodayButton,
   DateNavigator,
   AppointmentForm,
-  GroupingPanel,
   CurrentTimeIndicator,
   WeekView,
   MonthView,
@@ -35,23 +29,26 @@ import { useHistory } from "react-router";
 import Title from "./utils/title";
 import {
   addBooking,
+  deleteAppointment,
   fetchSchedulerData,
 } from "../rtk/slices/schedulerData.slice";
 import Header from "./utils/scheduler/header";
 import Appointment from "./utils/scheduler/appointment";
 import AppointmentContent from "./utils/scheduler/content";
-import CommandButton from "./utils/scheduler/commandButton";
+//import CommandButton from "./utils/scheduler/commandButton";
 import LabelComponent from "./utils/scheduler/label";
 
 const StudioScheduler = ({ name }) => {
-  const [currentViewName, setCurrentViewName] = useState("work-week");
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [addedAppointment, setAddedAppointment] = useState({});
-  const [appointmentChanges, setAppointmentChanges] = useState({});
-  const [editingAppointment, setEditingAppointment] = useState(undefined);
+  const [state, setState] = useState({
+    currentViewName: "work-week",
+    currentDate: new Date(),
+    // addedAppointment: {},
+    // appointmentChanges: {},
+    // editingAppointment: undefined,
+  });
 
   const appointments = useSelector((state) => state.scheduler);
-  const schedulerData =
+  let schedulerData =
     name === "Studio"
       ? appointments.filter((app) => app.room === 1)
       : appointments.filter((app) => app.room === 2);
@@ -67,35 +64,30 @@ const StudioScheduler = ({ name }) => {
   }, [initFetch]);
 
   const currentViewNameChange = (currentViewName) => {
-    setCurrentViewName(currentViewName);
+    setState({ ...state, currentViewName });
   };
   const currentDateChange = (currentDate) => {
-    setCurrentDate(currentDate);
-  };
-
-  const changeAddedAppointment = (addedAppointment) => {
-    setAddedAppointment(addedAppointment);
-  };
-
-  const changeAppointmentChanges = (appointmentChanges) => {
-    setAppointmentChanges(appointmentChanges);
-  };
-
-  const changeEditingAppointment = (editingAppointment) => {
-    setEditingAppointment(editingAppointment);
+    setState({ ...state, currentDate });
   };
 
   const history = useHistory();
 
   const commitChanges = (data) => {
-    // const startDateString = added.startDate.toString();
-    // const endDateString = added.endDate.toString();
     console.log(data);
     const { added, changed, deleted } = data;
+    // let { data } = state;
+    //console.log(state);
     if (added) {
-      alert("Will add appointment " + JSON.stringify(added));
+      // const startingAddedId =
+      //   data.length > 0 ? data[data.length - 1].id + 1 : 0;
+      // data = [...data, { id: startingAddedId, ...added }];
+      const startingAddedId =
+        schedulerData.length > 0
+          ? schedulerData[schedulerData.length - 1].id + 1
+          : 0;
       dispatch(
         addBooking({
+          id: startingAddedId,
           startDate: added.startDate.toString(),
           endDate: added.endDateString,
           title: added.title,
@@ -104,11 +96,34 @@ const StudioScheduler = ({ name }) => {
           backgroundImage: "assets/img/image.png",
         })
       );
-    } else if (changed) {
-      alert("change!");
-      console.log(changed);
-      alert(JSON.stringify(changed));
     }
+    if (changed) {
+      //console.log(changed);
+      schedulerData.map((appointment) =>
+        // changed[appointment.id]
+        //   ? { ...appointment, ...changed[appointment.id] }
+        //   : appointment
+        console.log(changed[appointment.id].exDate)
+      );
+    }
+    if (deleted) {
+      console.log(deleted);
+      console.log(
+        schedulerData.filter((appointment) => appointment.id !== deleted)
+      );
+      dispatch(deleteAppointment(deleted));
+    }
+    // if (changed) {
+    //   data = data.map((appointment) =>
+    //     changed[appointment.id]
+    //       ? { ...appointment, ...changed[appointment.id] }
+    //       : appointment
+    //   );
+    // }
+    // if (deleted !== undefined) {
+    //   data = data.filter((appointment) => appointment.id !== deleted);
+    // }
+    return data;
   };
 
   return (
@@ -116,22 +131,13 @@ const StudioScheduler = ({ name }) => {
       <Paper>
         <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek={1}>
           <ViewState
-            currentDate={currentDate}
+            currentDate={state.currentDate}
             onCurrentDateChange={currentDateChange}
-            currentViewName={currentViewName}
+            currentViewName={state.currentViewName}
             onCurrentViewNameChange={currentViewNameChange}
           />
 
-          <EditingState
-            /*onCommitChanges={commitChanges}
-            addedAppointment={addedAppointment}
-            onAddedAppointmentChange={changeAddedAppointment}
-            /*appointmentChanges={appointmentChanges}
-            onAppointmentChangesChange={changeAppointmentChanges}
-            editingAppointment={editingAppointment}
-            onEditingAppointmentChange={changeEditingAppointment}*/
-            onCommitChanges={commitChanges}
-          />
+          <EditingState onCommitChanges={commitChanges} />
 
           <DayView
             displayName="Giornaliero"
@@ -160,7 +166,10 @@ const StudioScheduler = ({ name }) => {
           />
           <AppointmentTooltip
             headerComponent={Header}
-            commandButtonComponent={CommandButton}
+            //commandButtonComponent={CommandButton}
+            recurringIconComponent={() => <div />}
+            showDeleteButton
+            onDeleteButtonClick={commitChanges}
             showCloseButton
           />
           <Resources data={resources} mainResourceName="room" />

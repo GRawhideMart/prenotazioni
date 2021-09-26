@@ -16,6 +16,9 @@ const schedulerDataSlice = createSlice({
     addBooking(state, action) {
       state.push(action.payload);
     },
+    deleteAppointment(state, action) {
+      return state.filter((appointment) => appointment.id !== action.payload);
+    },
   },
   extraReducers: {
     [fetchSchedulerData.fulfilled]: (state, action) => {
@@ -24,5 +27,5 @@ const schedulerDataSlice = createSlice({
   },
 });
 
-export const { addBooking } = schedulerDataSlice.actions;
+export const { addBooking, deleteAppointment } = schedulerDataSlice.actions;
 export default schedulerDataSlice.reducer;
