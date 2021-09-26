@@ -21,7 +21,7 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 
 import Appointment from "../../utils/scheduler/appointment";
-import Header from "../../utils/scheduler/header";
+import Header from "../../utils/scheduler/tooltip/header";
 import AppointmentContent from "../../utils/scheduler/content";
 import CommandButton from "../../utils/scheduler/commandButton";
 import { useCallback, useEffect } from "react";

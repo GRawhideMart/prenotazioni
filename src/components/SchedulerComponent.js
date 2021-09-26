@@ -28,18 +28,17 @@ import { useHistory } from "react-router";
 
 import Title from "./utils/title";
 import {
-  addBooking,
   createAppointment,
-  deleteAppointment,
   fetchSchedulerData,
   removeAppointment,
   updateAppointment,
 } from "../rtk/slices/schedulerData.slice";
-import Header from "./utils/scheduler/header";
+import TooltipHeader from "./utils/scheduler/tooltip/header";
 import Appointment from "./utils/scheduler/appointment";
 import AppointmentContent from "./utils/scheduler/content";
 //import CommandButton from "./utils/scheduler/commandButton";
 import LabelComponent from "./utils/scheduler/label";
+import TooltipContent from "./utils/scheduler/tooltip/content";
 
 const StudioScheduler = ({ name }) => {
   const [state, setState] = useState({
@@ -84,10 +83,10 @@ const StudioScheduler = ({ name }) => {
       dispatch(
         createAppointment({
           id: startingAddedId,
-          startDate: added.startDate.toString(),
-          endDate: added.endDate.toString(),
+          startDate: added.startDate.toJSON(),
+          endDate: added.endDate.toJSON(),
           title: added.title,
-          notes: added.notes,
+          notes: added.notes || "",
           room: history.location.pathname === "/studio" ? 1 : 2,
           backgroundImage: "https://www.poliradio.it/images/logo-fb.png",
           //backgroundColor: theme.palette.primary.main,
@@ -164,7 +163,8 @@ const StudioScheduler = ({ name }) => {
             appointmentContentComponent={AppointmentContent}
           />
           <AppointmentTooltip
-            headerComponent={Header}
+            headerComponent={TooltipHeader}
+            contentComponent={TooltipContent}
             //commandButtonComponent={CommandButton}
             recurringIconComponent={() => <div />}
             showDeleteButton

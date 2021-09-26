@@ -2151,13 +2151,37 @@
       "backgroundColor": "#B64928",
       "backgroundImage": "./assets/photos/backgrounds/domanialluna.jpg",
       "rRule": "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR",
-      "room": 1
+      "room": 1,
+      "notes": ""
     },
     {
       "id": 2,
       "startDate": "Mon Sep 27 2021 10:30:00 GMT+0200 (Ora legale dell’Europa centrale)",
       "endDate": "Mon Sep 27 2021 11:30:00 GMT+0200 (Ora legale dell’Europa centrale)",
       "title": "My first POST request try",
+      "room": 2,
+      "backgroundImage": "https://www.poliradio.it/images/logo-fb.png",
+      "rRule": "",
+      "exDate": "",
+      "notes": "Fica"
+    },
+    {
+      "id": 3,
+      "startDate": "2021-09-28T08:30:00.000Z",
+      "endDate": "2021-09-28T09:00:00.000Z",
+      "title": "Un appunt con note",
+      "notes": "Qui le note",
+      "room": 2,
+      "backgroundImage": "https://www.poliradio.it/images/logo-fb.png",
+      "rRule": "",
+      "exDate": ""
+    },
+    {
+      "id": 4,
+      "startDate": "2021-09-28T09:30:00.000Z",
+      "endDate": "2021-09-28T10:00:00.000Z",
+      "title": "Un appunt senza note",
+      "notes": "",
       "room": 2,
       "backgroundImage": "https://www.poliradio.it/images/logo-fb.png",
       "rRule": "",

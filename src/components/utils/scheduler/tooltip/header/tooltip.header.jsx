@@ -1,4 +1,4 @@
-import { useHeaderImageClasses } from "../../../../shared/useStyles";
+import { useHeaderImageClasses } from "../../../../../shared/useStyles";
 import { AppointmentTooltip } from "@devexpress/dx-react-scheduler-material-ui";
 import classNames from "classnames";
 // import IconButton from "@material-ui/core/IconButton";
