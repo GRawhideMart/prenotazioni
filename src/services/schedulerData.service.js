@@ -5,8 +5,16 @@ const getAll = () => {
 };
 
 const create = (data) => {
-  return http.post("/tutorials", data);
+  return http.post("/schedulerData", data);
 };
 
-const SchedulerDataService = { getAll, create };
+const remove = (id) => {
+  return http.delete(`/schedulerData/${id}`);
+};
+
+const update = (id, data) => {
+  return http.patch(`/schedulerData/${id}`, data);
+};
+
+const SchedulerDataService = { getAll, create, remove, update };
 export default SchedulerDataService;

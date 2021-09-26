@@ -29,8 +29,11 @@ import { useHistory } from "react-router";
 import Title from "./utils/title";
 import {
   addBooking,
+  createAppointment,
   deleteAppointment,
   fetchSchedulerData,
+  removeAppointment,
+  updateAppointment,
 } from "../rtk/slices/schedulerData.slice";
 import Header from "./utils/scheduler/header";
 import Appointment from "./utils/scheduler/appointment";
@@ -42,9 +45,6 @@ const StudioScheduler = ({ name }) => {
   const [state, setState] = useState({
     currentViewName: "work-week",
     currentDate: new Date(),
-    // addedAppointment: {},
-    // appointmentChanges: {},
-    // editingAppointment: undefined,
   });
 
   const appointments = useSelector((state) => state.scheduler);
@@ -73,18 +73,16 @@ const StudioScheduler = ({ name }) => {
   const history = useHistory();
 
   const commitChanges = (data) => {
-    console.log(data);
+    // console.log(data);
     const { added, changed, deleted } = data;
 
     if (added) {
-      // console.log(added);
-      // console.log("Before: ", appointments);
       const startingAddedId =
         appointments.length > 0
           ? appointments[appointments.length - 1].id + 1
           : 0;
       dispatch(
-        addBooking({
+        createAppointment({
           id: startingAddedId,
           startDate: added.startDate.toString(),
           endDate: added.endDate.toString(),
@@ -92,6 +90,7 @@ const StudioScheduler = ({ name }) => {
           notes: added.notes,
           room: history.location.pathname === "/studio" ? 1 : 2,
           backgroundImage: "https://www.poliradio.it/images/logo-fb.png",
+          //backgroundColor: theme.palette.primary.main,
           rRule: added.rRule || "",
           exDate: "",
         })
@@ -99,24 +98,29 @@ const StudioScheduler = ({ name }) => {
       // console.log("After: ", appointments);
     }
     if (changed) {
-      //console.log(changed);
-      appointments.map(
-        (appointment) => {
-          console.log(changed);
-          return changed[appointment.id]
-            ? { ...appointment, ...changed[appointment.id] }
-            : appointment;
-        }
+      // console.log(changed);
+      // appointments.map(
+      //   (appointment) => {
+      //     //console.log(changed);
+      //     return changed[appointment.id]
+      //       ? { ...appointment, ...changed[appointment.id] }
+      //       : appointment;
+      //   }
 
-        //console.log(changed[appointment.id].exDate)
-      );
+      // );
+      const id = Number(Object.keys(changed)[0]);
+      console.log(changed[id]);
+      dispatch(updateAppointment(id, changed[id]))
+        .then(console.log("done"))
+        .catch((e) => console.error(e));
+      // console.log({ ...changed[Object.keys(changed)[0]] });
     }
     if (deleted !== undefined) {
       console.log(deleted);
       console.log(
         schedulerData.filter((appointment) => appointment.id !== deleted)
       );
-      dispatch(deleteAppointment(deleted));
+      dispatch(removeAppointment(deleted));
     }
     return data;
   };
