@@ -1,8 +1,12 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { schedulerTheme as theme } from "../../../shared/theme";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import Paper from "@material-ui/core/Paper";
-import { GroupingState, ViewState } from "@devexpress/dx-react-scheduler";
+import {
+  GroupingState,
+  IntegratedGrouping,
+  ViewState,
+} from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
   Resources,
@@ -12,23 +16,32 @@ import {
   Toolbar,
   TodayButton,
   DateNavigator,
-  AppointmentForm,
   GroupingPanel,
   CurrentTimeIndicator,
-  WeekView,
-  MonthView,
-  ViewSwitcher,
-  EditRecurrenceMenu,
-  ConfirmationDialog,
 } from "@devexpress/dx-react-scheduler-material-ui";
 
 import Appointment from "../../utils/scheduler/appointment";
+import Header from "../../utils/scheduler/header";
+import AppointmentContent from "../../utils/scheduler/content";
+import CommandButton from "../../utils/scheduler/commandButton";
+import { useCallback, useEffect } from "react";
+import { fetchSchedulerData } from "../../../rtk/slices/schedulerData.slice";
 
 const HomeScheduler = () => {
   const schedulerData = useSelector((state) => state.scheduler);
 
   const grouping = useSelector((state) => state.groupings);
   const resources = useSelector((state) => state.resources);
+
+  const dispatch = useDispatch();
+
+  const initFetch = useCallback(() => {
+    dispatch(fetchSchedulerData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    initFetch();
+  }, [initFetch]);
 
   return (
     <ThemeProvider theme={theme}>

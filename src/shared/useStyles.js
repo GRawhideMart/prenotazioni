@@ -1,6 +1,5 @@
 import { makeStyles, withStyles, TableCell, TableRow } from "@material-ui/core";
 import { green, red, yellow } from "@material-ui/core/colors";
-import CommandButton from "../components/utils/scheduler/commandButton";
 
 // Custom hooks
 export const useCustomStyles = makeStyles((theme) => ({
@@ -142,20 +141,3 @@ export const StyledTableRow = withStyles((theme) => ({
     },
   },
 }))(TableRow);
-
-export const StyledCommandButton = withStyles(
-  (theme) => ({
-    icon: {
-      color: theme.palette.action.active,
-    },
-    textCenter: {
-      textAlign: "center",
-    },
-    commandButton: {
-      backgroundColor: "rgba(255,255,255,0.65)",
-    },
-  }),
-  {
-    name: "CommandButton",
-  }
-)(CommandButton);

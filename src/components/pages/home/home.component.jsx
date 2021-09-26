@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Toolbar from "@material-ui/core/Toolbar";
 
-import HomeScheduler from "../../SchedulerComponent";
+import Scheduler from "./scheduler.component";
 import LatestRents from "../../LatestRentsComponent";
 
 import { useCustomStyles } from "../../../shared/useStyles";
@@ -57,7 +57,7 @@ const Home = () => {
             >
               Occupazione attuale
             </Typography>
-            <HomeScheduler />
+            <Scheduler />
           </Container>
         </Grid>
         <Grid
