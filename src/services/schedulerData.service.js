@@ -4,5 +4,9 @@ const getAll = () => {
   return http.get("/schedulerData");
 };
 
-const SchedulerDataService = { getAll };
+const create = (data) => {
+  return http.post("/tutorials", data);
+};
+
+const SchedulerDataService = { getAll, create };
 export default SchedulerDataService;

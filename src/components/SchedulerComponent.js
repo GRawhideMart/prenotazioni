@@ -75,54 +75,49 @@ const StudioScheduler = ({ name }) => {
   const commitChanges = (data) => {
     console.log(data);
     const { added, changed, deleted } = data;
-    // let { data } = state;
-    //console.log(state);
+
     if (added) {
-      // const startingAddedId =
-      //   data.length > 0 ? data[data.length - 1].id + 1 : 0;
-      // data = [...data, { id: startingAddedId, ...added }];
+      // console.log(added);
+      // console.log("Before: ", appointments);
       const startingAddedId =
-        schedulerData.length > 0
-          ? schedulerData[schedulerData.length - 1].id + 1
+        appointments.length > 0
+          ? appointments[appointments.length - 1].id + 1
           : 0;
       dispatch(
         addBooking({
           id: startingAddedId,
           startDate: added.startDate.toString(),
-          endDate: added.endDateString,
+          endDate: added.endDate.toString(),
           title: added.title,
           notes: added.notes,
           room: history.location.pathname === "/studio" ? 1 : 2,
-          backgroundImage: "assets/img/image.png",
+          backgroundImage: "https://www.poliradio.it/images/logo-fb.png",
+          rRule: added.rRule || "",
+          exDate: "",
         })
       );
+      // console.log("After: ", appointments);
     }
     if (changed) {
       //console.log(changed);
-      schedulerData.map((appointment) =>
-        // changed[appointment.id]
-        //   ? { ...appointment, ...changed[appointment.id] }
-        //   : appointment
-        console.log(changed[appointment.id].exDate)
+      appointments.map(
+        (appointment) => {
+          console.log(changed);
+          return changed[appointment.id]
+            ? { ...appointment, ...changed[appointment.id] }
+            : appointment;
+        }
+
+        //console.log(changed[appointment.id].exDate)
       );
     }
-    if (deleted) {
+    if (deleted !== undefined) {
       console.log(deleted);
       console.log(
         schedulerData.filter((appointment) => appointment.id !== deleted)
       );
       dispatch(deleteAppointment(deleted));
     }
-    // if (changed) {
-    //   data = data.map((appointment) =>
-    //     changed[appointment.id]
-    //       ? { ...appointment, ...changed[appointment.id] }
-    //       : appointment
-    //   );
-    // }
-    // if (deleted !== undefined) {
-    //   data = data.filter((appointment) => appointment.id !== deleted);
-    // }
     return data;
   };
 
