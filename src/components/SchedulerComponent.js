@@ -1,9 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-
-import MoreIcon from "@material-ui/icons/MoreVert";
-
 import {
   ViewState,
   GroupingState,
@@ -29,11 +25,9 @@ import {
   ConfirmationDialog,
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { Grid, ThemeProvider } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 import { schedulerTheme as theme } from "../shared/theme";
 
-import classNames from "clsx";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
@@ -43,101 +37,11 @@ import {
   addBooking,
   fetchSchedulerData,
 } from "../rtk/slices/schedulerData.slice";
-
-const style = ({ palette }) => ({
-  icon: {
-    color: palette.action.active,
-  },
-  textCenter: {
-    textAlign: "center",
-  },
-  commandButton: {
-    backgroundColor: "rgba(255,255,255,0.65)",
-  },
-});
-
-const useHeaderImageClasses = makeStyles({
-  header: {
-    height: "260px",
-    backgroundSize: "cover",
-  },
-  backgroundImage: ({ imageURL }) => ({
-    background: `url(${imageURL})`,
-  }),
-});
-
-const LabelComponent = (props) => {
-  if (props.text === "Studio") {
-    return null;
-  }
-  return <AppointmentForm.Label {...props} />;
-};
-
-const Appointment = ({ children, style, data, ...restProps }) => (
-  <Appointments.Appointment
-    {...restProps}
-    data={data}
-    style={{
-      ...style,
-      background: `${data.backgroundColor} url(${data.backgroundImage})`,
-      backgroundSize: "cover",
-      border: "1px solid black",
-    }}
-  >
-    {children}
-  </Appointments.Appointment>
-);
-
-const AppointmentContent = (props) => {
-  const { data, style } = props;
-
-  return (
-    <Appointments.AppointmentContent
-      style={{
-        ...style,
-        color: data.color,
-        textShadow:
-          (data.hoverColor === "" ? "black" : data.hoverColor) + " 1px 1px",
-        textAlign: "center",
-      }}
-      {...props}
-    />
-  );
-};
-
-const Header = ({ children, appointmentData, ...restProps }) => {
-  const classes = useHeaderImageClasses({
-    imageURL: appointmentData.backgroundImage,
-  });
-  return (
-    <AppointmentTooltip.Header
-      {...restProps}
-      className={classNames(classes.backgroundImage, classes.header)}
-      appointmentData={appointmentData}
-      style={{
-        background: `${appointmentData.backgroundColor} url(${appointmentData.backgroundImage})`,
-        backgroundSize: "cover",
-      }}
-    >
-      <IconButton
-        /* eslint-disable-next-line no-alert */
-        onClick={() => alert(JSON.stringify(appointmentData))}
-        className={classes.commandButton}
-      >
-        <MoreIcon />
-      </IconButton>
-    </AppointmentTooltip.Header>
-  );
-};
-
-const CommandButton = withStyles(style, {
-  name: "CommandButton",
-})(({ classes, ...restProps }) => (
-  <AppointmentTooltip.CommandButton
-    {...restProps}
-    className={classes.commandButton}
-  />
-));
+import Header from "./utils/scheduler/header";
+import Appointment from "./utils/scheduler/appointment";
+import AppointmentContent from "./utils/scheduler/content";
+import CommandButton from "./utils/scheduler/commandButton";
+import LabelComponent from "./utils/scheduler/label";
 
 const StudioScheduler = ({ name }) => {
   const [currentViewName, setCurrentViewName] = useState("work-week");
