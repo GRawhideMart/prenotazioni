@@ -8,7 +8,7 @@ import Home from "./pages/home";
 import Affitti from "./pages/rentals";
 import Inventario from "./pages/inventory";
 
-import { SchedulerPresentation } from "./SchedulerComponent";
+import Scheduler from "./pages/scheduler";
 
 const Main = () => {
   return (
@@ -22,12 +22,12 @@ const Main = () => {
           <Route
             exact
             path="/studio"
-            component={() => <SchedulerPresentation name="Studio" />}
+            component={() => <Scheduler name="Studio" />}
           />
           <Route
             exact
             path="/stanzino"
-            component={() => <SchedulerPresentation name="Stanzino" />}
+            component={() => <Scheduler name="Stanzino" />}
           />
           <Route
             path="/attrezzatura"

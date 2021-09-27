@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import RentsService from "../../services/rents.service";
-import { RENTS } from "../../shared/latestRents";
 
 export const fetchRents = createAsyncThunk("rents/fetchRents", async () => {
   const res = await RentsService.getAll();
@@ -9,7 +8,7 @@ export const fetchRents = createAsyncThunk("rents/fetchRents", async () => {
 
 const rentsSlice = createSlice({
   name: "rents",
-  initialState: RENTS,
+  initialState: [],
   reducer: {
     getLatestRents: (state) => state,
   },
