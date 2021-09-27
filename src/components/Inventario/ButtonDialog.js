@@ -10,7 +10,8 @@ import {
 import { AddCircle, Close, DeleteForeverSharp, Edit } from "@material-ui/icons";
 import React, { useState, Fragment, forwardRef } from "react";
 import { useDispatch } from "react-redux";
-import { deleteItem } from "../../rtk/slices/inventary.slice";
+import { useHistory } from "react-router";
+import { removeItem } from "../../rtk/slices/inventary.slice";
 import { useCustomStyles } from "../../shared/useStyles";
 import AddItemForm from "./AddItemForm";
 import EditItemForm from "./EditItemForm";
@@ -24,6 +25,8 @@ const ButtonDialog = ({ type, rowId, description }) => {
   const classes = useCustomStyles();
   const [open, setOpen] = useState(false);
 
+  const history = useHistory();
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -33,7 +36,7 @@ const ButtonDialog = ({ type, rowId, description }) => {
 
   const handleDelete = (id) => {
     alert(`This will delete the item with ID ${id} from the database`);
-    dispatch(deleteItem(id));
+    dispatch(removeItem(id)).then((_) => history.goBack(1));
   };
 
   return (

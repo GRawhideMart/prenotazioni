@@ -133,6 +133,17 @@
       "isAvailable": false
     },
     {
+      "id": "112",
+      "quantity": "1",
+      "description": "Distributore master principale",
+      "name": "Distributore audio SARO",
+      "buyYear": "",
+      "totalPrice": "",
+      "isDonation": false,
+      "replacePriority": "",
+      "isAvailable": false
+    },
+    {
       "id": "114",
       "quantity": "1",
       "description": "Computer di Playout \"Regia1\"",
@@ -529,6 +540,17 @@
       "isAvailable": false
     },
     {
+      "id": "213",
+      "quantity": "",
+      "description": "",
+      "name": "",
+      "buyYear": "",
+      "totalPrice": "",
+      "isDonation": false,
+      "replacePriority": "",
+      "isAvailable": false
+    },
+    {
       "id": "214",
       "quantity": "2",
       "description": "Monitor computer playout",
@@ -602,6 +624,17 @@
       "buyYear": "2017/18",
       "totalPrice": "19.87",
       "isDonation": false,
+      "replacePriority": "",
+      "isAvailable": false
+    },
+    {
+      "id": "221",
+      "quantity": "1",
+      "description": "IP driver computer di produzione",
+      "name": "",
+      "buyYear": "",
+      "totalPrice": "",
+      "isDonation": "donazione",
       "replacePriority": "",
       "isAvailable": false
     },

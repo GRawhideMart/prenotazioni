@@ -9,6 +9,14 @@ export const fetchInventary = createAsyncThunk(
   }
 );
 
+export const removeItem = createAsyncThunk(
+  "inventary/removeItem",
+  async (id) => {
+    const res = await InventaryService.removeOne(id);
+    return res.data;
+  }
+);
+
 const inventarySlice = createSlice({
   name: "inventary",
   initialState: [],
@@ -23,6 +31,10 @@ const inventarySlice = createSlice({
   extraReducers: {
     [fetchInventary.fulfilled]: (state, action) => {
       return [...action.payload];
+    },
+    [removeItem.fulfilled]: (state, action) => {
+      let index = state.findIndex(({ id }) => id === action.payload.id);
+      state.splice(index, 1);
     },
   },
 });

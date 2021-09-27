@@ -33,6 +33,7 @@ const InventoryTable = ({ onlyAvailable, type }) => {
   useEffect(() => {
     initFetch();
   }, [initFetch]);
+
   return (
     <Fragment>
       {type === "manage" ? <ButtonDialog type="add" /> : null}

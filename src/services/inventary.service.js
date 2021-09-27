@@ -4,5 +4,9 @@ const getAll = () => {
   return http.get("/inventario");
 };
 
-const InventaryService = { getAll };
+const removeOne = (id) => {
+  return http.delete(`/inventario/${id}`);
+};
+
+const InventaryService = { getAll, removeOne };
 export default InventaryService;
