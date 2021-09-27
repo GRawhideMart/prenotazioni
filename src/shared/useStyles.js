@@ -1,5 +1,4 @@
 import { makeStyles, withStyles, TableCell, TableRow } from "@material-ui/core";
-import { green, red, yellow } from "@material-ui/core/colors";
 
 // Custom hooks
 export const useCustomStyles = makeStyles((theme) => ({
@@ -90,16 +89,25 @@ export const useCustomStyles = makeStyles((theme) => ({
   },
   inventaryAddButton: {
     padding: theme.spacing(1),
-    backgroundColor: green.A700,
+    backgroundColor: theme.palette.success.main,
     marginBottom: "16px",
+    "&:hover": {
+      backgroundColor: theme.palette.success.light,
+    },
   },
   inventaryEditButton: {
     marginInline: theme.spacing(1),
-    backgroundColor: yellow.A700,
+    backgroundColor: theme.palette.warning.main,
+    "&:hover": {
+      backgroundColor: theme.palette.warning.light,
+    },
   },
   inventaryDeleteButton: {
     marginInline: theme.spacing(1),
-    backgroundColor: red.A700,
+    backgroundColor: theme.palette.error.main,
+    "&:hover": {
+      backgroundColor: theme.palette.error.light,
+    },
   },
   field: {
     marginTop: 24,

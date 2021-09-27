@@ -1,17 +1,6 @@
 {
   "inventario": [
     {
-      "id": "2",
-      "quantity": "1 (o 2)",
-      "description": "Beyerdynamic DT 770 PRO 50 Ohm",
-      "name": "Cuffie ma con il cavo dritto",
-      "buyYear": "2017/18",
-      "totalPrice": "120",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
       "id": "101",
       "quantity": "1",
       "description": "Mixer Principale Studio 1",

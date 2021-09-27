@@ -1,42 +1,27 @@
-import {
-  AppBar,
-  Button,
-  Dialog,
-  IconButton,
-  Slide,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
-import { AddCircle, Close, DeleteForeverSharp, Edit } from "@material-ui/icons";
-import React, { useState, Fragment, forwardRef } from "react";
+import { Button, IconButton } from "@material-ui/core";
+import { AddCircle, DeleteForeverSharp, Edit } from "@material-ui/icons";
+import React, { useState, Fragment } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+
 import { removeItem } from "../../rtk/slices/inventary.slice";
 import { useCustomStyles } from "../../shared/useStyles";
 import AddItemForm from "./AddItemForm";
 import EditItemForm from "./EditItemForm";
 
-const Transition = forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import Dialog from "../utils/dialog";
 
 const ButtonDialog = ({ type, rowId, description }) => {
   const dispatch = useDispatch();
   const classes = useCustomStyles();
   const [open, setOpen] = useState(false);
 
-  const history = useHistory();
-
   const handleClickOpen = () => {
     setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
   };
 
   const handleDelete = (id) => {
     alert(`This will delete the item with ID ${id} from the database`);
-    dispatch(removeItem(id)).then((_) => history.goBack(1));
+    dispatch(removeItem(id));
   };
 
   return (
@@ -70,28 +55,14 @@ const ButtonDialog = ({ type, rowId, description }) => {
 
       {type === "add" || type === "edit" ? (
         <Dialog
-          fullScreen
           open={open}
-          onClose={handleClose}
-          TransitionComponent={Transition}
+          setOpen={setOpen}
+          title={
+            type === "add"
+              ? "Aggiungi Elemento"
+              : `Modifica Elemento - ${description}`
+          }
         >
-          <AppBar className={classes.dialogAppBar}>
-            <Toolbar>
-              <IconButton
-                edge="start"
-                color="inherit"
-                onClick={handleClose}
-                aria-label="close"
-              >
-                <Close />
-              </IconButton>
-              <Typography variant="h6" className={classes.dialogTitle}>
-                {type === "add"
-                  ? "Aggiungi Elemento"
-                  : `Modifica Elemento - ${description}`}
-              </Typography>
-            </Toolbar>
-          </AppBar>
           {type === "add" && <AddItemForm />}
           {type === "edit" && <EditItemForm rowId={rowId} />}
         </Dialog>
