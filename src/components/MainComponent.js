@@ -9,6 +9,7 @@ import Affitti from "./pages/rentals";
 import Inventario from "./pages/inventory";
 
 import Scheduler from "./pages/scheduler";
+import Add from "./pages/forms/addItem/addItem.component";
 
 const Main = () => {
   return (
@@ -37,6 +38,7 @@ const Main = () => {
             path="/inventario"
             component={() => <Inventario name="Gestione Inventario" />}
           />
+          <Route path="/tmp" component={() => <Add />} />
           <Redirect to="/" />
         </Switch>
       </main>

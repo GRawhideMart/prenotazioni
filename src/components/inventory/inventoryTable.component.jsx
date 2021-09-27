@@ -16,6 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Fragment, useCallback, useEffect } from "react";
 import { fetchInventary } from "../../rtk/slices/inventary.slice";
 import ButtonDialog from "../Inventario/ButtonDialog";
+import Add from "../pages/forms/addItem";
+import Edit from "../pages/forms/editItem";
 
 const InventoryTable = ({ onlyAvailable, type }) => {
   const classes = useCustomStyles();
@@ -36,7 +38,7 @@ const InventoryTable = ({ onlyAvailable, type }) => {
 
   return (
     <Fragment>
-      {type === "manage" ? <ButtonDialog type="add" /> : null}
+      {type === "manage" ? <Add /> : null}
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="last rents">
           <TableHead>
@@ -87,11 +89,7 @@ const InventoryTable = ({ onlyAvailable, type }) => {
                   // if type is not rental, render the buttons to edit and delete
                   <Fragment>
                     <StyledTableCell align="center">
-                      <ButtonDialog
-                        type="edit"
-                        rowId={row.id}
-                        description={row.description}
-                      />
+                      <Edit rowId={row.id} description={row.description} />
                     </StyledTableCell>
                     <StyledTableCell align="center">
                       <ButtonDialog type="delete" rowId={row.id} />
