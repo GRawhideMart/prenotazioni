@@ -114,6 +114,10 @@ export const useCustomStyles = makeStyles((theme) => ({
     marginBottom: 24,
     display: "block",
   },
+  loadingSpinner: {
+    display: "flex",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+  },
 }));
 
 export const useHeaderImageClasses = makeStyles({

@@ -24,11 +24,14 @@ import Appointment from "../../utils/scheduler/appointment";
 import Header from "../../utils/scheduler/tooltip/header";
 import AppointmentContent from "../../utils/scheduler/content";
 import CommandButton from "../../utils/scheduler/commandButton";
+import Loading from "../../utils/spinner";
+
 import { useCallback, useEffect } from "react";
 import { fetchSchedulerData } from "../../../rtk/slices/schedulerData.slice";
 
 const HomeScheduler = () => {
   const schedulerData = useSelector((state) => state.scheduler.schedulerData);
+  const isLoading = useSelector((state) => state.scheduler.loading);
 
   const grouping = useSelector((state) => state.groupings);
   const resources = useSelector((state) => state.resources);
@@ -45,6 +48,7 @@ const HomeScheduler = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      {isLoading && <Loading />}
       <Paper>
         <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek={1}>
           <ViewState defaultCurrentDate={new Date()} />
