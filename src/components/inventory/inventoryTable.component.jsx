@@ -23,9 +23,8 @@ import {
 import Add from "../pages/forms/addItem";
 import Edit from "../pages/forms/editItem";
 import Delete from "../utils/buttons/delete";
-import { useHistory } from "react-router";
 
-const InventoryTable = ({ onlyAvailable, type }) => {
+const InventoryTable = ({ onlyAvailable, type, onAddSubmit, onEditSubmit }) => {
   const classes = useCustomStyles();
 
   const dispatch = useDispatch();
@@ -42,8 +41,6 @@ const InventoryTable = ({ onlyAvailable, type }) => {
     initFetch();
   }, [initFetch]);
 
-  const history = useHistory();
-
   const handleDelete = (id) => {
     alert(`This will delete the item with ID ${id} from the database`);
     dispatch(deleteItem(id));
@@ -52,7 +49,7 @@ const InventoryTable = ({ onlyAvailable, type }) => {
 
   return (
     <Fragment>
-      {type === "manage" ? <Add /> : null}
+      {type === "manage" ? <Add onSubmit={onAddSubmit} /> : null}
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="last rents">
           <TableHead>
@@ -103,7 +100,11 @@ const InventoryTable = ({ onlyAvailable, type }) => {
                   // if type is not rental, render the buttons to edit and delete
                   <Fragment>
                     <StyledTableCell align="center">
-                      <Edit rowId={row.id} description={row.description} />
+                      <Edit
+                        onSubmit={onEditSubmit}
+                        rowId={row.id}
+                        description={row.description}
+                      />
                     </StyledTableCell>
                     <StyledTableCell align="center">
                       <Delete handleDelete={handleDelete} rowId={row.id} />

@@ -9,7 +9,9 @@
       "totalPrice": "262",
       "isDonation": false,
       "replacePriority": "",
-      "isAvailable": false
+      "isAvailable": false,
+      "requestId": "_RpK5ux4xJ4DvjbMpY6f-",
+      "signal": {}
     },
     {
       "id": "104",
@@ -20,7 +22,9 @@
       "totalPrice": "112",
       "isDonation": false,
       "replacePriority": "",
-      "isAvailable": false
+      "isAvailable": false,
+      "requestId": "9UqxQ0f5QoPqYKObdkKxu",
+      "signal": {}
     },
     {
       "id": "105",

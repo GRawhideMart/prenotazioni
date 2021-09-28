@@ -17,6 +17,14 @@ export const createItem = createAsyncThunk(
   }
 );
 
+export const updateItem = createAsyncThunk(
+  "inventary/updateItem",
+  async (id, data) => {
+    const res = await InventaryService.update(id, data);
+    return res.data;
+  }
+);
+
 export const removeItem = createAsyncThunk(
   "inventary/removeItem",
   async (id) => {
@@ -42,6 +50,14 @@ const inventarySlice = createSlice({
     },
     [createItem.fulfilled]: (state, action) => {
       state.push(action.payload);
+    },
+    [updateItem.fulfilled]: (state, action) => {
+      const index = state.findIndex((item) => item.id === action.payload.id);
+      console.log(state[index]);
+      state[index] = {
+        ...state[index],
+        ...action.payload,
+      };
     },
     [removeItem.fulfilled]: (state, action) => {
       let index = state.findIndex(({ id }) => id === action.payload.id);

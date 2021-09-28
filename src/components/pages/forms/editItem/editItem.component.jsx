@@ -23,8 +23,9 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import FormGroup from "@material-ui/core/FormGroup";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import EditButton from "../../../utils/buttons/edit";
+import { updateItem } from "../../../../rtk/slices/inventary.slice";
 
 const Edit = ({ rowId }) => {
   const [open, setOpen] = useState(false);
@@ -36,13 +37,15 @@ const Edit = ({ rowId }) => {
   });
 
   const classes = useCustomStyles();
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const onSubmit = (values) => {
-    alert(`I received ${JSON.stringify(values)}`);
+  const onSubmit = (id, data) => {
+    alert(JSON.stringify({ id, data }));
+    dispatch(updateItem(id, { data }));
   };
 
   return (
@@ -56,7 +59,10 @@ const Edit = ({ rowId }) => {
         setOpen={setOpen}
         title={`Modifica elemento - ${itemInfo.name}`}
       >
-        <Form onSubmit={handleSubmit(onSubmit)} className={classes.field}>
+        <Form
+          onSubmit={handleSubmit((values) => onSubmit(rowId, values))}
+          className={classes.field}
+        >
           <Grid container>
             <Controller
               control={control}
