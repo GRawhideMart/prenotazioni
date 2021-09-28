@@ -12,17 +12,6 @@
       "isAvailable": false
     },
     {
-      "id": "103",
-      "quantity": "1",
-      "description": "Microfono a condensatore",
-      "name": "SE X1",
-      "buyYear": "2013",
-      "totalPrice": "",
-      "isDonation": "prestito ema",
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
       "id": "104",
       "quantity": "1",
       "description": "Microfono dinamico",
@@ -74,17 +63,6 @@
       "buyYear": "2009",
       "totalPrice": "90",
       "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
-      "id": "109",
-      "quantity": "1",
-      "description": "Ibrido telefonico",
-      "name": "Sonifex HY03T",
-      "buyYear": "2011/2012",
-      "totalPrice": "700",
-      "isDonation": "donazione",
       "replacePriority": "",
       "isAvailable": false
     },
@@ -287,34 +265,12 @@
       "isAvailable": false
     },
     {
-      "id": "131",
-      "quantity": "1",
-      "description": "Raspberry controllo luci",
-      "name": "",
-      "buyYear": "",
-      "totalPrice": "66.4425",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
       "id": "132",
       "quantity": "2",
       "description": "Adattatori di rete USB",
       "name": "Amazon Basics adattatore di rete",
       "buyYear": "2018/19",
       "totalPrice": "40.48",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
-      "id": "133",
-      "quantity": "",
-      "description": "Pannelli fonoassorbenti",
-      "name": "",
-      "buyYear": "",
-      "totalPrice": "383",
       "isDonation": false,
       "replacePriority": "",
       "isAvailable": false
@@ -2086,7 +2042,9 @@
       "backgroundImage": "./assets/photos/backgrounds/domanialluna.jpg",
       "rRule": "RRULE:INTERVAL=1;FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR",
       "room": 1,
-      "notes": ""
+      "notes": "",
+      "requestId": "7tJa8EICWnj3LmoZrhdzx",
+      "signal": {}
     },
     {
       "id": 2,
@@ -2117,17 +2075,6 @@
       "title": "Un appunt senza note",
       "notes": "",
       "room": 2,
-      "backgroundImage": "https://www.poliradio.it/images/logo-fb.png",
-      "rRule": "",
-      "exDate": ""
-    },
-    {
-      "id": 5,
-      "startDate": "2021-09-29T15:30:00.000Z",
-      "endDate": "2021-09-29T16:00:00.000Z",
-      "title": "My other post",
-      "notes": "With some notes just to showoff",
-      "room": 1,
       "backgroundImage": "https://www.poliradio.it/images/logo-fb.png",
       "rRule": "",
       "exDate": ""

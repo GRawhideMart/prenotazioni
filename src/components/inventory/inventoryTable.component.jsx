@@ -14,11 +14,16 @@ import {
 import BookItemComponent from "../BookItemComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { Fragment, useCallback, useEffect } from "react";
-import { fetchInventary, removeItem } from "../../rtk/slices/inventary.slice";
+import {
+  deleteItem,
+  fetchInventary,
+  removeItem,
+} from "../../rtk/slices/inventary.slice";
 
 import Add from "../pages/forms/addItem";
 import Edit from "../pages/forms/editItem";
 import Delete from "../utils/buttons/delete";
+import { useHistory } from "react-router";
 
 const InventoryTable = ({ onlyAvailable, type }) => {
   const classes = useCustomStyles();
@@ -37,8 +42,11 @@ const InventoryTable = ({ onlyAvailable, type }) => {
     initFetch();
   }, [initFetch]);
 
+  const history = useHistory();
+
   const handleDelete = (id) => {
     alert(`This will delete the item with ID ${id} from the database`);
+    dispatch(deleteItem(id));
     dispatch(removeItem(id));
   };
 
