@@ -35,7 +35,7 @@ export const removeItem = createAsyncThunk(
 
 const inventarySlice = createSlice({
   name: "inventary",
-  initialState: [],
+  initialState: { items: [], loading: false, errorMessage: "" },
   reducers: {
     addItem(state, action) {
       state.unshift(action.payload);
@@ -45,8 +45,15 @@ const inventarySlice = createSlice({
     },
   },
   extraReducers: {
+    [fetchInventary.pending]: (state, action) => {
+      state.loading = true;
+    },
     [fetchInventary.fulfilled]: (state, action) => {
-      return [...action.payload];
+      state.items.push(action.payload);
+    },
+    [fetchInventary.rejected]: (state, action) => {
+      state.errorMessage = action.error.message || "Couldn't fetch items";
+      state.loading = false;
     },
     [createItem.fulfilled]: (state, action) => {
       state.push(action.payload);

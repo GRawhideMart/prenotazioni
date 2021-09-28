@@ -28,7 +28,7 @@ import { useCallback, useEffect } from "react";
 import { fetchSchedulerData } from "../../../rtk/slices/schedulerData.slice";
 
 const HomeScheduler = () => {
-  const schedulerData = useSelector((state) => state.scheduler);
+  const schedulerData = useSelector((state) => state.scheduler.schedulerData);
 
   const grouping = useSelector((state) => state.groupings);
   const resources = useSelector((state) => state.resources);

@@ -24,12 +24,12 @@ import Add from "../pages/forms/addItem";
 import Edit from "../pages/forms/editItem";
 import Delete from "../utils/buttons/delete";
 
-const InventoryTable = ({ onlyAvailable, type, onAddSubmit, onEditSubmit }) => {
+const InventoryTable = ({ onlyAvailable, type }) => {
   const classes = useCustomStyles();
 
   const dispatch = useDispatch();
 
-  const inventary = useSelector((state) => state.inventary);
+  const inventary = useSelector((state) => state.inventary.items);
   const items = onlyAvailable
     ? inventary.filter((item) => item.isAvailable)
     : inventary;
@@ -49,7 +49,7 @@ const InventoryTable = ({ onlyAvailable, type, onAddSubmit, onEditSubmit }) => {
 
   return (
     <Fragment>
-      {type === "manage" ? <Add onSubmit={onAddSubmit} /> : null}
+      {type === "manage" ? <Add /> : null}
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="last rents">
           <TableHead>
@@ -100,11 +100,7 @@ const InventoryTable = ({ onlyAvailable, type, onAddSubmit, onEditSubmit }) => {
                   // if type is not rental, render the buttons to edit and delete
                   <Fragment>
                     <StyledTableCell align="center">
-                      <Edit
-                        onSubmit={onEditSubmit}
-                        rowId={row.id}
-                        description={row.description}
-                      />
+                      <Edit rowId={row.id} description={row.description} />
                     </StyledTableCell>
                     <StyledTableCell align="center">
                       <Delete handleDelete={handleDelete} rowId={row.id} />

@@ -8,13 +8,20 @@ export const fetchRents = createAsyncThunk("rents/fetchRents", async () => {
 
 const rentsSlice = createSlice({
   name: "rents",
-  initialState: [],
+  initialState: { rents: [], loading: false, errorMessage: "" },
   reducer: {
     getLatestRents: (state) => state,
   },
   extraReducers: {
+    [fetchRents.pending]: (state, action) => {
+      state.loading = true;
+    },
     [fetchRents.fulfilled]: (state, action) => {
-      return [...action.payload];
+      state.rents.push(action.payload);
+    },
+    [fetchRents.rejected]: (state, action) => {
+      state.loading = false;
+      state.errorMessage = action.error.message;
     },
   },
 });

@@ -36,7 +36,7 @@ export const updateAppointment = createAsyncThunk(
 
 const schedulerDataSlice = createSlice({
   name: "scheduler",
-  initialState: [],
+  initialState: { schedulerData: [], loading: false, errorMessage: "" },
   reducers: {
     addBooking(state, action) {
       state.push(action.payload);
@@ -46,11 +46,19 @@ const schedulerDataSlice = createSlice({
     },
   },
   extraReducers: {
+    [fetchSchedulerData.pending]: (state, action) => {
+      state.loading = true;
+    },
     [fetchSchedulerData.fulfilled]: (state, action) => {
-      return [...action.payload];
+      state.schedulerData.push(action.payload);
+    },
+    [fetchSchedulerData.rejected]: (state, action) => {
+      state.loading = false;
+      state.errorMessage =
+        action.error.message || "Couldn't fetch appointments";
     },
     [createAppointment.fulfilled]: (state, action) => {
-      state.push(action.payload);
+      state.schedulerData.push(action.payload);
     },
     [removeAppointment.fulfilled]: (state, action) => {
       let index = state.findIndex(({ id }) => id === action.payload.id);

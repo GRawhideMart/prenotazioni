@@ -43,7 +43,7 @@ const StudioScheduler = ({ name }) => {
     currentDate: new Date(),
   });
 
-  const appointments = useSelector((state) => state.scheduler);
+  const appointments = useSelector((state) => state.scheduler.schedulerData);
   let schedulerData =
     name === "Studio"
       ? appointments.filter((app) => app.room === 1)
