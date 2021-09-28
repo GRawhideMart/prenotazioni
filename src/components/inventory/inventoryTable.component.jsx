@@ -14,10 +14,11 @@ import {
 import BookItemComponent from "../BookItemComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { Fragment, useCallback, useEffect } from "react";
-import { fetchInventary } from "../../rtk/slices/inventary.slice";
-import ButtonDialog from "../Inventario/ButtonDialog";
+import { fetchInventary, removeItem } from "../../rtk/slices/inventary.slice";
+
 import Add from "../pages/forms/addItem";
 import Edit from "../pages/forms/editItem";
+import Delete from "../utils/buttons/delete";
 
 const InventoryTable = ({ onlyAvailable, type }) => {
   const classes = useCustomStyles();
@@ -35,6 +36,11 @@ const InventoryTable = ({ onlyAvailable, type }) => {
   useEffect(() => {
     initFetch();
   }, [initFetch]);
+
+  const handleDelete = (id) => {
+    alert(`This will delete the item with ID ${id} from the database`);
+    dispatch(removeItem(id));
+  };
 
   return (
     <Fragment>
@@ -92,7 +98,7 @@ const InventoryTable = ({ onlyAvailable, type }) => {
                       <Edit rowId={row.id} description={row.description} />
                     </StyledTableCell>
                     <StyledTableCell align="center">
-                      <ButtonDialog type="delete" rowId={row.id} />
+                      <Delete handleDelete={handleDelete} rowId={row.id} />
                     </StyledTableCell>
                   </Fragment>
                 )}

@@ -15,10 +15,10 @@ import TotalPrice from "../../../utils/form/fields/totalPrice";
 import IsDonation from "../../../utils/form/fields/isDonation";
 import IsRentable from "../../../utils/form/fields/isRentable";
 import IsAvailable from "../../../utils/form/fields/isAvailable";
+import AddButton from "../../../utils/buttons/add";
 
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRightSharp";
 import Close from "@material-ui/icons/CloseSharp";
-import AddCircle from "@material-ui/icons/AddCircleSharp";
 
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -59,16 +59,7 @@ const Add = () => {
   return (
     <>
       {/* TRIGGER BUTTON */}
-      <Button
-        endIcon={<AddCircle />}
-        variant="contained"
-        color="success"
-        fullWidth
-        className={classes.inventaryAddButton}
-        onClick={handleClickOpen}
-      >
-        Aggiungi
-      </Button>
+      <AddButton handleClickOpen={handleClickOpen} />
 
       {/* DIALOG */}
       <Dialog open={open} setOpen={setOpen} title="Aggiungi elemento">

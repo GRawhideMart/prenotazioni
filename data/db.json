@@ -1,17 +1,6 @@
 {
   "inventario": [
     {
-      "id": "101",
-      "quantity": "1",
-      "description": "Mixer Principale Studio 1",
-      "name": "AXIA QOR32 Integrated Console Engine + Surface",
-      "buyYear": "",
-      "totalPrice": "14654.63",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
       "id": "102",
       "quantity": "2",
       "description": "Microfono a condensatore",

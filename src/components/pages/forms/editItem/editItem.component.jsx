@@ -18,14 +18,13 @@ import IsAvailable from "../../../utils/form/fields/isAvailable";
 
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRightSharp";
 import Close from "@material-ui/icons/CloseSharp";
-import EditIcon from "@material-ui/icons/EditSharp";
 
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import FormGroup from "@material-ui/core/FormGroup";
 
 import { useSelector } from "react-redux";
+import EditButton from "../../../utils/buttons/edit";
 
 const Edit = ({ rowId }) => {
   const [open, setOpen] = useState(false);
@@ -49,15 +48,7 @@ const Edit = ({ rowId }) => {
   return (
     <>
       {/* TRIGGER BUTTON */}
-      <IconButton
-        variant="contained"
-        color="warning"
-        className={classes.inventaryEditButton}
-        onClick={handleClickOpen}
-        aria-label="edit"
-      >
-        <EditIcon />
-      </IconButton>
+      <EditButton handleClickOpen={handleClickOpen} />
 
       {/* DIALOG */}
       <Dialog
