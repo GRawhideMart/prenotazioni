@@ -1,7 +1,6 @@
 import { AppointmentTooltip } from "@devexpress/dx-react-scheduler-material-ui";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Room from "@material-ui/icons/RoomSharp";
 import { NoteSharp } from "@material-ui/icons";
 
 const Content = ({ children, appointmentData, classes, ...restProps }) => (

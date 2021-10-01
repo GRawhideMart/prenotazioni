@@ -30,7 +30,7 @@ import { updateItem } from "../../../../rtk/slices/inventary.slice";
 const Edit = ({ rowId }) => {
   const [open, setOpen] = useState(false);
   const itemInfo = useSelector((state) =>
-    state.inventary.filter((item) => item.id === rowId)
+    state.inventary.items.filter((item) => item.id === rowId)
   )[0];
   const { control, handleSubmit } = useForm({
     defaultValues: itemInfo,

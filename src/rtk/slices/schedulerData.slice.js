@@ -50,6 +50,7 @@ const schedulerDataSlice = createSlice({
       state.loading = true;
     },
     [fetchSchedulerData.fulfilled]: (state, action) => {
+      state.loading = false;
       state.schedulerData.push(action.payload);
     },
     [fetchSchedulerData.rejected]: (state, action) => {

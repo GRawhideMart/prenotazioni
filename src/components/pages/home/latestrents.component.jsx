@@ -17,7 +17,7 @@ import { fetchRents } from "../../../rtk/slices/rents.slice";
 
 const LatestRents = () => {
   const classes = useCustomStyles();
-  const rows = useSelector((state) => state.rents.rents).slice(0, 10);
+  const rows = useSelector((state) => state.rents.rents)[0].slice(0, 10);
 
   const dispatch = useDispatch();
 

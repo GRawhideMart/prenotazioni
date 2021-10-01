@@ -17,6 +17,7 @@ const rentsSlice = createSlice({
       state.loading = true;
     },
     [fetchRents.fulfilled]: (state, action) => {
+      state.loading = false;
       state.rents.push(action.payload);
     },
     [fetchRents.rejected]: (state, action) => {

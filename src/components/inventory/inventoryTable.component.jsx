@@ -33,6 +33,7 @@ const InventoryTable = ({ onlyAvailable, type }) => {
   const items = onlyAvailable
     ? inventary.filter((item) => item.isAvailable)
     : inventary;
+
   const initFetch = useCallback(() => {
     dispatch(fetchInventary());
   }, [dispatch]);
