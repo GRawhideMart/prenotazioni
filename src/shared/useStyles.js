@@ -114,9 +114,14 @@ export const useCustomStyles = makeStyles((theme) => ({
     marginBottom: 24,
     display: "block",
   },
-  loadingSpinner: {
+  loadingSpinnerContainer: {
     display: "flex",
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+  },
+  loadingSpinner: {
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
   },
 }));
 

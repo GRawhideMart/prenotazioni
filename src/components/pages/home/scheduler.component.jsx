@@ -28,8 +28,10 @@ import Loading from "../../utils/spinner";
 
 import { useCallback, useEffect } from "react";
 import { fetchSchedulerData } from "../../../rtk/slices/schedulerData.slice";
+import { useCustomStyles } from "../../../shared/useStyles";
 
 const HomeScheduler = () => {
+  const classes = useCustomStyles();
   const schedulerData = useSelector(
     (state) => state.scheduler.schedulerData
   )[0];
@@ -50,8 +52,12 @@ const HomeScheduler = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      {isLoading && <Loading />}
       <Paper>
+        {isLoading && (
+          <div className={classes.loadingSpinnerContainer}>
+            <Loading />
+          </div>
+        )}
         <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek={1}>
           <ViewState defaultCurrentDate={new Date()} />
 

@@ -15,9 +15,12 @@ import {
 
 import { fetchRents } from "../../../rtk/slices/rents.slice";
 
+import Loading from "../../utils/spinner";
+
 const LatestRents = () => {
   const classes = useCustomStyles();
-  const rows = useSelector((state) => state.rents.rents)[0].slice(0, 10);
+  const rows = useSelector((state) => state.rents.rents)[0];
+  const isLoading = useSelector((state) => state.rents.loading);
 
   const dispatch = useDispatch();
 
@@ -41,20 +44,26 @@ const LatestRents = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.itemId}>
-              <StyledTableCell component="th" scope="row">
-                {row.item}
-              </StyledTableCell>
-              <StyledTableCell align="center">{row.who}</StyledTableCell>
-              <StyledTableCell align="center">
-                {new Date(row.when).toLocaleDateString()}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {row.returned ? "Sì" : "No"}
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
+          {isLoading && (
+            <div className={classes.loadingSpinner}>
+              <Loading />
+            </div>
+          )}
+          {rows &&
+            rows.slice(0, 12).map((row) => (
+              <StyledTableRow key={row.itemId}>
+                <StyledTableCell component="th" scope="row">
+                  {row.item}
+                </StyledTableCell>
+                <StyledTableCell align="center">{row.who}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {new Date(row.when).toLocaleDateString()}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {row.returned ? "Sì" : "No"}
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
