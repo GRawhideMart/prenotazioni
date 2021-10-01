@@ -62,16 +62,18 @@ const schedulerDataSlice = createSlice({
       state.schedulerData.push(action.payload);
     },
     [removeAppointment.fulfilled]: (state, action) => {
-      let index = state.findIndex(({ id }) => id === action.payload.id);
-      state.splice(index, 1);
+      let index = state.schedulerData.findIndex(
+        ({ id }) => id === action.payload.id
+      );
+      state.schedulerData.splice(index, 1);
     },
     [updateAppointment.fulfilled]: (state, action) => {
-      const index = state.findIndex(
+      const index = state.schedulerData.findIndex(
         (appointment) => appointment.id === action.payload.id
       );
       console.log(state[index]);
-      state[index] = {
-        ...state[index],
+      state.schedulerData[index] = {
+        ...state.schedulerData[index],
         ...action.payload,
       };
     },

@@ -23,6 +23,7 @@ import {
 import Add from "../pages/forms/addItem";
 import Edit from "../pages/forms/editItem";
 import Delete from "../utils/buttons/delete";
+import Loading from "../utils/spinner";
 
 const InventoryTable = ({ onlyAvailable, type }) => {
   const classes = useCustomStyles();
@@ -30,9 +31,11 @@ const InventoryTable = ({ onlyAvailable, type }) => {
   const dispatch = useDispatch();
 
   const inventary = useSelector((state) => state.inventary.items);
-  const items = onlyAvailable
-    ? inventary.filter((item) => item.isAvailable)
-    : inventary;
+  const isLoading = useSelector((state) => state.inventary.loading);
+  const items =
+    inventary && onlyAvailable
+      ? inventary[0].filter((item) => item.isAvailable)
+      : inventary[0];
 
   const initFetch = useCallback(() => {
     dispatch(fetchInventary());
@@ -54,6 +57,11 @@ const InventoryTable = ({ onlyAvailable, type }) => {
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="last rents">
           <TableHead>
+            {isLoading && (
+              <div className={classes.loadingSpinnerContainer}>
+                <Loading />
+              </div>
+            )}
             <TableRow>
               <StyledTableCell className={classes.rowItemId}>
                 I.D.
@@ -67,49 +75,50 @@ const InventoryTable = ({ onlyAvailable, type }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.map((row) => (
-              <StyledTableRow key={row.id}>
-                <StyledTableCell
-                  component="th"
-                  scope="row"
-                  className={classes.rowItemId}
-                >
-                  {row.id}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {row.description}
-                </StyledTableCell>
-                <StyledTableCell align="center">{row.name}</StyledTableCell>
-                <StyledTableCell align="center">
-                  {row.isAvailable ? "Sì" : "No"}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {row.quantity !== "" ? parseInt(row.quantity, 10) : ""}
-                </StyledTableCell>
-                {type === "rental" ? ( // if type is rental render the item and modal to book an item
-                  <StyledTableCell align="center">
-                    <BookItemComponent
-                      isAvailable={row.isAvailable}
-                      item={
-                        <div>
-                          {row.name}, <em>{row.description}</em>
-                        </div>
-                      }
-                    />
+            {items &&
+              items.map((row) => (
+                <StyledTableRow key={row.id}>
+                  <StyledTableCell
+                    component="th"
+                    scope="row"
+                    className={classes.rowItemId}
+                  >
+                    {row.id}
                   </StyledTableCell>
-                ) : (
-                  // if type is not rental, render the buttons to edit and delete
-                  <Fragment>
+                  <StyledTableCell align="center">
+                    {row.description}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{row.name}</StyledTableCell>
+                  <StyledTableCell align="center">
+                    {row.isAvailable ? "Sì" : "No"}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {row.quantity !== "" ? parseInt(row.quantity, 10) : ""}
+                  </StyledTableCell>
+                  {type === "rental" ? ( // if type is rental render the item and modal to book an item
                     <StyledTableCell align="center">
-                      <Edit rowId={row.id} description={row.description} />
+                      <BookItemComponent
+                        isAvailable={row.isAvailable}
+                        item={
+                          <div>
+                            {row.name}, <em>{row.description}</em>
+                          </div>
+                        }
+                      />
                     </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <Delete handleDelete={handleDelete} rowId={row.id} />
-                    </StyledTableCell>
-                  </Fragment>
-                )}
-              </StyledTableRow>
-            ))}
+                  ) : (
+                    // if type is not rental, render the buttons to edit and delete
+                    <Fragment>
+                      <StyledTableCell align="center">
+                        <Edit rowId={row.id} description={row.description} />
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        <Delete handleDelete={handleDelete} rowId={row.id} />
+                      </StyledTableCell>
+                    </Fragment>
+                  )}
+                </StyledTableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

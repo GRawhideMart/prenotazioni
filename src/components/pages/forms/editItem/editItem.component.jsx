@@ -57,7 +57,7 @@ const Edit = ({ rowId }) => {
       <Dialog
         open={open}
         setOpen={setOpen}
-        title={`Modifica elemento - ${itemInfo.name}`}
+        title={itemInfo && `Modifica elemento - ${itemInfo.name}`}
       >
         <Form
           onSubmit={handleSubmit((values) => onSubmit(rowId, values))}

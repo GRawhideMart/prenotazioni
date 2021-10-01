@@ -38,10 +38,10 @@ const inventarySlice = createSlice({
   initialState: { items: [], loading: false, errorMessage: "" },
   reducers: {
     addItem(state, action) {
-      state.unshift(action.payload);
+      state.items.unshift(action.payload);
     },
     deleteItem(state, action) {
-      return state.filter((item) => item.id !== action.payload);
+      return state.items.filter((item) => item.id !== action.payload);
     },
   },
   extraReducers: {
@@ -50,6 +50,7 @@ const inventarySlice = createSlice({
     },
     [fetchInventary.fulfilled]: (state, action) => {
       state.items.push(action.payload);
+      state.loading = false;
     },
     [fetchInventary.rejected]: (state, action) => {
       state.errorMessage = action.error.message || "Couldn't fetch items";

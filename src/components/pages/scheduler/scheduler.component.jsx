@@ -36,6 +36,7 @@ import AppointmentContent from "../../utils/scheduler/content";
 //import CommandButton from "../../utils/scheduler/commandButton";
 import LabelComponent from "../../utils/scheduler/label";
 import TooltipContent from "../../utils/scheduler/tooltip/content";
+import { addItem } from "../../../rtk/slices/inventary.slice";
 
 const StudioScheduler = ({ name }) => {
   const [state, setState] = useState({
@@ -45,9 +46,10 @@ const StudioScheduler = ({ name }) => {
 
   const appointments = useSelector((state) => state.scheduler.schedulerData)[0];
   let schedulerData =
-    name === "Studio"
+    appointments &&
+    (name === "Studio"
       ? appointments.filter((app) => app.room === 1)
-      : appointments.filter((app) => app.room === 2);
+      : appointments.filter((app) => app.room === 2));
   const resources = useSelector((state) => state.resources);
   const dispatch = useDispatch();
 
@@ -74,9 +76,24 @@ const StudioScheduler = ({ name }) => {
 
     if (added) {
       const startingAddedId =
-        appointments.length > 0
+        appointments &&
+        (appointments.length > 0
           ? appointments[appointments.length - 1].id + 1
-          : 0;
+          : 0);
+      dispatch(
+        addItem({
+          id: startingAddedId,
+          startDate: added.startDate.toJSON(),
+          endDate: added.endDate.toJSON(),
+          title: added.title,
+          notes: added.notes || "",
+          room: history.location.pathname === "/studio" ? 1 : 2,
+          backgroundImage: "https://www.poliradio.it/images/logo-fb.png",
+          //backgroundColor: theme.palette.primary.main,
+          rRule: added.rRule || "",
+          exDate: "",
+        })
+      );
       dispatch(
         createAppointment({
           id: startingAddedId,

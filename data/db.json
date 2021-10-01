@@ -1,43 +1,6 @@
 {
   "inventario": [
     {
-      "id": "102",
-      "quantity": "2",
-      "description": "Microfono a condensatore",
-      "name": "SE X1",
-      "buyYear": "2013",
-      "totalPrice": "262",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false,
-      "requestId": "_RpK5ux4xJ4DvjbMpY6f-",
-      "signal": {}
-    },
-    {
-      "id": "104",
-      "quantity": "1",
-      "description": "Microfono dinamico",
-      "name": "Shure SM58 LC",
-      "buyYear": "",
-      "totalPrice": "112",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false,
-      "requestId": "9UqxQ0f5QoPqYKObdkKxu",
-      "signal": {}
-    },
-    {
-      "id": "105",
-      "quantity": "3",
-      "description": "Aste microfoniche",
-      "name": "K&M 23860 Microphone Desk Arm",
-      "buyYear": "2016/17",
-      "totalPrice": "130.33",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
       "id": "106",
       "quantity": "4",
       "description": "Processori microfonici",
@@ -2062,21 +2025,10 @@
       "notes": "Fica"
     },
     {
-      "id": 3,
-      "startDate": "2021-09-28T08:30:00.000Z",
-      "endDate": "2021-09-28T09:00:00.000Z",
-      "title": "Un appunt con note",
-      "notes": "Qui le note",
-      "room": 2,
-      "backgroundImage": "https://www.poliradio.it/images/logo-fb.png",
-      "rRule": "",
-      "exDate": ""
-    },
-    {
-      "id": 4,
-      "startDate": "2021-09-28T09:30:00.000Z",
-      "endDate": "2021-09-28T10:00:00.000Z",
-      "title": "Un appunt senza note",
+      "id": 5,
+      "startDate": "2021-10-02T11:00:00.000Z",
+      "endDate": "2021-10-02T11:30:00.000Z",
+      "title": "Dai bimbo",
       "notes": "",
       "room": 2,
       "backgroundImage": "https://www.poliradio.it/images/logo-fb.png",
