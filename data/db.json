@@ -1,39 +1,6 @@
 {
   "inventario": [
     {
-      "id": "106",
-      "quantity": "4",
-      "description": "Processori microfonici",
-      "name": "DBX 286S",
-      "buyYear": "2017/18",
-      "totalPrice": "634",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
-      "id": "107",
-      "quantity": "1",
-      "description": "Stabilizzatore rete elettrica",
-      "name": "Furman PL8CE",
-      "buyYear": "2017/08",
-      "totalPrice": "335.5",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
-      "id": "108",
-      "quantity": "1",
-      "description": "Processore multieffetto",
-      "name": "Behringer FX2000 Virtualizer 3D",
-      "buyYear": "2009",
-      "totalPrice": "90",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
       "id": "110",
       "quantity": "1",
       "description": "Processore master interno",
@@ -271,17 +238,6 @@
       "name": "LD Systems idppa2 - ppa2 preamplificatore con equalizzatore RIAA",
       "buyYear": "",
       "totalPrice": "",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
-      "id": "137",
-      "quantity": "1",
-      "description": "Amplificatore per cuffie (speaker)",
-      "name": "Behringer HA8000 V2",
-      "buyYear": "2019/20 (1)",
-      "totalPrice": "138.9946",
       "isDonation": false,
       "replacePriority": "",
       "isAvailable": false
@@ -771,17 +727,6 @@
       "isAvailable": false
     },
     {
-      "id": "413",
-      "quantity": "1",
-      "description": "Mouse e tastiera computer di ridondanza",
-      "name": "",
-      "buyYear": "2017/18",
-      "totalPrice": "19.87",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
       "id": "414",
       "quantity": "1",
       "description": "Monitor computer ridondanza",
@@ -1031,17 +976,6 @@
       "buyYear": "2018/19",
       "totalPrice": "134",
       "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
-      "id": "514",
-      "quantity": "1",
-      "description": "Ibrido telefonico esterne",
-      "name": "Axel BOXTEL ibrido telefonico bassivo",
-      "buyYear": "",
-      "totalPrice": "",
-      "isDonation": "donazione",
       "replacePriority": "",
       "isAvailable": false
     },
@@ -1772,91 +1706,15 @@
       "isAvailable": false
     },
     {
-      "id": "901",
-      "quantity": "1",
-      "description": "Scheda audio usb 3 canali RCA",
-      "name": "Behringer U-Control USB",
-      "buyYear": "2007",
-      "totalPrice": "20",
+      "description": "Sto aggiungendo",
+      "name": "Una cosa",
+      "id": "154654",
+      "quantity": "0363",
+      "replacePriority": "media",
+      "buyYear": "2021/22",
+      "totalPrice": "1999.99",
       "isDonation": false,
-      "replacePriority": "Funziona",
-      "isAvailable": false
-    },
-    {
-      "id": "902",
-      "quantity": "1",
-      "description": "Scheda audio usb 4 x 4 tascam",
-      "name": "TASCAM US 4X4",
-      "buyYear": "2015/16",
-      "totalPrice": "199",
-      "isDonation": false,
-      "replacePriority": "Spesso problemi di driver con windows 10",
-      "isAvailable": false
-    },
-    {
-      "id": "903",
-      "quantity": "1",
-      "description": "Scheda audio usb 4 x 4 M - Audio",
-      "name": "",
-      "buyYear": "",
-      "totalPrice": "",
-      "isDonation": false,
-      "replacePriority": "Funziona abbastanza, problemi di driver con windows 10 sugli ingressi",
-      "isAvailable": false
-    },
-    {
-      "id": "904",
-      "quantity": "1",
-      "description": "Distributore 2x4 con gain globale",
-      "name": "Millennium SP8",
-      "buyYear": "",
-      "totalPrice": "99",
-      "isDonation": false,
-      "replacePriority": "Funziona, da testare il correto bilanciamento degli output",
-      "isAvailable": false
-    },
-    {
-      "id": "905",
-      "quantity": "1",
-      "description": "Meter",
-      "name": "RWS meter",
-      "buyYear": "2012",
-      "totalPrice": "150",
-      "isDonation": "donazione",
-      "replacePriority": "guasto",
-      "isAvailable": false
-    },
-    {
-      "id": "208",
-      "quantity": "2",
-      "description": "Processori microfonici speaker",
-      "name": "DBX 286A",
-      "buyYear": "2016",
-      "totalPrice": "300",
-      "isDonation": "donazione",
-      "replacePriority": "Uno dei due guasto, l'altro tenuto di riserva",
-      "isAvailable": false
-    },
-    {
-      "id": "907",
-      "quantity": "4",
-      "description": "Spugne colorate per microfoni",
-      "name": "Soundstation W40-C",
-      "buyYear": "",
-      "totalPrice": "",
-      "isDonation": false,
-      "replacePriority": "",
-      "isAvailable": false
-    },
-    {
-      "id": "420",
-      "quantity": "1",
-      "description": "Stagebox",
-      "name": "Soundstation",
-      "buyYear": "",
-      "totalPrice": "",
-      "isDonation": "donazione",
-      "replacePriority": "",
+      "isRentable": false,
       "isAvailable": false
     }
   ],

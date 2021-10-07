@@ -58,8 +58,16 @@ const schedulerDataSlice = createSlice({
       state.errorMessage =
         action.error.message || "Couldn't fetch appointments";
     },
+    [createAppointment.pending]: (state, action) => {
+      state.loading = true;
+    },
     [createAppointment.fulfilled]: (state, action) => {
       state.schedulerData.push(action.payload);
+      state.loading = false;
+    },
+    [createAppointment.rejected]: (state, action) => {
+      state.loading = false;
+      state.errorMessage = action.error.message || "Couldn't add appointment";
     },
     [removeAppointment.fulfilled]: (state, action) => {
       let index = state.schedulerData.findIndex(

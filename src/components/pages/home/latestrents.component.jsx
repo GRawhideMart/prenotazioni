@@ -16,21 +16,25 @@ import {
 import { fetchRents } from "../../../rtk/slices/rents.slice";
 
 import Loading from "../../utils/spinner";
+import { fetchInventary } from "../../../rtk/slices/inventary.slice";
 
 const LatestRents = () => {
   const classes = useCustomStyles();
   const rows = useSelector((state) => state.rents.rents)[0];
+  //const inventary = useSelector((state) => state.inventary.items)[0];
   const isLoading = useSelector((state) => state.rents.loading);
 
   const dispatch = useDispatch();
 
   const initFetch = useCallback(() => {
     dispatch(fetchRents());
+    dispatch(fetchInventary());
   }, [dispatch]);
 
   useEffect(() => {
     initFetch();
   }, [initFetch]);
+  //console.log(inventary);
 
   return (
     <TableContainer component={Paper}>

@@ -56,8 +56,16 @@ const inventarySlice = createSlice({
       state.errorMessage = action.error.message || "Couldn't fetch items";
       state.loading = false;
     },
+    [createItem.pending]: (state, action) => {
+      state.loading = true;
+    },
     [createItem.fulfilled]: (state, action) => {
-      state.push(action.payload);
+      state.items.push(action.payload);
+      state.loading = false;
+    },
+    [createItem.rejected]: (state, action) => {
+      state.loading = false;
+      state.errorMessage = action.error.message || "Couldn't add item";
     },
     [updateItem.fulfilled]: (state, action) => {
       const index = state.findIndex((item) => item.id === action.payload.id);
@@ -68,8 +76,10 @@ const inventarySlice = createSlice({
       };
     },
     [removeItem.fulfilled]: (state, action) => {
-      let index = state.findIndex(({ id }) => id === action.payload.id);
-      state.splice(index, 1);
+      let index = state.items[0].findIndex(
+        ({ id }) => id === action.payload.id
+      );
+      state.items.splice(index, 1);
     },
   },
 });

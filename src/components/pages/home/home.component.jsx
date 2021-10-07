@@ -17,6 +17,7 @@ import Title from "../../utils/title";
 const Home = () => {
   const classes = useCustomStyles();
   const toolbarId = "back-to-top-anchor";
+
   return (
     <Fragment>
       {/* TITLE */}

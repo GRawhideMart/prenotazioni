@@ -30,12 +30,12 @@ const InventoryTable = ({ onlyAvailable, type }) => {
 
   const dispatch = useDispatch();
 
-  const inventary = useSelector((state) => state.inventary.items);
+  const inventary = useSelector((state) => state.inventary.items)[0];
   const isLoading = useSelector((state) => state.inventary.loading);
   const items =
     inventary && onlyAvailable
-      ? inventary[0].filter((item) => item.isAvailable)
-      : inventary[0];
+      ? inventary.filter((item) => item.isAvailable)
+      : inventary;
 
   const initFetch = useCallback(() => {
     dispatch(fetchInventary());
@@ -47,8 +47,8 @@ const InventoryTable = ({ onlyAvailable, type }) => {
 
   const handleDelete = (id) => {
     alert(`This will delete the item with ID ${id} from the database`);
-    dispatch(deleteItem(id));
-    dispatch(removeItem(id));
+    //dispatch(deleteItem(id));
+    dispatch(removeItem(id)).then((_) => dispatch(fetchInventary()));
   };
 
   return (
