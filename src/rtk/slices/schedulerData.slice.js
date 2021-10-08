@@ -39,10 +39,12 @@ const schedulerDataSlice = createSlice({
   initialState: { schedulerData: [], loading: false, errorMessage: "" },
   reducers: {
     addBooking(state, action) {
-      state.push(action.payload);
+      state.schedulerData[0].push(action.payload);
     },
     deleteAppointment(state, action) {
-      return state.filter((appointment) => appointment.id !== action.payload);
+      return state.schedulerData[0].filter(
+        (appointment) => appointment.id !== action.payload
+      );
     },
   },
   extraReducers: {

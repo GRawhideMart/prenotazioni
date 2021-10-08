@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import {
+  addBooking,
   createAppointment,
   fetchSchedulerData,
   removeAppointment,
@@ -36,7 +37,6 @@ import AppointmentContent from "../../utils/scheduler/content";
 //import CommandButton from "../../utils/scheduler/commandButton";
 import LabelComponent from "../../utils/scheduler/label";
 import TooltipContent from "../../utils/scheduler/tooltip/content";
-import { addItem } from "../../../rtk/slices/inventary.slice";
 
 const StudioScheduler = ({ name }) => {
   const [state, setState] = useState({
@@ -81,7 +81,7 @@ const StudioScheduler = ({ name }) => {
           ? appointments[appointments.length - 1].id + 1
           : 0);
       dispatch(
-        addItem({
+        addBooking({
           id: startingAddedId,
           startDate: added.startDate.toJSON(),
           endDate: added.endDate.toJSON(),

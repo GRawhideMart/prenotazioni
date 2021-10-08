@@ -1892,6 +1892,17 @@
       "backgroundImage": "https://www.poliradio.it/images/logo-fb.png",
       "rRule": "",
       "exDate": ""
+    },
+    {
+      "id": 6,
+      "startDate": "2021-10-08T12:30:00.000Z",
+      "endDate": "2021-10-08T13:00:00.000Z",
+      "title": "popo",
+      "notes": "afahh",
+      "room": 1,
+      "backgroundImage": "https://www.poliradio.it/images/logo-fb.png",
+      "rRule": "",
+      "exDate": ""
     }
   ],
   "affitti": [
