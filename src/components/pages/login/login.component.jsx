@@ -22,7 +22,7 @@ const Login = () => {
     >
       <a
         target="_blank"
-        href="https://membri.poliradio.it/oauth/doLogin.php?noredirect"
+        href="https://membri.poliradio.it/oauth/doLogin.php?getsession"
       >
         {/* <Button variant="contained"></Button> */}
         LOGIN

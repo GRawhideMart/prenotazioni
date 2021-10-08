@@ -2,7 +2,7 @@ import Grid from "@material-ui/core/Grid";
 import Title from "../../utils/title";
 import StudioScheduler from "./scheduler.component";
 
-const Scheduler = ({ name }) => {
+const Scheduler = ({ name, resource }) => {
   return (
     <Grid
       container
@@ -15,7 +15,7 @@ const Scheduler = ({ name }) => {
       <Grid item container direction="row">
         <Grid item md={2}></Grid>
         <Grid item md={8}>
-          <StudioScheduler name={name} />
+          <StudioScheduler name={name} resource={resource} />
         </Grid>
         <Grid item md={2}></Grid>
       </Grid>

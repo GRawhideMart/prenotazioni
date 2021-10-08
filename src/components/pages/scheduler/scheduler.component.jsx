@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import {
-  addBooking,
-  createAppointment,
-  fetchSchedulerData,
-  removeAppointment,
-  updateAppointment,
-} from "../../../rtk/slices/schedulerData.slice";
+// import {
+//   addBooking,
+//   createAppointment,
+//   fetchSchedulerData,
+//   removeAppointment,
+//   updateAppointment,
+// } from "../../../rtk/slices/schedulerData.slice";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import { schedulerTheme as theme } from "../../../shared/theme";
 import Paper from "@material-ui/core/Paper";
@@ -38,28 +38,34 @@ import AppointmentContent from "../../utils/scheduler/content";
 import LabelComponent from "../../utils/scheduler/label";
 import TooltipContent from "../../utils/scheduler/tooltip/content";
 
-const StudioScheduler = ({ name }) => {
+import SchedulerApi from "../../../services/scheduler.api";
+
+const StudioScheduler = ({ name, resource }) => {
   const [state, setState] = useState({
     currentViewName: "work-week",
     currentDate: new Date(),
+    schedulerData: [],
+    schedulerListener: new SchedulerApi(resource, (data) => {
+      setState({ ...state, schedulerData: data });
+    }),
   });
 
-  const appointments = useSelector((state) => state.scheduler.schedulerData)[0];
-  let schedulerData =
-    appointments &&
-    (name === "Studio"
-      ? appointments.filter((app) => app.room === 1)
-      : appointments.filter((app) => app.room === 2));
+  // const appointments = useSelector((state) => state.scheduler.schedulerData)[0];
+  // let schedulerData =
+  //   appointments &&
+  //   (name === "Studio"
+  //     ? appointments.filter((app) => app.room === 1)
+  //     : appointments.filter((app) => app.room === 2));
   const resources = useSelector((state) => state.resources);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const initFetch = useCallback(() => {
-    dispatch(fetchSchedulerData());
-  }, [dispatch]);
+  // const initFetch = useCallback(() => {
+  //   dispatch(fetchSchedulerData());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    initFetch();
-  }, [initFetch]);
+  // useEffect(() => {
+  //   initFetch();
+  // }, [initFetch]);
 
   const currentViewNameChange = (currentViewName) => {
     setState({ ...state, currentViewName });
@@ -71,76 +77,81 @@ const StudioScheduler = ({ name }) => {
   const history = useHistory();
 
   const commitChanges = (data) => {
-    // console.log(data);
     const { added, changed, deleted } = data;
 
     if (added) {
-      const startingAddedId =
-        appointments &&
-        (appointments.length > 0
-          ? appointments[appointments.length - 1].id + 1
-          : 0);
-      dispatch(
-        addBooking({
-          id: startingAddedId,
-          startDate: added.startDate.toJSON(),
-          endDate: added.endDate.toJSON(),
-          title: added.title,
-          notes: added.notes || "",
-          room: history.location.pathname === "/studio" ? 1 : 2,
-          backgroundImage: "https://www.poliradio.it/images/logo-fb.png",
-          //backgroundColor: theme.palette.primary.main,
-          rRule: added.rRule || "",
-          exDate: "",
-        })
-      );
-      dispatch(
-        createAppointment({
-          id: startingAddedId,
-          startDate: added.startDate.toJSON(),
-          endDate: added.endDate.toJSON(),
-          title: added.title,
-          notes: added.notes || "",
-          room: history.location.pathname === "/studio" ? 1 : 2,
-          backgroundImage: "https://www.poliradio.it/images/logo-fb.png",
-          //backgroundColor: theme.palette.primary.main,
-          rRule: added.rRule || "",
-          exDate: "",
-        })
-      );
-      // console.log("After: ", appointments);
+      state.schedulerListener.create(added);
     }
-    if (changed) {
-      // console.log(changed);
-      // appointments.map(
-      //   (appointment) => {
-      //     //console.log(changed);
-      //     return changed[appointment.id]
-      //       ? { ...appointment, ...changed[appointment.id] }
-      //       : appointment;
-      //   }
-      // );
-      // const id = Number(Object.keys(changed)[0]);
-      // console.log(changed[id]);
-      // dispatch(updateAppointment(id, changed[id]))
-      //   .then(console.log("done"))
-      //   .catch((e) => console.error(e));
-      // // console.log({ ...changed[Object.keys(changed)[0]] });
-    }
-    if (deleted !== undefined) {
-      console.log(deleted);
-      console.log(
-        schedulerData.filter((appointment) => appointment.id === deleted)
-      );
-      dispatch(removeAppointment(deleted));
-    }
-    return data;
+
+    // // console.log(data);
+    // const { added, changed, deleted } = data;
+    // if (added) {
+    //   const startingAddedId =
+    //     appointments &&
+    //     (appointments.length > 0
+    //       ? appointments[appointments.length - 1].id + 1
+    //       : 0);
+    //   dispatch(
+    //     addBooking({
+    //       id: startingAddedId,
+    //       startDate: added.startDate.toJSON(),
+    //       endDate: added.endDate.toJSON(),
+    //       title: added.title,
+    //       notes: added.notes || "",
+    //       room: history.location.pathname === "/studio" ? 1 : 2,
+    //       backgroundImage: "https://www.poliradio.it/images/logo-fb.png",
+    //       //backgroundColor: theme.palette.primary.main,
+    //       rRule: added.rRule || "",
+    //       exDate: "",
+    //     })
+    //   );
+    //   dispatch(
+    //     createAppointment({
+    //       id: startingAddedId,
+    //       startDate: added.startDate.toJSON(),
+    //       endDate: added.endDate.toJSON(),
+    //       title: added.title,
+    //       notes: added.notes || "",
+    //       room: history.location.pathname === "/studio" ? 1 : 2,
+    //       backgroundImage: "https://www.poliradio.it/images/logo-fb.png",
+    //       //backgroundColor: theme.palette.primary.main,
+    //       rRule: added.rRule || "",
+    //       exDate: "",
+    //     })
+    //   );
+    //   // console.log("After: ", appointments);
+    // }
+    // if (changed) {
+    //   // console.log(changed);
+    //   // appointments.map(
+    //   //   (appointment) => {
+    //   //     //console.log(changed);
+    //   //     return changed[appointment.id]
+    //   //       ? { ...appointment, ...changed[appointment.id] }
+    //   //       : appointment;
+    //   //   }
+    //   // );
+    //   // const id = Number(Object.keys(changed)[0]);
+    //   // console.log(changed[id]);
+    //   // dispatch(updateAppointment(id, changed[id]))
+    //   //   .then(console.log("done"))
+    //   //   .catch((e) => console.error(e));
+    //   // // console.log({ ...changed[Object.keys(changed)[0]] });
+    // }
+    // if (deleted !== undefined) {
+    //   console.log(deleted);
+    //   console.log(
+    //     schedulerData.filter((appointment) => appointment.id === deleted)
+    //   );
+    //   dispatch(removeAppointment(deleted));
+    // }
+    // return data;
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Paper>
-        <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek={1}>
+        <Scheduler data={state.schedulerData} locale="it-IT" firstDayOfWeek={1}>
           <ViewState
             currentDate={state.currentDate}
             onCurrentDateChange={currentDateChange}

@@ -1,6 +1,6 @@
 const ROOMS = [
-  { id: 1, text: "Studio 1" },
-  { id: 2, text: "Studio 2 (stanzino)" },
+  { id: "studio1", text: "Studio 1" },
+  { id: "studio2", text: "Studio 2 (stanzino)" },
 ];
 
 export const RESOURCES = {

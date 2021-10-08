@@ -24,12 +24,16 @@ const Main = () => {
           <Route
             exact
             path="/studio"
-            component={() => <Scheduler name="Studio" />}
+            component={() => (
+              <Scheduler name="Studio" resource="room-studio1" />
+            )}
           />
           <Route
             exact
             path="/stanzino"
-            component={() => <Scheduler name="Stanzino" />}
+            component={() => (
+              <Scheduler name="Stanzino" resource="room-studio2" />
+            )}
           />
           <Route
             path="/attrezzatura"
