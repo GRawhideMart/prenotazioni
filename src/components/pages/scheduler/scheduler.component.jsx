@@ -119,19 +119,18 @@ const StudioScheduler = ({ name }) => {
       //       ? { ...appointment, ...changed[appointment.id] }
       //       : appointment;
       //   }
-
       // );
-      const id = Number(Object.keys(changed)[0]);
-      console.log(changed[id]);
-      dispatch(updateAppointment(id, changed[id]))
-        .then(console.log("done"))
-        .catch((e) => console.error(e));
-      // console.log({ ...changed[Object.keys(changed)[0]] });
+      // const id = Number(Object.keys(changed)[0]);
+      // console.log(changed[id]);
+      // dispatch(updateAppointment(id, changed[id]))
+      //   .then(console.log("done"))
+      //   .catch((e) => console.error(e));
+      // // console.log({ ...changed[Object.keys(changed)[0]] });
     }
     if (deleted !== undefined) {
       console.log(deleted);
       console.log(
-        schedulerData.filter((appointment) => appointment.id !== deleted)
+        schedulerData.filter((appointment) => appointment.id === deleted)
       );
       dispatch(removeAppointment(deleted));
     }

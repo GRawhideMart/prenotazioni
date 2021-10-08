@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:8080/",
+  baseURL: "https://membri.poliradio.it/api/calendario/index.php",
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type": "application/www-formurlencoded",
   },
 });

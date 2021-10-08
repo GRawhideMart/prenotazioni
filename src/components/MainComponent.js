@@ -10,6 +10,7 @@ import Inventario from "./pages/inventory";
 
 import Scheduler from "./pages/scheduler";
 import Add from "./pages/forms/addItem/addItem.component";
+import Login from "./pages/login";
 
 const Main = () => {
   return (
@@ -38,7 +39,7 @@ const Main = () => {
             path="/inventario"
             component={() => <Inventario name="Gestione Inventario" />}
           />
-          <Route path="/tmp" component={() => <Add />} />
+          <Route exact path="/_login" component={Login} />
           <Redirect to="/" />
         </Switch>
       </main>

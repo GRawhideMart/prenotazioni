@@ -26,13 +26,13 @@ export const removeAppointment = createAsyncThunk(
   }
 );
 
-export const updateAppointment = createAsyncThunk(
-  "scheduler/updateBooking",
-  async (id, data) => {
-    const res = await SchedulerDataService.update(id, data);
-    return res.data;
-  }
-);
+// export const updateAppointment = createAsyncThunk(
+//   "scheduler/updateBooking",
+//   async (id, data) => {
+//     const res = await SchedulerDataService.update(id, data);
+//     return res.data;
+//   }
+// );
 
 const schedulerDataSlice = createSlice({
   name: "scheduler",
@@ -42,7 +42,7 @@ const schedulerDataSlice = createSlice({
       state.schedulerData[0].push(action.payload);
     },
     deleteAppointment(state, action) {
-      return state.schedulerData[0].filter(
+      return state.schedulerData.filter(
         (appointment) => appointment.id !== action.payload
       );
     },
@@ -71,22 +71,31 @@ const schedulerDataSlice = createSlice({
       state.loading = false;
       state.errorMessage = action.error.message || "Couldn't add appointment";
     },
+    [removeAppointment.pending]: (state, action) => {
+      state.loading = true;
+    },
     [removeAppointment.fulfilled]: (state, action) => {
+      state.loading = false;
       let index = state.schedulerData.findIndex(
         ({ id }) => id === action.payload.id
       );
       state.schedulerData.splice(index, 1);
     },
-    [updateAppointment.fulfilled]: (state, action) => {
-      const index = state.schedulerData.findIndex(
-        (appointment) => appointment.id === action.payload.id
-      );
-      console.log(state[index]);
-      state.schedulerData[index] = {
-        ...state.schedulerData[index],
-        ...action.payload,
-      };
+    [removeAppointment.rejected]: (state, action) => {
+      state.errorMessage =
+        action.error.message || "Couldn't remove appointment";
+      state.loading = false;
     },
+    // [updateAppointment.fulfilled]: (state, action) => {
+    //   const index = state.schedulerData.findIndex(
+    //     (appointment) => appointment.id === action.payload.id
+    //   );
+    //   console.log(state[index]);
+    //   state.schedulerData[index] = {
+    //     ...state.schedulerData[index],
+    //     ...action.payload,
+    //   };
+    // },
   },
 });
 
