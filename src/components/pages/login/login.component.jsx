@@ -8,7 +8,6 @@ const Login = () => {
   //       "https://membri.poliradio.it/oauth/doLogin.php?noredirect"
   //     );
   //   };
-
   return (
     <div
       style={{
@@ -22,7 +21,7 @@ const Login = () => {
     >
       <a
         target="_blank"
-        href="https://membri.poliradio.it/oauth/doLogin.php?getsession"
+        href="https://membri.poliradio.it/login.php?api=generate_JWT&aud=api-calendario"
       >
         {/* <Button variant="contained"></Button> */}
         LOGIN

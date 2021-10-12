@@ -45,11 +45,18 @@ const StudioScheduler = ({ name, resource }) => {
     currentViewName: "work-week",
     currentDate: new Date(),
     schedulerData: [],
-    schedulerListener: new SchedulerApi(resource, (data) => {
-      setState({ ...state, schedulerData: data });
-    }),
   });
 
+  useEffect(
+    (_) =>
+      SchedulerApi.subscribe((data) => {
+        console.log(data);
+        setState({ ...state, schedulerData: data });
+      }),
+    []
+  );
+
+  console.warn(state.schedulerData);
   // const appointments = useSelector((state) => state.scheduler.schedulerData)[0];
   // let schedulerData =
   //   appointments &&
@@ -57,6 +64,7 @@ const StudioScheduler = ({ name, resource }) => {
   //     ? appointments.filter((app) => app.room === 1)
   //     : appointments.filter((app) => app.room === 2));
   const resources = useSelector((state) => state.resources);
+  const schedulerData = useSelector((state) => state.schedulerData);
   // const dispatch = useDispatch();
 
   // const initFetch = useCallback(() => {
@@ -79,8 +87,18 @@ const StudioScheduler = ({ name, resource }) => {
   const commitChanges = (data) => {
     const { added, changed, deleted } = data;
 
+    console.log(added);
     if (added) {
-      state.schedulerListener.create(added);
+      SchedulerApi.create({
+        title: added.title,
+        notes: added.notes || "",
+        allDay: added.allDay,
+        startDate: Math.floor(added.startDate.getTime() / 1000),
+        endDate: Math.floor(added.endDate.getTime() / 1000),
+        resource,
+        rRule: added.rRule || "",
+        style: "{}",
+      });
     }
 
     // // console.log(data);
@@ -151,7 +169,7 @@ const StudioScheduler = ({ name, resource }) => {
   return (
     <ThemeProvider theme={theme}>
       <Paper>
-        <Scheduler data={state.schedulerData} locale="it-IT" firstDayOfWeek={1}>
+        <Scheduler data={schedulerData} locale="it-IT" firstDayOfWeek={1}>
           <ViewState
             currentDate={state.currentDate}
             onCurrentDateChange={currentDateChange}

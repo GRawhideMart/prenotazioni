@@ -29,6 +29,13 @@
     <title>POLI.RADIO - Servizio Prenotazioni e Recupero Mutuata Attrezzatura</title>
   </head>
   <body>
+    <script>
+      if (window.location.hash && window.location.hash.startsWith('#jwt=')){
+        const jwt = window.location.hash.replace('#jwt=', '');
+        window.localStorage.setItem('_JWT', jwt);
+        window.location.hash = '';
+      }
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

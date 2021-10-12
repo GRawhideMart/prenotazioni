@@ -1,100 +1,63 @@
 class SchedulerApi {
-  static _istances = {};
-  _ref = null;
-  _unsubscribeCb = null;
+  static _data = [];
+  static _cbs = [];
+  static _refreshCb = null;
 
-  constructor(resource, cb) {
-    console.log(resource);
-    if (!SchedulerApi._istances[resource]) {
-      SchedulerApi._istances[resource] = new _SchedulerApi(resource);
+  // constructor(resource) {
+  //   this._resource = resource;
+  //   //this._refreshCb = setInterval((_) => this._refreshData(), 15000);
+  //   this._refreshData();
+  // }
+
+  static subscribe(cb) {
+    if (this._refreshCb == null) {
+      // this._refreshCb = setInterval(
+      //   SchedulerApi._refreshData.bind(this),
+      //   15000
+      // );
     }
-    this._ref = SchedulerApi._istances[resource];
-    this._unsubscribeCb = this._ref.subscribe(cb);
-  }
-
-  destroy() {
-    this._unsubscribeCb();
-  }
-
-  create(data) {
-    this._ref.create("add", data);
-  }
-
-  cancel(id) {
-    this._ref.create("add", { id });
-  }
-  accept(id) {
-    this._ref.create("add", { id });
-  }
-  reject(id) {
-    this._ref.create("add", { id });
-  }
-}
-
-export default SchedulerApi;
-
-class _SchedulerApi {
-  _data = [];
-  _cbs = [];
-  _resource = "";
-  _refreshCb = null;
-
-  constructor(resource) {
-    this._resource = resource;
-    this._refreshCb = setInterval((_) => this._refreshData(), 15000);
+    this._cbs.push(cb);
     this._refreshData();
+    return (_) => this._cbs.filter((item) => item != cb);
   }
 
-  subscribe(cb) {
-    const _cb = (data) =>
-      cb(data.filter((item) => item.resource == this._resource));
-    this._cbs.push(_cb);
-    return (_) => this._cbs.filter((item) => item != _cb);
-  }
-
-  destroy() {
-    clearInterval(this._refreshCb);
-  }
-
-  create(data) {
+  static create(data) {
     this._send("add", data);
-    this._refreshData();
   }
 
-  cancel(id) {
+  static cancel(id) {
     this._send("add", { id });
-    this._refreshData();
   }
-  accept(id) {
+  static accept(id) {
     this._send("add", { id });
-    this._refreshData();
   }
-  reject(id) {
+  static reject(id) {
     this._send("add", { id });
-    this._refreshData();
   }
 
-  _refreshData() {
+  static _refreshData() {
     this._send("list", {}).then((data) => {
-      this._data = data;
-      this._cb([...this._data]);
+      this._data = data.map((item) => ({
+        ...item,
+        startDate: new Date(parseInt(item.startDate * 1000)).toISOString(),
+        endDate: new Date(parseInt(item.endDate * 1000)).toISOString(),
+      }));
+      this._cbs.forEach((cb) => cb([...this._data]));
     });
   }
 
-  _send = async (action, data) => {
+  static _send = async (action, data) => {
     try {
       let sendData = new FormData();
-      Object.keys(data).forEach((key) => sendData.append(key, data[key]));
-
+      Object.keys(data)
+        .filter((item) => item)
+        .forEach((key) => sendData.append(key, data[key]));
+      sendData.append("_JWT", window.localStorage.getItem("_JWT"));
       const response = await fetch(
-        `https://membri.poliradio.it/api/calendario/index.php?action=${action}&resource=${this._resource}`,
+        `https://membri.poliradio.it/api/calendario/index.php?action=${action}`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
           body: sendData,
-          credentials: "include",
         }
       );
 
@@ -117,3 +80,5 @@ class _SchedulerApi {
     }
   };
 }
+
+export default SchedulerApi;
